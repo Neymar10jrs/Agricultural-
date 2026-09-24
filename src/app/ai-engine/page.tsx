@@ -17,8 +17,12 @@ import {
   CheckCircle2,
   Sparkles,
 } from 'lucide-react';
+import { useApp } from '@/context/AppContext';
+import { SectionHero } from '@/components/ui/SectionHero';
 
 export default function AIEnginePage() {
+  const { language } = useApp();
+  const isHi = language === 'hi';
   const [activeStage, setActiveStage] = useState<string>('ai-core');
 
   const knowledgeGraphNodes = [
@@ -36,22 +40,31 @@ export default function AIEnginePage() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-      {/* Header */}
-      <div className="space-y-2">
-        <div className="flex items-center gap-2">
-          <span className="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold uppercase tracking-wider border border-emerald-300">
-            Agronomic Inference Architecture
+    <div className="space-y-0">
+      <SectionHero
+        imageSrc="/assets/satellite/satellite-telemetry.svg"
+        theme="satellite"
+        label={isHi ? 'कृषि अनुमान एवं एआई वास्तुकला' : 'AGRONOMIC INFERENCE ARCHITECTURE'}
+        heading={
+          <span className="text-gradient-satellite">
+            {isHi ? 'बीकेआईएन एआई कृषि इंजन पाइपलाइन' : 'AI Agriculture Engine Pipeline'}
           </span>
-          <span className="text-xs text-slate-500 font-medium">Multimodal Geospatial & Knowledge-Grounded AI</span>
-        </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-          AI Agriculture Engine Pipeline
-        </h1>
-        <p className="text-xs sm:text-sm text-slate-600 max-w-3xl leading-relaxed">
-          How BKIN fuses raw satellite pixels, numerical weather grids, soil sensor telemetry, and crop growth models into explainable agronomic decisions.
-        </p>
-      </div>
+        }
+        description={
+          isHi
+            ? 'बीकेआईएन कैसे उपग्रह पिक्सेल, संख्यात्मक मौसम ग्रिड, मृदा सेंसर डेटा और फसल वृद्धि मॉडल को व्याख्यात्मक निर्णयों में परिवर्तित करता है।'
+            : 'How BKIN fuses raw satellite pixels, numerical weather grids, soil sensor telemetry, and crop growth models into explainable agronomic decisions.'
+        }
+        showDemoBadge={true}
+        stats={[
+          { value: '7 Stages', label: isHi ? 'पाइपलाइन चरण' : 'Pipeline Nodes' },
+          { value: 'XGB + LLM', label: isHi ? 'मॉडल स्टैक' : 'Model Stack' },
+          { value: '100% Explainable', label: isHi ? 'व्याख्यात्मक' : 'Transparency' },
+        ]}
+      />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
 
       {/* Pipeline Diagram (Section 30) */}
       <div className="bg-slate-900 rounded-3xl p-6 sm:p-10 text-white shadow-xl space-y-8">
@@ -201,6 +214,8 @@ export default function AIEnginePage() {
           })}
         </div>
       </div>
+      </div>
     </div>
   );
 }
+

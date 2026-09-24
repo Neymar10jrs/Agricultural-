@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="fieldGlow" cx="60%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#15803d" stop-opacity="0.6"/>
+      <stop offset="60%" stop-color="#052e16" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#022c22" stop-opacity="1"/>
+    </radialGradient>
+    <pattern id="cropFurrows" width="80" height="40" patternUnits="userSpaceOnUse" patternTransform="rotate(25)">
+      <path d="M 0 10 Q 20 0, 40 10 T 80 10 M 0 30 Q 20 20, 40 30 T 80 30" fill="none" stroke="#22c55e" stroke-width="1.2" stroke-opacity="0.15"/>
+      <circle cx="20" cy="10" r="1.5" fill="#86efac" fill-opacity="0.25"/>
+      <circle cx="60" cy="30" r="1.5" fill="#86efac" fill-opacity="0.25"/>
+    </pattern>
+    <linearGradient id="terraceGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#16a34a" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#14532d" stop-opacity="0.05"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Deep Base -->
+  <rect width="1920" height="1080" fill="url(#fieldGlow)"/>
+
+  <!-- Agricultural Field Parcellation Polygons -->
+  <g opacity="0.35" stroke="#4ade80" stroke-width="1.5" fill="none">
+    <!-- Terraced farm plots -->
+    <polygon points="120,80 480,120 420,380 90,320" fill="url(#terraceGradient)"/>
+    <polygon points="500,110 920,70 870,350 440,370" fill="url(#terraceGradient)"/>
+    <polygon points="940,60 1420,110 1380,410 890,360" fill="url(#terraceGradient)"/>
+    <polygon points="1440,120 1850,90 1810,430 1400,420" fill="url(#terraceGradient)"/>
+
+    <polygon points="70,340 410,400 360,720 40,680" fill="url(#terraceGradient)"/>
+    <polygon points="430,390 860,370 820,740 380,730" fill="url(#terraceGradient)"/>
+    <polygon points="880,380 1360,430 1310,790 840,750" fill="url(#terraceGradient)"/>
+    <polygon points="1380,440 1880,420 1840,820 1330,800" fill="url(#terraceGradient)"/>
+
+    <polygon points="30,700 350,740 310,1050 10,1020" fill="url(#terraceGradient)"/>
+    <polygon points="370,750 800,760 760,1060 330,1050" fill="url(#terraceGradient)"/>
+    <polygon points="820,770 1290,810 1250,1070 780,1065" fill="url(#terraceGradient)"/>
+    <polygon points="1310,820 1830,830 1790,1075 1270,1070" fill="url(#terraceGradient)"/>
+  </g>
+
+  <!-- Furrows Pattern Layer -->
+  <rect width="1920" height="1080" fill="url(#cropFurrows)"/>
+
+  <!-- Topographic Elevation Contours -->
+  <g fill="none" stroke="#86efac" stroke-opacity="0.12" stroke-width="2" stroke-dasharray="8 6">
+    <path d="M-50,250 C300,180 650,320 1100,210 C1550,100 1750,280 2000,240"/>
+    <path d="M-50,450 C350,380 750,540 1200,410 C1650,280 1800,490 2000,450"/>
+    <path d="M-50,680 C400,600 800,780 1250,640 C1700,500 1820,710 2000,680"/>
+    <path d="M-50,880 C450,800 850,980 1300,840 C1750,700 1850,920 2000,900"/>
+  </g>
+
+  <!-- Agronomic Geo-Coordinate Markers -->
+  <g fill="#4ade80" opacity="0.6">
+    <circle cx="480" cy="120" r="3"/>
+    <circle cx="870" cy="350" r="3"/>
+    <circle cx="1360" cy="430" r="3"/>
+    <circle cx="760" cy="1060" r="3"/>
+  </g>
+</svg>

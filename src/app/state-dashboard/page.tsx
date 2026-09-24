@@ -16,9 +16,10 @@ import {
   ArrowRight,
 } from 'lucide-react';
 import { indianStatesData } from '@/data/states';
-import { StateNode } from '@/types';
 import { useApp } from '@/context/AppContext';
 import { FederatedStateNodeInspector } from '@/components/network/FederatedStateNodeInspector';
+import { SectionHero } from '@/components/ui/SectionHero';
+
 
 export default function StateDashboardPage() {
   const { language } = useApp();
@@ -27,44 +28,50 @@ export default function StateDashboardPage() {
   const currentState = indianStatesData.find((s) => s.stateCode === selectedStateCode) || indianStatesData[0];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-      {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div className="space-y-1">
-          <div className="flex items-center gap-2">
-            <span className="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold uppercase tracking-wider border border-emerald-300">
-              {isHi ? 'विभागीय विश्लेषिकी पोर्टल' : 'Departmental Analytics Portal'}
-            </span>
-            <span className="text-xs text-slate-500 font-medium">{isHi ? 'डेमो डेटा — राज्य एकत्रीकरण' : 'Demo Data — Simulated State Aggregations'}</span>
-          </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+    <div className="space-y-0">
+      <SectionHero
+        imageSrc="/assets/national-grid/india-grid.svg"
+        theme="satellite"
+        label={isHi ? 'विभागीय विश्लेषिकी पोर्टल' : 'DEPARTMENTAL ANALYTICS PORTAL'}
+        heading={
+          <span className="text-gradient-satellite">
             {isHi ? 'राज्य कृषि आसूचना डैशबोर्ड' : 'State Agriculture Intelligence Dashboard'}
-          </h1>
-          <p className="text-xs sm:text-sm text-slate-500">
-            {isHi
-              ? 'राज्य कृषि सचिवालयों के लिए क्षेत्रीय फसल निगरानी, परामर्श प्रसार एवं रोग निगरानी ग्रिड।'
-              : 'Regional crop monitoring, advisory reach, and disease surveillance for state agriculture secretariats.'}
-          </p>
-        </div>
+          </span>
+        }
+        description={
+          isHi
+            ? 'राज्य कृषि सचिवालयों के लिए क्षेत्रीय फसल निगरानी, परामर्श प्रसार एवं रोग निगरानी ग्रिड।'
+            : 'Regional crop monitoring, advisory reach, and disease surveillance for state agriculture secretariats.'
+        }
+        showDemoBadge={true}
+        stats={[
+          { value: currentState.name, label: isHi ? 'चयनित राज्य' : 'Selected State' },
+          { value: `${currentState.connectedFarmersCount.toLocaleString()}`, label: isHi ? 'निगरानी में किसान' : 'Farmers Connected' },
+          { value: `${currentState.satelliteCoveragePercent}%`, label: isHi ? 'सैटेलाइट कवरेज' : 'Satellite Coverage' },
+        ]}
 
-        {/* State Selector Dropdown */}
-        <div className="flex items-center gap-2 shrink-0">
-          <span className="text-xs font-semibold text-slate-600">
-            {isHi ? 'राज्य नोड चुनें:' : 'Select State Node:'}
+      >
+        {/* State Selector Dropdown inside Hero */}
+        <div className="flex items-center gap-2 mt-2">
+          <span className="text-xs font-semibold text-emerald-200">
+            {isHi ? 'राज्य नोड बदलें:' : 'Switch State Node:'}
           </span>
           <select
             value={selectedStateCode}
             onChange={(e) => setSelectedStateCode(e.target.value)}
-            className="bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            className="bg-emerald-950/80 border border-emerald-500/50 rounded-xl px-3 py-1.5 text-xs font-bold text-white focus:outline-none focus:ring-2 focus:ring-emerald-400 backdrop-blur"
           >
             {indianStatesData.map((st) => (
-              <option key={st.stateCode} value={st.stateCode}>
-                {st.name} ({st.hindiName})
+              <option key={st.stateCode} value={st.stateCode} className="bg-slate-900 text-white">
+                {st.name} ({st.stateCode})
               </option>
             ))}
           </select>
         </div>
-      </div>
+      </SectionHero>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
 
       {/* State Metric KPIs Strip */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -195,6 +202,8 @@ export default function StateDashboardPage() {
 
       {/* Federated State Node Deep Inspector */}
       <FederatedStateNodeInspector />
+      </div>
     </div>
   );
 }
+

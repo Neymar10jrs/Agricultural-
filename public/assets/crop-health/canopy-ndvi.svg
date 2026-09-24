@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="canopyGlow" cx="50%" cy="40%" r="75%">
+      <stop offset="0%" stop-color="#15803d" stop-opacity="0.6"/>
+      <stop offset="60%" stop-color="#052e16" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#021f0f" stop-opacity="1"/>
+    </radialGradient>
+    <pattern id="hexCanopy" width="40" height="69.28" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 20 11.55 L 0 0 L 0 23.09 L 20 34.64 L 40 23.09 Z M 0 34.64 L 20 46.19 L 40 34.64 L 40 57.74 L 20 69.28 L 0 57.74 Z" fill="none" stroke="#22c55e" stroke-width="0.8" stroke-opacity="0.12"/>
+    </pattern>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#canopyGlow)"/>
+  <rect width="1920" height="1080" fill="url(#hexCanopy)"/>
+
+  <!-- NDVI Multi-Spectral Health Thermal Contour Bands -->
+  <g fill="none" stroke-width="2.5" opacity="0.35">
+    <path d="M-50,260 C380,200 780,340 1280,220 C1650,140 1850,280 2000,240" stroke="#15803d"/>
+    <path d="M-50,440 C420,380 840,510 1320,380 C1680,290 1880,450 2000,420" stroke="#22c55e"/>
+    <path d="M-50,650 C360,590 800,740 1260,620 C1620,530 1820,680 2000,640" stroke="#84cc16"/>
+    <path d="M-50,860 C460,800 900,940 1360,820 C1720,730 1860,890 2000,850" stroke="#eab308"/>
+  </g>
+
+  <!-- Cellular Plant Biomass Nodes & Chlorophyll Centers -->
+  <g fill="#4ade80" opacity="0.25">
+    <circle cx="450" cy="280" r="8"/>
+    <circle cx="450" cy="280" r="24" fill="none" stroke="#4ade80" stroke-width="1.2"/>
+
+    <circle cx="920" cy="440" r="10"/>
+    <circle cx="920" cy="440" r="32" fill="none" stroke="#4ade80" stroke-width="1.2"/>
+
+    <circle cx="1480" cy="360" r="8"/>
+    <circle cx="1480" cy="360" r="26" fill="none" stroke="#4ade80" stroke-width="1.2"/>
+
+    <circle cx="1200" cy="740" r="9"/>
+    <circle cx="1200" cy="740" r="28" fill="none" stroke="#4ade80" stroke-width="1.2"/>
+  </g>
+</svg>

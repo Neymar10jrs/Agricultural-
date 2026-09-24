@@ -13,25 +13,39 @@ import {
   ArrowRight,
   HeartHandshake,
 } from 'lucide-react';
+import { useApp } from '@/context/AppContext';
+import { SectionHero } from '@/components/ui/SectionHero';
 
 export default function PrivacyTrustPage() {
+  const { language } = useApp();
+  const isHi = language === 'hi';
+
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-      {/* Header */}
-      <div className="space-y-2">
-        <div className="flex items-center gap-2">
-          <span className="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold uppercase tracking-wider border border-emerald-300">
-            Trust & Governance Center
+    <div className="space-y-0">
+      <SectionHero
+        imageSrc="/assets/national-grid/india-grid.svg"
+        theme="forest"
+        label={isHi ? 'विश्वास व शासन केंद्र' : 'TRUST & GOVERNANCE CHARTER'}
+        heading={
+          <span className="text-gradient-agri">
+            {isHi ? 'डेटा गोपनीयता व किसान विश्वास केंद्र' : 'Data Privacy & Farmer Trust Center'}
           </span>
-          <span className="text-xs text-slate-500 font-medium">Digital Public Infrastructure Security Charter</span>
-        </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-          Data Privacy & Farmer Trust Center
-        </h1>
-        <p className="text-xs sm:text-sm text-slate-600 max-w-2xl leading-relaxed">
-          BKIN is designed under the core principle that agricultural data belongs to the farmer and the state, not private monopolies or unchecked brokers.
-        </p>
-      </div>
+        }
+        description={
+          isHi
+            ? 'बीकेआईएन इस मूल सिद्धांत पर निर्मित है कि कृषि डेटा किसान और राज्य का है, किसी निजी एकाधिकार या अनियंत्रित ब्रोकर का नहीं।'
+            : 'BKIN is designed under the core principle that agricultural data belongs to the farmer and the state, not private monopolies or unchecked brokers.'
+        }
+        showDemoBadge={true}
+        stats={[
+          { value: 'AES-256', label: isHi ? 'एन्क्रिप्शन' : 'Encryption' },
+          { value: 'Zero', label: isHi ? 'डेटा बिक्री' : 'Data Sales' },
+          { value: '100%', label: isHi ? 'सहमति आधारित' : 'Consent-Driven' },
+        ]}
+      />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
 
       {/* Core Principle Quote Card (Section 35) */}
       <div className="bg-gradient-to-r from-emerald-900 via-slate-900 to-emerald-950 rounded-3xl p-6 sm:p-8 text-white shadow-lg space-y-2 border border-emerald-500/30">
@@ -108,6 +122,8 @@ export default function PrivacyTrustPage() {
           </p>
         </div>
       </div>
+      </div>
     </div>
   );
 }
+

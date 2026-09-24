@@ -39,6 +39,7 @@ import { initialDemoFarm } from '@/data/demoFarm';
 import { diseaseProbabilityTimeSeries } from '@/data/timeSeries';
 import { RiskFactor, AdvisoryItem } from '@/types';
 import { useApp } from '@/context/AppContext';
+import { SectionHero } from '@/components/ui/SectionHero';
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -363,29 +364,22 @@ export default function RiskCenterPage() {
   }, [period]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-      {/* ── Header ─────────────────────────────────────────────────────────── */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <div className="flex items-center gap-2 mb-2">
-            <span className="px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-800 text-[10px] font-bold uppercase tracking-wider border border-rose-300">
-              Prototype · Demo Data
-            </span>
-            <span className="text-xs text-slate-500">Risk calculated: {rb.calculatedAt}</span>
-          </div>
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-            Crop Risk Intelligence Center
-          </h1>
-          <p className="text-sm text-slate-500 mt-1">
-            {farm.name} · {farm.crop} · Day {farm.daysAfterSowing}
-          </p>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="px-3 py-1.5 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold border border-slate-200">
-            {farm.state} · {farm.district}
-          </span>
-        </div>
-      </div>
+    <div>
+      <SectionHero
+        imageSrc="/assets/risk/drought-risk.svg"
+        theme="risk"
+        label={isHi ? 'खेत स्तरीय जोखिम इंजन' : 'FARM-LEVEL RISK ENGINE'}
+
+        heading={<><span className='text-gradient-agri'>{isHi ? 'जोखिम केंद्र' : 'Risk Intelligence Center'}</span></>}
+        description={isHi ? 'BKIN जोखिम मॉडल: 6 कारक जो आपके खेत के खतरे का स्तर निर्धारित करते हैं' : 'BKIN Risk Model: 6 weighted factors that determine your farm threat level — configurable for your crop and region'}
+        showDemoBadge={true}
+        stats={[
+          { value: '6', label: isHi ? 'जोखिम कारक' : 'Risk Factors' },
+          { value: 'AI', label: isHi ? 'चालित' : 'Powered' },
+          { value: 'Live', label: isHi ? 'अपडेट' : 'Updates' },
+        ]}
+      />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
 
       {/* ── Overall Risk Gauge + Summary ───────────────────────────────────── */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -797,6 +791,7 @@ export default function RiskCenterPage() {
           <p className="text-xs font-bold text-amber-900">Prototype Disclaimer</p>
           <p className="text-[11px] text-amber-800 leading-relaxed">{rb.disclaimer}</p>
         </div>
+      </div>
       </div>
     </div>
   );

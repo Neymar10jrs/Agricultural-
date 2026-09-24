@@ -19,8 +19,13 @@ import {
 } from 'lucide-react';
 import { diseasePestDatabase } from '@/data/diseases';
 import { DiseasePestKnowledge } from '@/types';
+import { useApp } from '@/context/AppContext';
+import { SectionHero } from '@/components/ui/SectionHero';
+
 
 export default function DiseaseLibraryPage() {
+  const { language } = useApp();
+  const isHi = language === 'hi';
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCrop, setSelectedCrop] = useState('All');
   const [selectedType, setSelectedType] = useState('All');
@@ -46,24 +51,37 @@ export default function DiseaseLibraryPage() {
   });
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-      {/* Header */}
-      <div className="space-y-2">
-        <div className="flex items-center gap-2">
-          <span className="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold uppercase tracking-wider border border-emerald-300">
-            ICAR-NCIPM Standardized Knowledge Database
+    <div className="space-y-0">
+      <SectionHero
+        imageSrc="/assets/crop-health/canopy-ndvi.svg"
+        theme="forest"
+        label={isHi ? 'आईसीएआर-एनसीआईपीएम मानकीकृत ज्ञान डेटाबेस' : 'ICAR-NCIPM KNOWLEDGE REGISTRY'}
+        heading={
+          <span className="text-gradient-agri">
+            {isHi ? 'रोग व कीट ज्ञान पुस्तकालय' : 'Disease & Pest Knowledge Library'}
           </span>
-          <span className="text-xs text-slate-500 font-medium">Over 250+ Documented Pathogens, Vectors & Insects</span>
-        </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-          Disease & Pest Knowledge Library
-        </h1>
+        }
+        description={
+          isHi
+            ? 'भारतीय फसलों के लिए जैविक व कवक रोगजनकों, कीटों, लक्षणों और एकीकृत कीट प्रबंधन (IPM) प्रोटोकॉल का व्यापक संदर्भ।'
+            : 'Comprehensive diagnostic reference of biological pathogens, insect vectors, visible foliar symptoms, and IPM chemical/biological protocols.'
+        }
+        showDemoBadge={true}
+        stats={[
+          { value: '250+', label: isHi ? 'दस्तावेजीकृत रोग/कीट' : 'Documented Pests' },
+          { value: 'ICAR', label: isHi ? 'वैज्ञानिक सत्यापन' : 'Validation' },
+          { value: 'IPM', label: isHi ? 'मानकीकृत प्रोटोकॉल' : 'Protocols' },
+        ]}
+      />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
         <p className="text-xs sm:text-sm text-slate-600 max-w-2xl leading-relaxed">
           Search scientific names, diagnostic symptom keys, favorable thermal-moisture windows, and integrated pest management (IPM) guidelines across Indian agro-climatic zones.
         </p>
-      </div>
 
       {/* Search & Filter Controls Bar */}
+
       <div className="bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 shadow-sm space-y-3.5">
         <div className="relative">
           <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
@@ -303,6 +321,8 @@ export default function DiseaseLibraryPage() {
           </div>
         </div>
       )}
+      </div>
     </div>
   );
 }
+

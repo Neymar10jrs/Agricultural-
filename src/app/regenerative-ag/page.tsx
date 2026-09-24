@@ -11,28 +11,43 @@ import {
   CheckCircle2,
   TreePine,
   Droplets,
-  ShieldCheck,
 } from 'lucide-react';
 import { regenerativePracticesData } from '@/data/scenarios';
+import { useApp } from '@/context/AppContext';
+import { SectionHero } from '@/components/ui/SectionHero';
+
+
 
 export default function RegenerativeAgPage() {
+  const { language } = useApp();
+  const isHi = language === 'hi';
+
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-      {/* Header */}
-      <div className="space-y-2">
-        <div className="flex items-center gap-2">
-          <span className="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold uppercase tracking-wider border border-emerald-300">
-            Natural & Regenerative Farming Transition
+    <div className="space-y-0">
+      <SectionHero
+        imageSrc="/assets/soil/soil-strata.svg"
+        theme="soil"
+        label={isHi ? 'प्राकृतिक एवं पुनर्योजी कृषि परिवर्तन' : 'NATURAL & REGENERATIVE FARMING TRANSITION'}
+        heading={
+          <span className="text-gradient-gold">
+            {isHi ? 'पुनर्योजी कृषि रूपरेखा' : 'Regenerative Agriculture Framework'}
           </span>
-          <span className="text-xs text-slate-500 font-medium">Restoring Soil Organic Carbon & Agro-Ecosystem Health</span>
-        </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-          Regenerative Agriculture Framework
-        </h1>
-        <p className="text-xs sm:text-sm text-slate-600 max-w-2xl leading-relaxed">
-          Step-by-step pathways to transition from high-chemical conventional cycles to resilient, soil-regenerative systems that restore microbial vitality and sequester atmospheric carbon.
-        </p>
-      </div>
+        }
+        description={
+          isHi
+            ? 'रासायनिक निर्भरता कम करने, मृदा जैविक कार्बन पुनर्जीवित करने और सूक्ष्मजीव विविधता बढ़ाने हेतु व्यावहारिक चरणबद्ध मार्ग।'
+            : 'Step-by-step pathways to transition from high-chemical conventional cycles to resilient, soil-regenerative systems that restore microbial vitality and sequester atmospheric carbon.'
+        }
+        showDemoBadge={true}
+        stats={[
+          { value: '1.2 - 1.8 T/Ac', label: isHi ? 'कार्बन संचयन' : 'Carbon Storage' },
+          { value: '25% - 30%', label: isHi ? 'जल संरक्षण' : 'Water Saved' },
+          { value: '35 kg/Ac', label: isHi ? 'यूरिया बचत' : 'Urea Reduced' },
+        ]}
+      />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
 
       {/* Overview Stats Ribbon */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -130,6 +145,8 @@ export default function RegenerativeAgPage() {
           ))}
         </div>
       </div>
+      </div>
     </div>
   );
 }
+

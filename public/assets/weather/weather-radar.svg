@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="weatherGlow" cx="50%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#0284c7" stop-opacity="0.5"/>
+      <stop offset="55%" stop-color="#075985" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#082f49" stop-opacity="1"/>
+    </radialGradient>
+    <pattern id="isobarHatch" width="80" height="80" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="80" x2="80" y2="0" stroke="#38bdf8" stroke-width="0.8" stroke-opacity="0.08"/>
+    </pattern>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#weatherGlow)"/>
+  <rect width="1920" height="1080" fill="url(#isobarHatch)"/>
+
+  <!-- Doppler Radar Range Rings & Azimuth Crosshairs -->
+  <g fill="none" stroke="#38bdf8" stroke-opacity="0.25">
+    <circle cx="960" cy="540" r="160" stroke-width="1.2"/>
+    <circle cx="960" cy="540" r="320" stroke-width="1.5" stroke-dasharray="6 4"/>
+    <circle cx="960" cy="540" r="480" stroke-width="1.8"/>
+    <circle cx="960" cy="540" r="640" stroke-width="1.2" stroke-dasharray="10 6"/>
+    <circle cx="960" cy="540" r="800" stroke-width="1.5"/>
+
+    <line x1="960" y1="40" x2="960" y2="1040" stroke-width="1"/>
+    <line x1="60" y1="540" x2="1860" y2="540" stroke-width="1"/>
+    <line x1="320" y1="180" x2="1600" y2="900" stroke-width="0.8" stroke-dasharray="4 6"/>
+    <line x1="320" y1="900" x2="1600" y2="180" stroke-width="0.8" stroke-dasharray="4 6"/>
+  </g>
+
+  <!-- Atmospheric Isobars & Frontal Boundary Curves -->
+  <g fill="none" stroke="#7dd3fc" stroke-width="2" stroke-opacity="0.28">
+    <path d="M-50,300 Q400,150 900,280 T1800,220"/>
+    <path d="M-50,480 Q500,320 1050,440 T1900,380"/>
+    <path d="M-50,700 Q450,560 1000,680 T1900,620"/>
+    <path d="M-50,920 Q550,780 1100,900 T1950,840"/>
+  </g>
+
+  <!-- Cloud / Precipitation Telemetry Wavelets -->
+  <g fill="#38bdf8" opacity="0.3">
+    <circle cx="820" cy="420" r="45" fill-opacity="0.15"/>
+    <circle cx="860" cy="400" r="60" fill-opacity="0.2"/>
+    <circle cx="920" cy="430" r="50" fill-opacity="0.18"/>
+    <circle cx="880" cy="450" r="40" fill-opacity="0.22"/>
+
+    <circle cx="1180" cy="620" r="40" fill-opacity="0.12"/>
+    <circle cx="1230" cy="600" r="55" fill-opacity="0.16"/>
+    <circle cx="1280" cy="630" r="45" fill-opacity="0.14"/>
+  </g>
+</svg>

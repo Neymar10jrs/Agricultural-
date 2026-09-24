@@ -15,22 +15,39 @@ import {
   Sparkles,
 } from 'lucide-react';
 
+import { SectionHero } from '@/components/ui/SectionHero';
+import { useApp } from '@/context/AppContext';
+
 export default function AboutPage() {
+  const { language } = useApp();
+  const isHi = language === 'hi';
+
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
-      {/* Hero */}
-      <div className="text-center max-w-3xl mx-auto space-y-4">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-semibold border border-emerald-300">
-          <Sprout className="w-3.5 h-3.5" />
-          <span>India&apos;s Agricultural Public Infrastructure</span>
-        </div>
-        <h1 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
-          About Bharat Krishi Intelligence Network (BKIN)
-        </h1>
-        <p className="text-base text-slate-600 leading-relaxed font-medium">
-          &ldquo;From Data to Decisions — Smarter Farming for Every Indian Farmer.&rdquo;
-        </p>
-      </div>
+    <div className="space-y-0">
+      <SectionHero
+        imageSrc="/assets/national-grid/india-grid.svg"
+        theme="impact"
+        label={isHi ? 'भारत का कृषि सार्वजनिक बुनियादी ढांचा' : "INDIA'S AGRICULTURAL PUBLIC INFRASTRUCTURE"}
+
+        heading={
+          <span className="text-gradient-gold">
+            {isHi ? 'BKIN के बारे में' : 'About BKIN'}
+          </span>
+        }
+        description={
+          isHi
+            ? '"डेटा से निर्णय तक — हर भारतीय किसान के लिए स्मार्ट खेती।"'
+            : '"From Data to Decisions — Smarter Farming for Every Indian Farmer."'
+        }
+        stats={[
+          { value: '140M+', label: isHi ? 'किसान परिवार' : 'Farm Households' },
+          { value: '28', label: isHi ? 'राज्य नोड' : 'State Nodes' },
+          { value: 'Open', label: isHi ? 'API मानक' : 'API Standard' },
+          { value: '2024', label: isHi ? 'स्थापित' : 'Founded' },
+        ]}
+      />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
 
       {/* Mission & Vision Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -128,6 +145,8 @@ export default function AboutPage() {
           <span>Digital Green</span>
         </div>
       </div>
+      </div>
     </div>
   );
 }
+

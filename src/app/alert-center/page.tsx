@@ -31,6 +31,9 @@ import { demoAlerts, unreadAlertCount } from '@/data/alerts';
 import { demoSystemStatus } from '@/data/impact';
 import { AlertItem, AlertSeverity } from '@/types';
 import { useApp } from '@/context/AppContext';
+import { SectionHero } from '@/components/ui/SectionHero';
+
+
 
 export default function AlertCenterPage() {
   const { language } = useApp();
@@ -115,46 +118,49 @@ export default function AlertCenterPage() {
   const currentUnread = alerts.filter((a) => !a.isRead).length;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-slate-900 via-slate-800 to-emerald-950 rounded-3xl p-6 sm:p-8 text-white shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6">
-        <div className="space-y-2">
-          <div className="flex items-center gap-2">
-            <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-bold uppercase tracking-wider border border-emerald-400/30">
-              BKIN Early Warning Network
-            </span>
-            <span className="px-2.5 py-0.5 rounded-full bg-rose-500/20 text-rose-300 text-[10px] font-bold uppercase tracking-wider border border-rose-400/30 flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-rose-400 animate-pulse"></span>
-              {currentUnread} Unread Alerts
-            </span>
-          </div>
-          <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight flex items-center gap-3">
-            <Bell className="w-7 h-7 sm:w-9 sm:h-9 text-emerald-400" />
-            Alert & Notification Center
-          </h1>
-          <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
-            Real-time multi-hazard telemetry, biosecurity outbreak warnings, and precision agronomic action triggers across weather, soil, and satellite observations.
-          </p>
-        </div>
-
-        <div className="flex items-center gap-3 shrink-0">
+    <div className="space-y-0">
+      <SectionHero
+        imageSrc="/assets/risk/drought-risk.svg"
+        theme="risk"
+        label={isHi ? 'बीकेआईएन प्रारंभिक चेतावनी नेटवर्क' : 'BKIN EARLY WARNING NETWORK'}
+        heading={
+          <span className="text-gradient-agri">
+            {isHi ? 'अलर्ट व अधिसूचना केंद्र' : 'Alert & Notification Center'}
+          </span>
+        }
+        description={
+          isHi
+            ? 'मौसम, मृदा, और उपग्रह अवलोकनों के आधार पर वास्तविक समय बहु-आपदा टेलीमेट्री और जैव सुरक्षा प्रकोप चेतावनियाँ।'
+            : 'Real-time multi-hazard telemetry, biosecurity outbreak warnings, and precision agronomic action triggers across weather, soil, and satellite observations.'
+        }
+        showDemoBadge={true}
+        stats={[
+          { value: `${currentUnread}`, label: isHi ? 'अपठित अलर्ट' : 'Unread Alerts' },
+          { value: `${alerts.length}`, label: isHi ? 'कुल चेतावनियां' : 'Total Warnings' },
+          { value: 'Active', label: isHi ? 'पाइपलाइन' : 'Pipelines' },
+        ]}
+      >
+        <div className="flex items-center gap-3 mt-2 flex-wrap">
           {currentUnread > 0 && (
             <button
               onClick={markAllRead}
-              className="px-4 py-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-xs font-semibold text-slate-200 border border-slate-700 transition"
+              className="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-semibold text-white border border-white/20 transition backdrop-blur"
             >
-              Mark all as read
+              {isHi ? 'सभी को पढ़ा हुआ चिन्हित करें' : 'Mark all as read'}
             </button>
           )}
           <Link
             href="/todays-advisory"
-            className="px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-bold transition flex items-center gap-1.5 shadow-md"
+            className="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-bold transition flex items-center gap-1.5 shadow-md"
           >
             <Sparkles className="w-3.5 h-3.5" />
-            Today&apos;s Actions
+            {isHi ? 'आज की आवश्यक कार्रवाइयां' : "Today's Actions"}
           </Link>
         </div>
-      </div>
+      </SectionHero>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
 
       {/* System Status Mini Strip */}
       <div className="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm">
@@ -473,6 +479,8 @@ export default function AlertCenterPage() {
           </div>
         </div>
       </div>
+      </div>
     </div>
   );
 }
+

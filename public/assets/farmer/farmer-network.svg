@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="farmerGlow" cx="50%" cy="50%" r="75%">
+      <stop offset="0%" stop-color="#15803d" stop-opacity="0.5"/>
+      <stop offset="60%" stop-color="#064e3b" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#022c22" stop-opacity="1"/>
+    </radialGradient>
+    <pattern id="networkMesh" width="70" height="70" patternUnits="userSpaceOnUse">
+      <circle cx="35" cy="35" r="2" fill="#86efac" fill-opacity="0.2"/>
+      <path d="M 0 35 L 70 35 M 35 0 L 35 70" stroke="#22c55e" stroke-width="0.5" stroke-opacity="0.1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#farmerGlow)"/>
+  <rect width="1920" height="1080" fill="url(#networkMesh)"/>
+
+  <!-- Farmer & Expert Mesh Constellation Interconnects -->
+  <g stroke="#86efac" stroke-opacity="0.3" stroke-width="1.2" fill="none">
+    <line x1="320" y1="260" x2="680" y2="340"/>
+    <line x1="680" y1="340" x2="960" y2="220"/>
+    <line x1="960" y1="220" x2="1340" y2="310"/>
+    <line x1="1340" y1="310" x2="1620" y2="240"/>
+
+    <line x1="420" y1="620" x2="680" y2="340"/>
+    <line x1="680" y1="340" x2="840" y2="680"/>
+    <line x1="840" y1="680" x2="960" y2="220"/>
+    <line x1="960" y1="220" x2="1180" y2="650"/>
+    <line x1="1180" y1="650" x2="1340" y2="310"/>
+    <line x1="1340" y1="310" x2="1520" y2="680"/>
+
+    <line x1="420" y1="620" x2="840" y2="680"/>
+    <line x1="840" y1="680" x2="1180" y2="650"/>
+    <line x1="1180" y1="650" x2="1520" y2="680"/>
+  </g>
+
+  <!-- Node Hubs (KVKs, Experts, Gram Panchayats) -->
+  <g fill="#4ade80" opacity="0.6">
+    <circle cx="320" cy="260" r="5"/>
+    <circle cx="680" cy="340" r="8"/>
+    <circle cx="960" cy="220" r="10"/>
+    <circle cx="1340" cy="310" r="8"/>
+    <circle cx="1620" cy="240" r="5"/>
+
+    <circle cx="420" cy="620" r="6"/>
+    <circle cx="840" cy="680" r="7"/>
+    <circle cx="1180" cy="650" r="7"/>
+    <circle cx="1520" cy="680" r="6"/>
+  </g>
+
+  <!-- Pulse concentric rings on Central Expert Node -->
+  <g fill="none" stroke="#86efac" stroke-width="1.5" opacity="0.4">
+    <circle cx="960" cy="220" r="24" stroke-dasharray="4 4"/>
+    <circle cx="960" cy="220" r="48" stroke-dasharray="6 6"/>
+  </g>
+</svg>

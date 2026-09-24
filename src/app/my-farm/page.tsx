@@ -18,6 +18,7 @@ import {
   Edit3,
   CheckCircle2,
   Info,
+  User,
 } from 'lucide-react';
 import { useApp } from '@/context/AppContext';
 import { StatCard } from '@/components/ui/StatCard';
@@ -25,9 +26,11 @@ import { AlertBadge } from '@/components/ui/AlertBadge';
 import { SatelliteFieldMap } from '@/components/maps/SatelliteFieldMap';
 import { initialAdvisories } from '@/data/advisories';
 import { ExplainableAICard } from '@/components/ai/ExplainableAICard';
+import { SectionHero } from '@/components/ui/SectionHero';
 
 export default function MyFarmPage() {
-  const { farm, updateFarm, t } = useApp();
+  const { farm, updateFarm, t, language } = useApp();
+  const isHi = language === 'hi';
   const [isEditing, setIsEditing] = useState(false);
   const [formState, setFormState] = useState(farm);
 
@@ -38,52 +41,60 @@ export default function MyFarmPage() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-      {/* Demo Farm Identification Header */}
-      <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div className="space-y-1">
-          <div className="flex items-center gap-2">
-            <span className="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold uppercase tracking-wider border border-emerald-300">
-              Demo Farm
-            </span>
-            <span className="text-xs text-slate-500 font-medium">ID: {farm.id}</span>
-          </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
-            {farm.name}
-          </h1>
-          <div className="flex flex-wrap items-center gap-y-1 gap-x-4 text-xs text-slate-500">
-            <span className="flex items-center gap-1">
-              <MapPin className="w-3.5 h-3.5 text-emerald-600" />
-              {farm.village}, Block {farm.block}, {farm.district}, {farm.state}
-            </span>
-            <span>•</span>
-            <span>Owner: <strong className="text-slate-700">{farm.ownerName}</strong></span>
-            <span>•</span>
-            <span>Area: <strong className="text-slate-700">{farm.areaAcres} Acres</strong></span>
-          </div>
+    <div className="space-y-0">
+      {/* Farm Identity Hero */}
+      <SectionHero
+        imageSrc="/assets/agriculture/fields-pattern.svg"
+        theme="forest"
+        label={isHi ? 'मेरी खेत पहचान' : 'MY FARM IDENTITY'}
+
+        heading={<span className="text-gradient-agri">{farm.name}</span>}
+        description={isHi ? 'वास्तविक समय सैटेलाइट अवलोकन व AI-चालित खेत बुद्धिमत्ता' : 'Real-time satellite observations & AI-powered farm intelligence'}
+        showDemoBadge={true}
+        stats={[
+          { value: farm.areaAcres + ' Ac', label: isHi ? 'क्षेत्रफल' : 'Total Area' },
+          { value: farm.crop, label: isHi ? 'मुख्य फसल' : 'Current Crop' },
+          { value: isHi ? 'कल्ले फूटना' : 'Tillering', label: isHi ? 'फसल चरण' : 'Growth Stage' },
+        ]}
+
+      >
+        {/* Location & owner row */}
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-white/80">
+          <span className="flex items-center gap-1.5">
+            <MapPin className="w-4 h-4 text-emerald-300" />
+            {farm.village}, Block {farm.block}, {farm.district}, {farm.state}
+          </span>
+          <span className="flex items-center gap-1.5">
+            <User className="w-4 h-4 text-emerald-300" />
+            {isHi ? 'किसान:' : 'Owner:'} <strong className="text-white ml-1">{farm.ownerName}</strong>
+          </span>
+          <span className="text-white/50">•</span>
+          <span className="text-xs text-white/60 font-mono">ID: {farm.id}</span>
         </div>
 
-        <div className="flex items-center gap-2 shrink-0">
+        {/* Action buttons */}
+        <div className="flex items-center gap-2 flex-wrap">
           <button
             onClick={() => setIsEditing(!isEditing)}
-            className="px-3.5 py-2 rounded-xl text-xs font-semibold border border-slate-300 hover:bg-slate-50 text-slate-700 transition flex items-center gap-1.5"
+            className="px-4 py-2 rounded-xl text-xs font-semibold border border-white/30 hover:bg-white/10 text-white transition flex items-center gap-1.5 backdrop-blur-sm"
           >
             <Edit3 className="w-3.5 h-3.5" />
-            <span>{isEditing ? 'Cancel Edit' : 'Edit Farm Profile'}</span>
+            <span>{isEditing ? (isHi ? 'रद्द करें' : 'Cancel Edit') : (isHi ? 'खेत प्रोफ़ाइल संपादित करें' : 'Edit Farm Profile')}</span>
           </button>
-
           <Link
             href="/todays-advisory"
-            className="px-4 py-2 rounded-xl text-xs font-bold bg-emerald-700 hover:bg-emerald-800 text-white transition flex items-center gap-1.5 shadow-sm"
+            className="px-4 py-2 rounded-xl text-xs font-bold bg-emerald-500 hover:bg-emerald-400 text-emerald-950 transition flex items-center gap-1.5 shadow-md"
           >
             <Sparkles className="w-3.5 h-3.5" />
-            <span>View Today&apos;s Actions</span>
+            <span>{isHi ? 'आज की सलाह देखें' : "View Today's Actions"}</span>
           </Link>
         </div>
-      </div>
+      </SectionHero>
 
-      {/* Farm Profile Edit Modal / Form */}
-      {isEditing && (
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
+        {/* Farm Profile Edit Modal / Form */}
+        {isEditing && (
         <form onSubmit={handleSaveFarm} className="bg-emerald-50/70 rounded-2xl border border-emerald-200 p-5 sm:p-6 space-y-4">
           <h3 className="font-bold text-sm text-emerald-950 flex items-center gap-2">
             <Edit3 className="w-4 h-4 text-emerald-700" />
@@ -353,6 +364,8 @@ export default function MyFarmPage() {
             <ExplainableAICard key={adv.id} advisory={adv} />
           ))}
         </div>
+      </div>
+
       </div>
     </div>
   );

@@ -17,8 +17,14 @@ import {
   Check,
 } from 'lucide-react';
 import { indianStatesData } from '@/data/states';
+import { useApp } from '@/context/AppContext';
+import { SectionHero } from '@/components/ui/SectionHero';
+
+
 
 export default function OfficerDashboardPage() {
+  const { language } = useApp();
+  const isHi = language === 'hi';
   const [selectedDistrict, setSelectedDistrict] = useState('Ludhiana');
   const [broadcastTitle, setBroadcastTitle] = useState('');
   const [broadcastBody, setBroadcastBody] = useState('');
@@ -65,29 +71,31 @@ export default function OfficerDashboardPage() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-      {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div className="space-y-1">
-          <div className="flex items-center gap-2">
-            <span className="px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-800 text-[10px] font-bold uppercase tracking-wider border border-blue-300">
-              Department of Agriculture & Farmer Welfare
-            </span>
-            <span className="text-xs text-slate-500 font-medium">District Officer Command Hub</span>
-          </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-            Agriculture Officer Field Dashboard
-          </h1>
-          <p className="text-xs text-slate-500">
-            Regional crop monitoring, outbreak hotspot tracking, and block-level advisory dissemination.
-          </p>
-        </div>
+    <div className="space-y-0">
+      <SectionHero
+        imageSrc="/assets/national-grid/india-grid.svg"
+        theme="satellite"
+        label={isHi ? 'कृषि एवं किसान कल्याण विभाग' : 'DEPARTMENT OF AGRICULTURE & FARMER WELFARE'}
+        heading={
+          <span className="text-gradient-satellite">
+            {isHi ? 'कृषि अधिकारी फील्ड डैशबोर्ड' : 'Agriculture Officer Field Dashboard'}
+          </span>
+        }
+        description={
+          isHi
+            ? 'क्षेत्रीय फसल निगरानी, प्रकोप हॉटस्पॉट ट्रैकिंग, और ब्लॉक स्तरीय परामर्श प्रसारण कमांड हब।'
+            : 'Regional crop monitoring, outbreak hotspot tracking, and block-level advisory dissemination command hub.'
+        }
+        showDemoBadge={true}
+        stats={[
+          { value: '42,800', label: isHi ? 'पंजीकृत किसान' : 'Farmers Monitored' },
+          { value: '98.4%', label: isHi ? 'परामर्श वितरण' : 'Delivery Rate' },
+          { value: '2', label: isHi ? 'सक्रिय हॉटस्पॉट' : 'Active Hotspots' },
+        ]}
+      />
 
-        {/* Demo Data Notice Tag */}
-        <div className="px-3 py-1 rounded-xl bg-amber-50 border border-amber-300 text-amber-900 text-xs font-semibold shrink-0">
-          Demo Data — Officer Simulation Mode
-        </div>
-      </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
 
       {/* Officer KPI Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -235,6 +243,8 @@ export default function OfficerDashboardPage() {
           </div>
         </div>
       </div>
+      </div>
     </div>
   );
 }
+

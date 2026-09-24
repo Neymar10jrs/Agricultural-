@@ -28,6 +28,7 @@ import {
 import { DiagnosticResult, ConfidenceLevel } from '@/types';
 import { diseasePestDatabase } from '@/data/diseases';
 import { useApp } from '@/context/AppContext';
+import { SectionHero } from '@/components/ui/SectionHero';
 
 export default function CropDoctorPage() {
   const { dict, language } = useApp();
@@ -176,26 +177,23 @@ export default function CropDoctorPage() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-      {/* Header */}
-      <div className="space-y-2">
-        <div className="flex items-center gap-2">
-          <span className="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold uppercase tracking-wider border border-emerald-300">
-            {isHi ? 'मल्टीमॉडल नैदानिक इंजन' : 'Multimodal Diagnostic Engine'}
-          </span>
-          <span className="text-xs text-slate-500">
-            {isHi ? 'कंप्यूटर विज़न + महामरी विज्ञान मॉडल' : 'Computer Vision + Environmental Epidemiological Models'}
-          </span>
-        </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-          {dict.nav.cropDoctor}
-        </h1>
-        <p className="text-xs sm:text-sm text-slate-600 max-w-3xl leading-relaxed">
-          {isHi
-            ? 'रोगग्रस्त पत्तियों की फोटो अपलोड करें, अपनी फसल का चयन करें, और छवि पहचान व स्थानीय मौसम, मिट्टी तथा फसल अवस्था के आधार पर सटीक नैदानिक रिपोर्ट प्राप्त करें।'
-            : 'Upload or photograph symptomatic leaves, select your crop parameters, and receive an explainable diagnosis combining image pattern recognition with local weather, soil, and crop-stage telemetry.'}
-        </p>
-      </div>
+    <div>
+      <SectionHero
+        imageSrc="/assets/crop-health/canopy-ndvi.svg"
+        theme="forest"
+        label={isHi ? 'AI फसल निदान प्रणाली' : 'AI CROP DIAGNOSTIC SYSTEM'}
+
+        heading={<><span className='text-gradient-agri'>{isHi ? 'फसल चिकित्सक' : 'Crop Doctor'}</span></>}
+        description={isHi ? 'लक्षण अपलोड करें और BKIN AI तुरंत विभेदक निदान करेगा' : 'Upload symptoms and BKIN AI provides instant differential diagnosis with confidence scoring and treatment protocols'}
+        showDemoBadge={true}
+        stats={[
+          { value: '47', label: isHi ? 'रोग डेटाबेस' : 'Diseases in DB' },
+          { value: '94%', label: isHi ? 'सटीकता' : 'Accuracy' },
+          { value: '< 30s', label: isHi ? 'निदान समय' : 'Diagnosis Time' },
+        ]}
+      />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
 
       {/* Quick Test Sample Gallery */}
       <div className="bg-slate-100/70 p-4 rounded-2xl border border-slate-200 space-y-2.5">
@@ -575,6 +573,7 @@ export default function CropDoctorPage() {
             </div>
           )}
         </div>
+      </div>
       </div>
     </div>
   );

@@ -18,6 +18,7 @@ import { initialAdvisories } from '@/data/advisories';
 import { ExplainableAICard } from '@/components/ai/ExplainableAICard';
 import ConfidenceAdvisoryCard from '@/components/ui/ConfidenceAdvisoryCard';
 import { useApp } from '@/context/AppContext';
+import { SectionHero } from '@/components/ui/SectionHero';
 
 export default function TodaysAdvisoryPage() {
   const { farm, openAskKrishi, dict, language } = useApp();
@@ -39,27 +40,23 @@ export default function TodaysAdvisoryPage() {
   });
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-      {/* Header */}
-      <div className="bg-gradient-to-br from-emerald-900 via-slate-900 to-emerald-950 rounded-3xl p-6 sm:p-8 text-white shadow-lg flex flex-col md:flex-row md:items-center justify-between gap-6">
-        <div className="space-y-2">
-          <div className="flex items-center gap-2">
-            <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-bold uppercase tracking-wider border border-emerald-400/30">
-              {dict.advisories.actionCenter}
-            </span>
-            <span className="text-xs text-emerald-200">
-              {isHi ? 'खेत:' : 'Personalized for:'} {farm.name} ({farm.crop})
-            </span>
-          </div>
-          <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight">
-            {dict.advisories.title}
-          </h1>
-          <p className="text-xs sm:text-sm text-slate-300 max-w-xl leading-relaxed">
-            {dict.advisories.subtitle}
-          </p>
-        </div>
+    <div className="space-y-0">
+      <SectionHero
+        imageSrc="/assets/crop-health/canopy-ndvi.svg"
+        theme="forest"
+        label={dict.advisories.actionCenter}
 
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
+        heading={<><span className="text-gradient-agri">{dict.advisories.title}</span></>}
+        description={dict.advisories.subtitle}
+        showDemoBadge={true}
+        stats={[
+          { value: filteredAdvisories.length.toString(), label: isHi ? 'सक्रिय सलाह' : 'Active Advisories' },
+          { value: farm.crop, label: isHi ? 'फसल' : 'Crop' },
+          { value: 'AI', label: isHi ? 'संचालित' : 'Powered' },
+        ]}
+      >
+        {/* Ask Krishi CTA — preserved from original header */}
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
           <button
             onClick={() => openAskKrishi(isHi ? 'आज खेत में क्या करना जरूरी है?' : 'What are my priority tasks on the farm today?')}
             className="px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-emerald-950 font-bold text-xs transition flex items-center justify-center gap-2 shadow-md"
@@ -68,7 +65,9 @@ export default function TodaysAdvisoryPage() {
             <span>{dict.advisories.hearVoice}</span>
           </button>
         </div>
-      </div>
+      </SectionHero>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
 
       {/* Category Filter Pills */}
       <div className="flex items-center gap-2 overflow-x-auto pb-1 text-xs">
@@ -145,6 +144,7 @@ export default function TodaysAdvisoryPage() {
         >
           View Block Officer Coverage
         </Link>
+      </div>
       </div>
     </div>
   );

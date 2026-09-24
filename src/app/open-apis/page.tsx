@@ -16,6 +16,7 @@ import {
   Radio,
 } from 'lucide-react';
 import { useApp } from '@/context/AppContext';
+import { SectionHero } from '@/components/ui/SectionHero';
 
 interface EndpointMeta {
   path: string;
@@ -177,24 +178,31 @@ export default function OpenApisPage() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-      {/* Header */}
-      <div className="space-y-2">
-        <div className="flex items-center gap-2">
-          <span className="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold uppercase tracking-wider border border-emerald-300">
-            {isHi ? 'ओपन डिजिटल सार्वजनिक अवसंरचना' : 'Open Digital Public Infrastructure'}
+    <div className="space-y-0">
+      <SectionHero
+        imageSrc="/assets/satellite/satellite-telemetry.svg"
+        theme="satellite"
+        label={isHi ? 'ओपन डिजिटल सार्वजनिक अवसंरचना' : 'OPEN DIGITAL PUBLIC INFRASTRUCTURE'}
+        heading={
+          <span className="text-gradient-satellite">
+            {isHi ? 'खुले कृषि एपीआई एवं डेवलपर पोर्टल' : 'Open Agriculture APIs & Developer Portal'}
           </span>
-          <span className="text-xs text-slate-500 font-medium">RESTful OpenAPI 3.0 Standard • JSON Payloads</span>
-        </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-          {isHi ? 'खुले कृषि एपीआई एवं डेवलपर पोर्टल' : 'Open Agriculture APIs & Developer Portal'}
-        </h1>
-        <p className="text-xs sm:text-sm text-slate-600 max-w-3xl leading-relaxed">
-          {isHi
-            ? 'राज्य सरकारों, एग्रीटेक स्टार्टअप्स, एफपीओ सॉफ्टवेयर और विश्वविद्यालयों के लिए मानकीकृत कृषि एपीआई जो उपग्रह टेलीमेट्री, मृदा सूचकांक और व्याख्यात्मक परामर्श प्रदान करते हैं।'
-            : 'Standardized agricultural APIs allowing state governments, AgriTech startups, FPO software, and research universities to query satellite telemetry, soil indices, and explainable advisories.'}
-        </p>
-      </div>
+        }
+        description={
+          isHi
+            ? 'राज्य सरकारों, एग्रीटेक स्टार्टअप्स, एफपीओ और विश्वविद्यालयों के लिए मानकीकृत कृषि एपीआई जो उपग्रह टेलीमेट्री, मृदा सूचकांक और व्याख्यात्मक परामर्श प्रदान करते हैं।'
+            : 'Standardized agricultural APIs allowing state governments, AgriTech startups, FPO software, and research universities to query satellite telemetry, soil indices, and explainable advisories.'
+        }
+        showDemoBadge={true}
+        stats={[
+          { value: '8', label: isHi ? 'सक्रिय एपीआई' : 'Endpoints' },
+          { value: 'OpenAPI 3.0', label: isHi ? 'मानक' : 'Specification' },
+          { value: '100 req/m', label: isHi ? 'दर सीमा' : 'Public Limit' },
+        ]}
+      />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
 
       {/* Auth & Rate Limit Banner */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
@@ -365,6 +373,8 @@ export default function OpenApisPage() {
           </div>
         </div>
       </div>
+      </div>
     </div>
   );
 }
+

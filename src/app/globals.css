@@ -2,6 +2,7 @@
 
 @layer base {
   :root {
+    /* Core brand palette */
     --brand-forest: #0d3824;
     --brand-emerald: #10b981;
     --brand-leaf: #22c55e;
@@ -9,11 +10,27 @@
     --brand-earth: #854d0e;
     --brand-amber: #d97706;
     --brand-hydro: #0284c7;
-    --brand-bg: #f8faf9;
+    --brand-bg: #f0f7f4;
     --brand-surface: #ffffff;
     --brand-border: #e2e8f0;
     --brand-text: #0f172a;
     --brand-muted: #64748b;
+
+    /* Premium AgriTech extended palette */
+    --agri-deep-forest: #052e16;
+    --agri-soil-brown: #78350f;
+    --agri-satellite-blue: #0c4a6e;
+    --agri-golden: #ca8a04;
+    --agri-harvest: #c2410c;
+    --agri-sky: #0369a1;
+    --agri-glass-bg: rgba(5, 46, 22, 0.55);
+    --agri-glass-border: rgba(16, 185, 129, 0.25);
+
+    /* Typography scale */
+    --text-display: clamp(2.25rem, 5vw, 4rem);
+    --text-hero: clamp(1.75rem, 3.5vw, 3rem);
+    --text-section: clamp(1.375rem, 2.5vw, 2rem);
+    --text-card-title: clamp(1.125rem, 1.8vw, 1.4rem);
   }
 
   body {
@@ -22,8 +39,8 @@
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     overflow-x: hidden;
     background-image: 
-      radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.03) 0%, transparent 40%),
-      radial-gradient(circle at 90% 80%, rgba(2, 132, 199, 0.03) 0%, transparent 40%),
+      radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.04) 0%, transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(2, 132, 199, 0.04) 0%, transparent 40%),
       linear-gradient(to right, rgba(15, 23, 42, 0.015) 1px, transparent 1px),
       linear-gradient(to bottom, rgba(15, 23, 42, 0.015) 1px, transparent 1px);
     background-size: 100% 100%, 100% 100%, 32px 32px, 32px 32px;
@@ -122,3 +139,440 @@
 .bkin-high-contrast .text-slate-400 {
   color: #334155 !important;
 }
+
+/* ═══════════════════════════════════════════════════════
+   PREMIUM AGRICULTURAL VISUAL DESIGN SYSTEM
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Keyframes ── */
+@keyframes slowZoom {
+  from { transform: scale(1); }
+  to   { transform: scale(1.08); }
+}
+
+@keyframes subtlePan {
+  0%   { background-position: 50% 50%; }
+  50%  { background-position: 55% 45%; }
+  100% { background-position: 50% 50%; }
+}
+
+@keyframes subtlePulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.85; transform: scale(1.02); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .agri-bg-zoom,
+  .anim-pulse-subtle,
+  .agri-hero-section .agri-bg-layer {
+    animation: none !important;
+  }
+}
+
+/* ── Section Hero Pattern ── */
+.agri-hero-section {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.agri-bg-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  will-change: transform;
+  animation: slowZoom 22s ease-in-out infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .agri-bg-layer { animation: none; }
+}
+
+.agri-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.agri-hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Forest green overlay (default / crop / farm) */
+.agri-overlay-forest {
+  background: linear-gradient(
+    135deg,
+    rgba(5, 46, 22, 0.80) 0%,
+    rgba(13, 56, 36, 0.72) 50%,
+    rgba(5, 46, 22, 0.85) 100%
+  );
+}
+
+/* Satellite / deep blue overlay */
+.agri-overlay-satellite {
+  background: linear-gradient(
+    135deg,
+    rgba(12, 74, 110, 0.82) 0%,
+    rgba(5, 46, 22, 0.72) 60%,
+    rgba(12, 74, 110, 0.88) 100%
+  );
+}
+
+/* Soil / earth brown overlay */
+.agri-overlay-soil {
+  background: linear-gradient(
+    135deg,
+    rgba(120, 53, 15, 0.80) 0%,
+    rgba(5, 46, 22, 0.70) 55%,
+    rgba(120, 53, 15, 0.86) 100%
+  );
+}
+
+/* Risk / drought red overlay */
+.agri-overlay-risk {
+  background: linear-gradient(
+    135deg,
+    rgba(127, 29, 29, 0.82) 0%,
+    rgba(5, 46, 22, 0.68) 55%,
+    rgba(120, 53, 15, 0.84) 100%
+  );
+}
+
+/* Weather / sky blue overlay */
+.agri-overlay-weather {
+  background: linear-gradient(
+    135deg,
+    rgba(3, 105, 161, 0.82) 0%,
+    rgba(5, 46, 22, 0.68) 55%,
+    rgba(3, 105, 161, 0.88) 100%
+  );
+}
+
+/* Impact / golden harvest overlay */
+.agri-overlay-impact {
+  background: linear-gradient(
+    135deg,
+    rgba(120, 53, 15, 0.78) 0%,
+    rgba(5, 46, 22, 0.72) 50%,
+    rgba(202, 138, 4, 0.78) 100%
+  );
+}
+
+/* ── Glassmorphism Panel ── */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.10);
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  border-radius: 1rem;
+}
+
+.glass-panel-dark {
+  background: rgba(5, 46, 22, 0.50);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: 1rem;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 0.75rem;
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(16, 185, 129, 0.40);
+}
+
+/* ── Gradient Text ── */
+.text-gradient-agri {
+  background: linear-gradient(135deg, #10b981 0%, #34d399 50%, #6ee7b7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #ca8a04 0%, #fbbf24 50%, #fde68a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-satellite {
+  background: linear-gradient(135deg, #0284c7 0%, #38bdf8 50%, #7dd3fc 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-hero {
+  background: linear-gradient(135deg, #6ee7b7 0%, #34d399 35%, #fbbf24 65%, #6ee7b7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── Agricultural Keyword Highlight ── */
+.agri-keyword {
+  display: inline;
+  padding: 0.05em 0.35em;
+  border-radius: 0.25em;
+  font-weight: 600;
+  background: rgba(16, 185, 129, 0.15);
+  color: #059669;
+  border-bottom: 1.5px solid rgba(16, 185, 129, 0.4);
+}
+
+.agri-keyword-blue {
+  background: rgba(2, 132, 199, 0.12);
+  color: #0369a1;
+  border-bottom-color: rgba(2, 132, 199, 0.35);
+}
+
+.agri-keyword-gold {
+  background: rgba(202, 138, 4, 0.12);
+  color: #92400e;
+  border-bottom-color: rgba(202, 138, 4, 0.35);
+}
+
+/* ── Over-dark-bg keyword ── */
+.agri-keyword-light {
+  display: inline;
+  padding: 0.05em 0.35em;
+  border-radius: 0.25em;
+  font-weight: 600;
+  background: rgba(110, 231, 183, 0.18);
+  color: #6ee7b7;
+  border-bottom: 1.5px solid rgba(110, 231, 183, 0.45);
+}
+
+/* ── Hero Stat Numbers ── */
+.stat-display {
+  font-size: var(--text-display);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.stat-hero {
+  font-size: var(--text-hero);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.section-heading {
+  font-size: var(--text-section);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+}
+
+/* ── Animated count-up reveal ── */
+.count-reveal {
+  animation: countUp 0.6s ease-out both;
+}
+
+/* ── Section Label Tag ── */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.section-label-green {
+  background: rgba(16, 185, 129, 0.15);
+  color: #059669;
+  border: 1px solid rgba(16, 185, 129, 0.30);
+}
+
+.section-label-light {
+  background: rgba(110, 231, 183, 0.15);
+  color: #6ee7b7;
+  border: 1px solid rgba(110, 231, 183, 0.30);
+}
+
+.section-label-blue {
+  background: rgba(2, 132, 199, 0.12);
+  color: #0284c7;
+  border: 1px solid rgba(2, 132, 199, 0.25);
+}
+
+.section-label-gold {
+  background: rgba(202, 138, 4, 0.12);
+  color: #92400e;
+  border: 1px solid rgba(202, 138, 4, 0.25);
+}
+
+/* ── Fade-in animate ── */
+.anim-fade-up {
+  animation: fadeInUp 0.55s ease-out both;
+}
+
+.anim-pulse-subtle {
+  animation: subtlePulse 3s ease-in-out infinite;
+}
+
+/* ── Premium card on dark hero ── */
+.hero-stat-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 0.875rem;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: background 0.2s ease;
+}
+
+.hero-stat-card:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+/* ── Background section themes ── */
+
+/* Agriculture / crop fields — emerald + forest */
+.section-theme-agri {
+  background: linear-gradient(160deg, #052e16 0%, #064e3b 45%, #0d3824 100%);
+}
+
+/* Satellite intelligence — deep navy + forest */
+.section-theme-satellite {
+  background: linear-gradient(160deg, #0c4a6e 0%, #052e16 50%, #0f172a 100%);
+}
+
+/* Soil health — earth brown tones */
+.section-theme-soil {
+  background: linear-gradient(160deg, #431407 0%, #78350f 45%, #052e16 100%);
+}
+
+/* Risk / drought — deep red + charcoal */
+.section-theme-risk {
+  background: linear-gradient(160deg, #450a0a 0%, #7f1d1d 40%, #052e16 100%);
+}
+
+/* Weather — sky blue gradient */
+.section-theme-weather {
+  background: linear-gradient(160deg, #0c4a6e 0%, #0369a1 40%, #052e16 100%);
+}
+
+/* Impact / golden harvest */
+.section-theme-impact {
+  background: linear-gradient(160deg, #431407 0%, #052e16 45%, #713f12 100%);
+}
+
+/* ── Custom Agricultural Scrollbars ── */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #ecfdf5;
+}
+::-webkit-scrollbar-thumb {
+  background: #6ee7b7;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #10b981;
+}
+
+/* ── Telemetry Grid & Accent Framing ── */
+.telemetry-card {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.telemetry-card:hover {
+  border-color: #a7f3d0;
+  box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.10), 0 8px 10px -6px rgba(16, 185, 129, 0.06);
+}
+
+.telemetry-frame {
+  position: relative;
+}
+
+.telemetry-frame::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid #10b981;
+  border-left: 2px solid #10b981;
+  border-top-left-radius: 4px;
+}
+
+.telemetry-frame::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 8px;
+  height: 8px;
+  border-bottom: 2px solid #0284c7;
+  border-right: 2px solid #0284c7;
+  border-bottom-right-radius: 4px;
+}
+
+/* ── NDVI / Spectral Gradients ── */
+.ndvi-gradient {
+  background: linear-gradient(90deg, #b91c1c 0%, #f59e0b 25%, #eab308 50%, #84cc16 75%, #15803d 100%);
+}
+
+.ndwi-gradient {
+  background: linear-gradient(90deg, #ea580c 0%, #ca8a04 35%, #0284c7 70%, #1e40af 100%);
+}
+
+/* ── Decorative section divider ── */
+.agri-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(16, 185, 129, 0.35) 20%, rgba(16, 185, 129, 0.55) 50%, rgba(16, 185, 129, 0.35) 80%, transparent 100%);
+  margin: 2.5rem 0;
+}
+
+/* ── Demo / prototype warning badge ── */
+.demo-watermark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 0.3rem;
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: rgba(202, 138, 4, 0.15);
+  color: #92400e;
+  border: 1px solid rgba(202, 138, 4, 0.35);
+}
+

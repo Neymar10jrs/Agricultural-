@@ -19,7 +19,9 @@ import { ndviTimeSeries } from '@/data/timeSeries';
 import { demoDataQuality } from '@/data/impact';
 import { StatCard } from '@/components/ui/StatCard';
 import { AlertBadge } from '@/components/ui/AlertBadge';
+import { SectionHero } from '@/components/ui/SectionHero';
 import { RiskLevel } from '@/types';
+
 import { useApp } from '@/context/AppContext';
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
@@ -371,41 +373,39 @@ export default function FarmDigitalTwinPage() {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      {/* ── Page Header ── */}
-      <header className="bg-gradient-to-r from-emerald-900 via-emerald-800 to-slate-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
-            <div className="space-y-1.5">
-              <div className="flex items-center gap-2 flex-wrap">
-                <span className="text-xs font-bold bg-white/15 border border-white/20 text-white px-2.5 py-0.5 rounded-full tracking-wider">
-                  BKIN-PB-LDH-042
-                </span>
-                <span className="text-[10px] font-bold bg-amber-400/20 border border-amber-300/30 text-amber-200 px-2 py-0.5 rounded-full">
-                  ⚡ {dict.common.demoMode.toUpperCase()}
-                </span>
-              </div>
-              <h1 className="text-2xl font-bold text-white">{farm.name}</h1>
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-emerald-200">
-                <span className="flex items-center gap-1.5"><User className="w-3.5 h-3.5" />{farm.ownerName}</span>
-                <span className="flex items-center gap-1.5"><MapPin className="w-3.5 h-3.5" />{farm.village}, {farm.block}, {farm.district}, {farm.state}</span>
-                <span className="flex items-center gap-1.5"><Layers className="w-3.5 h-3.5" />{farm.areaAcres} {dict.common.acres}</span>
-              </div>
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-emerald-200/80">
-                <span className="flex items-center gap-1.5"><Wheat className="w-3.5 h-3.5 text-amber-300" /><span className="text-white font-medium">{farm.crop}</span> — {farm.variety}</span>
-                <span className="flex items-center gap-1.5"><Activity className="w-3.5 h-3.5 text-emerald-300" />{isHi ? 'कल्ले फूटना' : 'Tillering'} · {isHi ? 'दिन' : 'Day'} {farm.daysAfterSowing}</span>
-                <span className="flex items-center gap-1.5"><Calendar className="w-3.5 h-3.5" />{isHi ? 'बुवाई:' : 'Sown:'} {farm.sowingDate}</span>
-              </div>
-            </div>
-            {/* Overall health */}
-            <div className="bg-white/10 border border-white/15 rounded-2xl px-6 py-4 flex flex-col items-center gap-1 min-w-[152px]">
-              <p className="text-[10px] text-emerald-200 font-semibold uppercase tracking-wider">{dict.farm.healthScore}</p>
-              <HealthScoreCircle score={farm.overallHealthScore} />
-            </div>
-          </div>
+      {/* ── Page Header — Premium SectionHero ── */}
+      <SectionHero
+        imageSrc="/assets/agriculture/fields-pattern.svg"
+        theme="forest"
+        label={isHi ? 'फार्म डिजिटल ट्विन' : 'FARM DIGITAL TWIN'}
+
+        heading={
+          <span className="text-gradient-agri">{farm.name}</span>
+        }
+        description={isHi
+          ? `${farm.ownerName} · ${farm.village}, ${farm.block}, ${farm.district}, ${farm.state} · ${farm.areaAcres} एकड़ · ${farm.crop} — ${farm.variety}`
+          : `${farm.ownerName} · ${farm.village}, ${farm.block}, ${farm.district}, ${farm.state} · ${farm.areaAcres} Acres · ${farm.crop} — ${farm.variety}`
+        }
+        showDemoBadge={true}
+        stats={[
+          { value: `${farm.overallHealthScore}`, label: isHi ? 'स्वास्थ्य स्कोर' : 'Health Score' },
+          { value: farm.crop, label: isHi ? 'फसल' : 'Crop' },
+          { value: `Day ${farm.daysAfterSowing}`, label: isHi ? 'बुवाई के बाद' : 'After Sowing' },
+          { value: farm.areaAcres + ' Ac', label: isHi ? 'क्षेत्रफल' : 'Area' },
+        ]}
+        minHeight="min-h-[280px]"
+      >
+        <div className="flex items-center gap-2 flex-wrap mt-1">
+          <span className="text-xs text-emerald-200/80 font-medium">ID: BKIN-PB-LDH-042</span>
+          <span className="text-xs text-emerald-300/60">·</span>
+          <span className="text-xs text-emerald-200/80">{isHi ? 'बुवाई:' : 'Sown:'} {farm.sowingDate}</span>
+          <span className="text-xs text-emerald-300/60">·</span>
+          <span className="text-xs text-emerald-200/80">{isHi ? 'कल्ले फूटना' : 'Tillering stage'}</span>
         </div>
-      </header>
+      </SectionHero>
 
       <main className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8 space-y-8">
+
 
         {/* ── Breadcrumb to National Grid ── */}
         <div className="flex items-center gap-2 text-xs text-slate-500 bg-white p-3 rounded-xl border border-slate-200">

@@ -18,30 +18,44 @@ import {
 } from 'lucide-react';
 import { climateScenariosData } from '@/data/scenarios';
 import { formatCurrency } from '@/lib/utils';
+import { useApp } from '@/context/AppContext';
+import { SectionHero } from '@/components/ui/SectionHero';
+
 
 export default function ClimateSmartPage() {
+  const { language } = useApp();
+  const isHi = language === 'hi';
   const [selectedCrop, setSelectedCrop] = useState('Wheat');
   const [selectedSeason, setSelectedSeason] = useState('Rabi');
   const [selectedWaterAccess, setSelectedWaterAccess] = useState('Tubewell Borewell');
   const [farmAcres, setFarmAcres] = useState(2.4);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-      {/* Header */}
-      <div className="space-y-2">
-        <div className="flex items-center gap-2">
-          <span className="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold uppercase tracking-wider border border-emerald-300">
-            Resilience & Scenario Modeling
+    <div className="space-y-0">
+      <SectionHero
+        imageSrc="/assets/weather/weather-radar.svg"
+        theme="weather"
+        label={isHi ? 'जलवायु लचीलापन व परिदृश्य मॉडलिंग' : 'CLIMATE RESILIENCE & SCENARIO MODELING'}
+        heading={
+          <span className="text-gradient-satellite">
+            {isHi ? 'जलवायु-स्मार्ट कृषि परिदृश्य' : 'Climate Smart Farming Scenarios'}
           </span>
-          <span className="text-xs text-slate-500 font-medium">Multi-Parameter Trade-off Simulator</span>
-        </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-          Climate Smart Farming Scenarios
-        </h1>
-        <p className="text-xs sm:text-sm text-slate-600 max-w-3xl leading-relaxed">
-          Compare alternative agronomic practices against water availability, soil impact, economic cost, and climate vulnerability. BKIN provides objective, transparent trade-offs without prescribing predetermined choices.
-        </p>
-      </div>
+        }
+        description={
+          isHi
+            ? 'जल उपलब्धता, मृदा प्रभाव, आर्थिक लागत और जलवायु संवेदनशीलता के विरुद्ध वैकल्पिक कृषि पद्धतियों की तुलना करें।'
+            : 'Compare alternative agronomic practices against water availability, soil impact, economic cost, and climate vulnerability.'
+        }
+        showDemoBadge={true}
+        stats={[
+          { value: selectedCrop, label: isHi ? 'फसल' : 'Crop' },
+          { value: `${farmAcres} Ac`, label: isHi ? 'खेत क्षेत्र' : 'Area' },
+          { value: '3', label: isHi ? 'परिदृश्य मॉडल' : 'Models' },
+        ]}
+      />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
 
       {/* Farm Input Parameters Bar */}
       <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-3">
@@ -249,6 +263,8 @@ export default function ClimateSmartPage() {
           </div>
         ))}
       </div>
+      </div>
     </div>
   );
 }
+

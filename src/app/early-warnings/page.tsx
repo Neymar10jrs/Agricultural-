@@ -22,6 +22,7 @@ import { ObservationType, RiskLevel } from '@/types';
 import { AlertBadge } from '@/components/ui/AlertBadge';
 import { useApp } from '@/context/AppContext';
 import { NationalRiskObservatory } from '@/components/observatory/NationalRiskObservatory';
+import { SectionHero } from '@/components/ui/SectionHero';
 
 export default function EarlyWarningsPage() {
   const { language } = useApp();
@@ -36,26 +37,22 @@ export default function EarlyWarningsPage() {
   });
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
-      {/* Header */}
-      <div className="space-y-2">
-        <div className="flex items-center gap-2">
-          <span className="px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-800 text-[10px] font-bold uppercase tracking-wider border border-rose-300">
-            {isHi ? 'बहु-आपदा निगरानी फ़ीड' : 'Multi-Hazard Surveillance Feed'}
-          </span>
-          <span className="text-xs text-slate-500 font-medium">
-            {isHi ? 'IMD, ICAR एवं राज्य संवेदी केंद्रों से समन्वयित' : 'Synced with IMD, ICAR & State Sentinel Towers'}
-          </span>
-        </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-          {isHi ? 'प्रारंभिक चेतावनी एवं आपदा केंद्र' : 'Early Warning & Hazard Center'}
-        </h1>
-        <p className="text-xs sm:text-sm text-slate-600 max-w-2xl leading-relaxed">
-          {isHi
-            ? 'विनाशकारी फसल नुकसान से पूर्व सुरक्षा हेतु मौसम और जैविक प्रकोप की पूर्व-निवारक चेतावनियाँ।'
-            : 'Pre-emptive meteorological and biological outbreak warnings designed to protect crops before catastrophic losses occur.'}
-        </p>
-      </div>
+    <div>
+      <SectionHero
+        imageSrc="/assets/risk/drought-risk.svg"
+        theme="risk"
+        label={isHi ? 'बहु-आपदा निगरानी' : 'MULTI-HAZARD SURVEILLANCE'}
+
+        heading={<>{isHi ? <span className='text-gradient-agri'>प्रारंभिक चेतावनी एवं आपदा केंद्र</span> : <span className='text-gradient-agri'>Early Warning & Hazard Center</span>}</>}
+        description={isHi ? 'विनाशकारी फसल नुकसान से पूर्व सुरक्षा हेतु मौसम और जैविक प्रकोप की पूर्व-निवारक चेतावनियाँ।' : 'Pre-emptive meteorological and biological outbreak warnings designed to protect crops before catastrophic losses occur.'}
+        showDemoBadge={true}
+        stats={[
+          { value: '12', label: isHi ? 'सक्रिय चेतावनियाँ' : 'Active Warnings' },
+          { value: '3', label: isHi ? 'उच्च जोखिम क्षेत्र' : 'High-Risk Zones' },
+          { value: 'IMD', label: isHi ? 'डेटा स्रोत' : 'Data Source' },
+        ]}
+      />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
 
       {/* National Agricultural Risk Observatory (Phase 5) */}
       <NationalRiskObservatory />
@@ -206,6 +203,7 @@ export default function EarlyWarningsPage() {
             </div>
           </div>
         ))}
+      </div>
       </div>
     </div>
   );

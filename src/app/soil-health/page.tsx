@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { demoSoilProfile } from '@/data/demoFarm';
 import { useApp } from '@/context/AppContext';
+import { SectionHero } from '@/components/ui/SectionHero';
 
 export default function SoilHealthPage() {
   const { dict, language } = useApp();
@@ -23,22 +24,23 @@ export default function SoilHealthPage() {
   const [soil] = useState(demoSoilProfile);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-      {/* Header */}
-      <div className="space-y-2">
-        <div className="flex items-center gap-2">
-          <span className="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold uppercase tracking-wider border border-emerald-300">
-            {isHi ? 'मृदा स्वास्थ्य कार्ड रजिस्ट्री (आईसीएआर)' : 'Soil Health Card Registry (ICAR / DAC&FW)'}
-          </span>
-          <span className="text-xs text-slate-500 font-medium">{isHi ? 'खेत 3B नमूना जांच • जलोढ़ दोमट' : 'Sample Test: Field 3B • Alluvial Loam'}</span>
-        </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-          {dict.soil.title}
-        </h1>
-        <p className="text-xs sm:text-sm text-slate-600 max-w-2xl leading-relaxed">
-          {dict.soil.subtitle}
-        </p>
-      </div>
+    <div>
+      <SectionHero
+        imageSrc="/assets/soil/soil-strata.svg"
+        theme="soil"
+        label={isHi ? 'मृदा स्वास्थ्य विश्लेषण' : 'SOIL HEALTH ANALYSIS'}
+
+        heading={<><span className='text-gradient-gold'>{isHi ? 'मृदा स्वास्थ्य डैशबोर्ड' : 'Soil Health Dashboard'}</span></>}
+        description={isHi ? 'आपके खेत की मिट्टी का गहन विश्लेषण — pH, नाइट्रोजन, फास्फोरस, पोटैशियम और जैव विविधता' : 'Deep soil profile analysis for your farm — pH, NPK levels, organic carbon, microbial activity and texture'}
+        showDemoBadge={true}
+        stats={[
+          { value: '6.8', label: isHi ? 'pH स्तर' : 'pH Level' },
+          { value: '1.8%', label: isHi ? 'जैविक कार्बन' : 'Organic Carbon' },
+          { value: 'Good', label: isHi ? 'मृदा स्वास्थ्य' : 'Soil Health' },
+        ]}
+      />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
 
       {/* Primary Parameters Grid (Section 16: pH, N, P, K, OC, EC, Moisture, Type, Texture) */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5">
@@ -211,6 +213,7 @@ export default function SoilHealthPage() {
           <span>Explore Regenerative Practices</span>
           <ArrowRight className="w-3.5 h-3.5" />
         </Link>
+      </div>
       </div>
     </div>
   );

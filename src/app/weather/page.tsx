@@ -19,6 +19,8 @@ import { demoWeatherObservation } from '@/data/demoFarm';
 import { WeatherDayForecast } from '@/types';
 import { ZoomEarthSatelliteMap } from '@/components/maps/ZoomEarthSatelliteMap';
 import { useApp } from '@/context/AppContext';
+import { SectionHero } from '@/components/ui/SectionHero';
+
 
 export default function WeatherPage() {
   const { dict, language } = useApp();
@@ -29,25 +31,31 @@ export default function WeatherPage() {
   const activeDay = weatherData.forecast7Days[selectedDayIndex];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-      {/* Header */}
-      <div className="space-y-2">
-        <div className="flex items-center gap-2">
-          <span className="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold uppercase tracking-wider border border-emerald-300">
-            {isHi ? 'आईएमडी कृषि-मौसम नेटवर्क' : 'IMD Agro-Meteorological Network'}
-          </span>
-          <span className="text-xs text-slate-500 font-medium">{isHi ? 'लुधियाना मौसम केंद्र' : 'Ludhiana Weather Station'} • {weatherData.lastUpdated}</span>
-        </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-          {dict.weather.title}
-        </h1>
-        <p className="text-xs sm:text-sm text-slate-600 max-w-2xl leading-relaxed">
-          {dict.weather.subtitle}
-        </p>
-      </div>
+    <div className="space-y-0">
+      <SectionHero
+        imageSrc="/assets/weather/weather-radar.svg"
+        theme="weather"
+        label={isHi ? 'आईएमडी कृषि-मौसम नेटवर्क' : 'IMD AGRO-METEOROLOGICAL NETWORK'}
+
+        heading={
+          <span className="text-gradient-satellite">{dict.weather.title}</span>
+        }
+        description={dict.weather.subtitle}
+        showDemoBadge={true}
+        stats={[
+          { value: `${activeDay?.tempMaxC ?? weatherData.currentTempC}°C`, label: isHi ? 'अधिकतम तापमान' : 'Max Temp' },
+          { value: `${weatherData.humidityPercent}%`, label: isHi ? 'आर्द्रता' : 'Humidity' },
+          { value: `${weatherData.windSpeedKmh} km/h`, label: isHi ? 'हवा गति' : 'Wind Speed' },
+          { value: activeDay?.condition || 'Optimal', label: isHi ? 'मौसम' : 'Condition' },
+        ]}
+
+      />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
 
       {/* Extreme Weather Active Alerts (Section 15) */}
       {weatherData.alerts.length > 0 && (
+
         <div className="bg-amber-50 rounded-2xl border border-amber-200 p-4 sm:p-5 space-y-2.5">
           <div className="flex items-center gap-2 text-amber-900 font-bold text-sm">
             <AlertTriangle className="w-4 h-4 text-amber-600" />
@@ -265,6 +273,8 @@ export default function WeatherPage() {
 
         <ZoomEarthSatelliteMap initialLat={12.7} initialLon={82.8} initialZoom={4} />
       </div>
+
+      </div> {/* end inner content div */}
     </div>
   );
 }

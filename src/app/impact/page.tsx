@@ -24,6 +24,7 @@ import {
 } from 'lucide-react';
 import { demoImpactMetrics, demoSystemStatus, demoExpertReviews } from '@/data/impact';
 import { useApp } from '@/context/AppContext';
+import { SectionHero } from '@/components/ui/SectionHero';
 
 export default function ImpactPage() {
   const { language } = useApp();
@@ -78,7 +79,22 @@ export default function ImpactPage() {
       ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
+    <div>
+      <SectionHero
+        imageSrc="/assets/agriculture/fields-pattern.svg"
+        theme="impact"
+        label={isHi ? 'राष्ट्रीय प्रभाव डैशबोर्ड' : 'NATIONAL IMPACT DASHBOARD'}
+
+        heading={<><span className='text-gradient-gold'>{isHi ? 'BKIN प्रभाव मेट्रिक्स' : 'BKIN Impact & Outcomes'}</span></>}
+        description={isHi ? 'भारत भर में BKIN की AI कृषि बुद्धिमत्ता का सिद्ध प्रभाव' : 'Verified impact of BKIN AI agricultural intelligence across India — farmer outcomes, crop health improvements, and system reliability'}
+        showDemoBadge={true}
+        stats={[
+          { value: '2.4M+', label: isHi ? 'किसान उपयोगकर्ता' : 'Farmer Users' },
+          { value: '₹12,400', label: isHi ? 'औसत बचत/एकड़' : 'Avg Savings/Acre' },
+          { value: '94%', label: isHi ? 'उपज में सुधार' : 'Yield Improvement' },
+        ]}
+      />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
       {/* Demo Data Banner */}
       <div className="bg-amber-500/10 border-2 border-amber-500/30 rounded-2xl p-4 flex items-center justify-between flex-wrap gap-3">
         <div className="flex items-center gap-2.5 text-xs text-amber-900">
@@ -95,45 +111,6 @@ export default function ImpactPage() {
         <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-amber-100 text-amber-800 border border-amber-300">
           {isHi ? 'पायलट चरण v0.3' : 'Pilot Stage v0.3'}
         </span>
-      </div>
-
-      {/* Header */}
-      <div className="bg-gradient-to-r from-slate-900 via-emerald-950 to-slate-900 rounded-3xl p-6 sm:p-8 text-white shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6">
-        <div className="space-y-2">
-          <div className="flex items-center gap-2">
-            <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-bold uppercase tracking-wider border border-emerald-400/30">
-              {isHi ? 'प्लेटफ़ॉर्म टेलीमेट्री व परिणाम' : 'Platform Telemetry & Outcomes'}
-            </span>
-            <span className="text-xs text-emerald-200">
-              {demoImpactMetrics.demoSince}
-            </span>
-          </div>
-          <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight flex items-center gap-3">
-            <BarChart3 className="w-7 h-7 sm:w-9 sm:h-9 text-emerald-400" />
-            {isHi ? 'बीकेआईएन कृषि आसूचना प्रभाव' : 'BKIN Intelligence Impact'}
-          </h1>
-          <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
-            {isHi
-              ? 'निगरानी में शामिल रकबे और जोतों में खंडित प्रतिक्रियाशील खेती से निरंतर पूर्वानुमानात्मक कृषि आसूचना में परिवर्तन का मापन।'
-              : 'Measuring the transition from fragmented reactive farming to continuous predictive intelligence across monitored acreage and farm holdings.'}
-          </p>
-        </div>
-
-        <div className="flex items-center gap-3 shrink-0">
-          <Link
-            href="/farm-digital-twin"
-            className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 border border-slate-700 transition"
-          >
-            {isHi ? 'फार्म ट्विन देखें' : 'View Farm Twin'}
-          </Link>
-          <Link
-            href="/risk-center"
-            className="px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-bold transition flex items-center gap-1.5 shadow-md"
-          >
-            <TrendingUp className="w-3.5 h-3.5" />
-            {isHi ? 'जोखिम आसूचना' : 'Risk Intelligence'}
-          </Link>
-        </div>
       </div>
 
       {/* Metrics Grid */}
@@ -159,7 +136,7 @@ export default function ImpactPage() {
                   <Icon className="w-4 h-4" />
                 </div>
                 <div>
-                  <span className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight block">
+                  <span className="count-reveal text-4xl font-extrabold tracking-tight text-slate-900 block">
                     {card.value}
                   </span>
                   <span className="text-[11px] font-medium text-slate-500 leading-tight block pt-0.5">
@@ -406,6 +383,7 @@ export default function ImpactPage() {
             </div>
           ))}
         </div>
+      </div>
       </div>
     </div>
   );

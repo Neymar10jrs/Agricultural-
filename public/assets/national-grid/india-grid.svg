@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="gridGlow" cx="50%" cy="45%" r="75%">
+      <stop offset="0%" stop-color="#047857" stop-opacity="0.5"/>
+      <stop offset="50%" stop-color="#064e3b" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#022c22" stop-opacity="1"/>
+    </radialGradient>
+    <pattern id="stateGridPattern" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M 80 0 L 0 0 0 80" fill="none" stroke="#6ee7b7" stroke-width="0.8" stroke-opacity="0.12"/>
+      <circle cx="0" cy="0" r="2" fill="#6ee7b7" fill-opacity="0.25"/>
+    </pattern>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#gridGlow)"/>
+  <rect width="1920" height="1080" fill="url(#stateGridPattern)"/>
+
+  <!-- Stylized India Digital Public Grid Contour Polyline Map -->
+  <g fill="none" stroke="#34d399" stroke-opacity="0.35" stroke-width="2">
+    <!-- Northern Frontier -->
+    <path d="M 880,180 L 920,120 L 980,110 L 1020,150 L 1000,220 L 940,240 Z" fill="#059669" fill-opacity="0.15"/>
+    <!-- Western Belt -->
+    <path d="M 760,340 L 860,310 L 920,380 L 860,490 L 730,460 L 710,380 Z" fill="#059669" fill-opacity="0.12"/>
+    <!-- Central Plain -->
+    <path d="M 890,320 L 1090,310 L 1180,420 L 1080,540 L 930,480 Z" fill="#059669" fill-opacity="0.18"/>
+    <!-- Eastern Belt -->
+    <path d="M 1200,380 L 1320,360 L 1360,450 L 1260,520 L 1190,440 Z" fill="#059669" fill-opacity="0.15"/>
+    <!-- Southern Peninsula -->
+    <path d="M 870,510 L 1070,550 L 1040,780 L 980,940 L 920,810 L 850,640 Z" fill="#059669" fill-opacity="0.15"/>
+  </g>
+
+  <!-- Federated Inter-State Sync Backbones -->
+  <g stroke="#6ee7b7" stroke-width="1.8" stroke-opacity="0.4" fill="none">
+    <line x1="960" y1="180" x2="840" y2="380" stroke-dasharray="6 4"/>
+    <line x1="960" y1="180" x2="1020" y2="390" stroke-dasharray="6 4"/>
+    <line x1="840" y1="380" x2="1020" y2="390"/>
+    <line x1="1020" y1="390" x2="1260" y2="420" stroke-dasharray="6 4"/>
+    <line x1="1020" y1="390" x2="960" y2="680"/>
+    <line x1="840" y1="380" x2="960" y2="680" stroke-dasharray="6 4"/>
+    <line x1="1260" y1="420" x2="960" y2="680" stroke-dasharray="6 4"/>
+    <line x1="960" y1="680" x2="980" y2="880"/>
+  </g>
+
+  <!-- State Nodes Pulsing Rings -->
+  <g fill="#10b981">
+    <circle cx="960" cy="180" r="7"/>
+    <circle cx="840" cy="380" r="8"/>
+    <circle cx="1020" cy="390" r="10"/>
+    <circle cx="1260" cy="420" r="7"/>
+    <circle cx="960" cy="680" r="9"/>
+    <circle cx="980" cy="880" r="6"/>
+  </g>
+  <g fill="none" stroke="#a7f3d0" stroke-width="1.2" opacity="0.5">
+    <circle cx="1020" cy="390" r="22" stroke-dasharray="4 4"/>
+    <circle cx="1020" cy="390" r="38" stroke-dasharray="6 6"/>
+  </g>
+</svg>

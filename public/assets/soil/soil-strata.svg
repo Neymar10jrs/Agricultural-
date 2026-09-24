@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="soilGlow" cx="40%" cy="60%" r="75%">
+      <stop offset="0%" stop-color="#92400e" stop-opacity="0.55"/>
+      <stop offset="50%" stop-color="#451a03" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#1c0a00" stop-opacity="1"/>
+    </radialGradient>
+    <pattern id="soilGranules" width="50" height="50" patternUnits="userSpaceOnUse">
+      <circle cx="12" cy="15" r="1.5" fill="#fde68a" fill-opacity="0.15"/>
+      <circle cx="38" cy="22" r="2.2" fill="#d97706" fill-opacity="0.2"/>
+      <circle cx="25" cy="42" r="1.8" fill="#ca8a04" fill-opacity="0.18"/>
+      <path d="M 5 35 Q 12 30, 20 38" fill="none" stroke="#78350f" stroke-width="1.2" stroke-opacity="0.3"/>
+    </pattern>
+    <linearGradient id="horizonA" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#14532d" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#78350f" stop-opacity="0.4"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#soilGlow)"/>
+  <rect width="1920" height="1080" fill="url(#soilGranules)"/>
+
+  <!-- Soil Horizons & Geological Strata -->
+  <g fill="none" stroke="#b45309" stroke-width="2" stroke-opacity="0.35">
+    <!-- O-Horizon (Organic surface) -->
+    <path d="M-50,220 C400,180 850,260 1350,200 C1700,160 1900,230 2000,210" fill="url(#horizonA)"/>
+    <!-- A-Horizon (Topsoil - nutrient rich) -->
+    <path d="M-50,420 C350,380 750,470 1250,390 C1650,340 1850,440 2000,410"/>
+    <!-- B-Horizon (Subsoil - clay/mineral accumulation) -->
+    <path d="M-50,650 C450,610 900,720 1400,630 C1750,570 1900,680 2000,650"/>
+    <!-- C-Horizon (Parent rock substrate) -->
+    <path d="M-50,880 C400,840 850,940 1350,860 C1700,810 1900,910 2000,880"/>
+  </g>
+
+  <!-- Deep Root Systems Vector Architecture -->
+  <g stroke="#84cc16" stroke-opacity="0.25" stroke-linecap="round" fill="none">
+    <!-- Central Wheat Root Network -->
+    <path d="M 680,220 Q 690,320 670,420 T 650,580 T 620,720" stroke-width="3"/>
+    <path d="M 670,300 Q 640,360 610,440 T 570,550" stroke-width="1.8"/>
+    <path d="M 680,340 Q 720,410 750,490 T 780,620" stroke-width="1.8"/>
+    <path d="M 610,440 Q 590,490 560,540" stroke-width="1.2"/>
+    <path d="M 750,490 Q 780,540 810,600" stroke-width="1.2"/>
+
+    <path d="M 1240,200 Q 1230,300 1250,410 T 1270,590 T 1300,740" stroke-width="3"/>
+    <path d="M 1240,290 Q 1200,350 1170,430 T 1140,560" stroke-width="1.8"/>
+    <path d="M 1250,340 Q 1290,420 1320,510 T 1350,640" stroke-width="1.8"/>
+  </g>
+
+  <!-- Soil Quality Indicator Grid -->
+  <g fill="#fbbf24" opacity="0.4" font-family="monospace" font-size="11">
+    <text x="140" y="210">O-HORIZON: ORGANIC LAYER (pH 6.8)</text>
+    <text x="140" y="410">A-HORIZON: TOPSOIL N-P-K MATRIX</text>
+    <text x="140" y="640">B-HORIZON: MOISTURE RETENTION CLAY</text>
+  </g>
+</svg>

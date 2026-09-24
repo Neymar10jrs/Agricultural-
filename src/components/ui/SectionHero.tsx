@@ -1,0 +1,145 @@
+'use client';
+
+import React from 'react';
+
+export type HeroTheme = 'forest' | 'satellite' | 'soil' | 'risk' | 'weather' | 'impact';
+
+interface HeroStat {
+  value: string;
+  label: string;
+  accent?: string; // Tailwind text color class
+}
+
+interface SectionHeroProps {
+  /** Background image URL (can be external or /public path) */
+  imageSrc?: string;
+  /** Overlay theme — controls gradient colour */
+  theme?: HeroTheme;
+  /** Optional pill label above the heading */
+  label?: string;
+  /** Main heading — can be a ReactNode for gradient text */
+  heading: React.ReactNode;
+  /** Sub-heading / description */
+  description?: string;
+  /** Optional stat cards rendered in a row below description */
+  stats?: HeroStat[];
+  /** Extra content slot (buttons, tags, etc.) */
+  children?: React.ReactNode;
+  /** Minimum height of the hero section */
+  minHeight?: string;
+  /** Padding class for the content */
+  contentPadding?: string;
+  /** Whether to show DEMO DATA badge */
+  showDemoBadge?: boolean;
+}
+
+const overlayClass: Record<HeroTheme, string> = {
+  forest:    'agri-overlay-forest',
+  satellite: 'agri-overlay-satellite',
+  soil:      'agri-overlay-soil',
+  risk:      'agri-overlay-risk',
+  weather:   'agri-overlay-weather',
+  impact:    'agri-overlay-impact',
+};
+
+const fallbackGradient: Record<HeroTheme, string> = {
+  forest:    'section-theme-agri',
+  satellite: 'section-theme-satellite',
+  soil:      'section-theme-soil',
+  risk:      'section-theme-risk',
+  weather:   'section-theme-weather',
+  impact:    'section-theme-impact',
+};
+
+export function SectionHero({
+  imageSrc,
+  theme = 'forest',
+  label,
+  heading,
+  description,
+  stats,
+  children,
+  minHeight = 'min-h-[320px]',
+  contentPadding = 'px-4 sm:px-6 lg:px-8 py-14 sm:py-20',
+  showDemoBadge = false,
+}: SectionHeroProps) {
+  return (
+    <section
+      className={`agri-hero-section ${minHeight} ${!imageSrc ? fallbackGradient[theme] : ''}`}
+    >
+      {/* Background image layer with slow zoom */}
+      {imageSrc && (
+        <div
+          className="agri-bg-layer"
+          style={{ backgroundImage: `url(${imageSrc})` }}
+          aria-hidden="true"
+        />
+      )}
+
+      {/* Gradient overlay */}
+      <div
+        className={`agri-overlay ${overlayClass[theme]}`}
+        aria-hidden="true"
+      />
+
+      {/* Content */}
+      <div className={`agri-hero-content ${contentPadding} max-w-7xl mx-auto`}>
+        <div className="flex flex-col gap-4">
+          {/* Top row: label + demo badge */}
+          {(label || showDemoBadge) && (
+            <div className="flex flex-wrap items-center gap-2">
+              {label && (
+                <span className="section-label section-label-light">
+                  {label}
+                </span>
+              )}
+              {showDemoBadge && (
+                <span className="demo-watermark">
+                  ⚠ Demo Data
+                </span>
+              )}
+            </div>
+          )}
+
+          {/* Heading */}
+          <h1 className="text-white font-extrabold leading-tight tracking-tight"
+            style={{ fontSize: 'var(--text-hero)' }}
+          >
+            {heading}
+          </h1>
+
+          {/* Description */}
+          {description && (
+            <p className="text-emerald-100/80 max-w-2xl leading-relaxed"
+              style={{ fontSize: 'clamp(0.9rem, 1.4vw, 1.125rem)' }}
+            >
+              {description}
+            </p>
+          )}
+
+          {/* Children slot */}
+          {children}
+
+          {/* Stats row */}
+          {stats && stats.length > 0 && (
+            <div className="flex flex-wrap gap-3 mt-2">
+              {stats.map((stat, i) => (
+                <div key={i} className="hero-stat-card px-4 py-3 min-w-[100px]">
+                  <p
+                    className={`stat-hero ${stat.accent ?? 'text-gradient-agri'} count-reveal`}
+                    style={{ animationDelay: `${i * 0.1}s` }}
+                  >
+                    {stat.value}
+                  </p>
+                  <p className="text-white/60 text-xs font-medium mt-0.5 uppercase tracking-wide">
+                    {stat.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
