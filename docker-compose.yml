@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  bkin-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: bkin-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_API_URL=/api/v1
+      - NEXT_PUBLIC_DEMO_MODE=true
+    restart: always
+
+  bkin-api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: bkin-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+    restart: always
