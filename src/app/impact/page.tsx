@@ -130,7 +130,7 @@ export default function ImpactPage() {
             return (
               <div
                 key={card.label}
-                className="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm hover:shadow-md transition space-y-2"
+                className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 p-4 shadow-[0_4px_16px_rgba(0,0,0,0.10)] hover:bg-[rgba(10,20,15,0.28)] transition space-y-2"
               >
                 <div className={`w-8 h-8 rounded-xl border flex items-center justify-center ${card.color}`}>
                   <Icon className="w-4 h-4" />
@@ -150,7 +150,7 @@ export default function ImpactPage() {
       </div>
 
       {/* Before / After Comparison */}
-      <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-6">
+      <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-3xl border border-white/10 p-6 sm:p-8 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-6">
         <div className="text-center max-w-2xl mx-auto space-y-1">
           <span className="text-xs font-bold text-emerald-700 uppercase tracking-wider">
             {isHi ? 'कृषि कार्यप्रणाली परिवर्तन' : 'Paradigm Shift'}
@@ -337,7 +337,7 @@ export default function ImpactPage() {
       </div>
 
       {/* System Status Panel */}
-      <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-4">
+      <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-3xl border border-white/10 p-6 sm:p-8 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-4">
         <div className="flex items-center justify-between flex-wrap gap-2">
           <div>
             <h2 className="text-base sm:text-lg font-bold text-slate-900">

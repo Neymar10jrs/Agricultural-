@@ -83,8 +83,8 @@ function DashboardContent() {
 
             {/* Permanent Farmer ID with Copy */}
             <div className="flex items-center gap-3 pt-1">
-              <div className="flex items-center gap-2 bg-transparent border border-slate-700/80 rounded-xl px-3 py-1.5 font-mono text-sm text-slate-300">
-                <span className="text-slate-500 text-xs uppercase tracking-wider font-sans font-semibold">
+              <div className="flex items-center gap-2 bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 rounded-xl px-3 py-1.5 font-mono text-sm text-slate-300 shadow-sm">
+                <span className="text-slate-400 text-xs uppercase tracking-wider font-sans font-semibold">
                   {t.dashboard?.farmerId || 'Farmer ID'}:
                 </span>
                 <span className="font-bold text-emerald-400">{farmerId}</span>
@@ -113,7 +113,7 @@ function DashboardContent() {
           </div>
 
           {/* Active Farm Parcel Selector */}
-          <div className="bg-transparent border border-emerald-500/30 rounded-2xl p-4 min-w-[280px]">
+          <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 rounded-2xl p-4 min-w-[280px] shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
             <div className="flex items-center justify-between text-xs text-slate-400 mb-2">
               <span className="font-semibold uppercase tracking-wider text-emerald-400 flex items-center gap-1.5">
                 <Layers className="w-3.5 h-3.5" />
@@ -162,10 +162,10 @@ function DashboardContent() {
 
       {/* Main Content Area */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 space-y-8">
-        {/* Telemetry Overview Cards — Transparent Floating Cards */}
+        {/* Telemetry Overview Cards — 80% Transparent Surfaces */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {/* Card 1: Active Crop & Stage */}
-          <div className="bg-transparent border border-slate-700/60 hover:border-emerald-400/50 hover:bg-white/[0.02] rounded-2xl p-5 relative overflow-hidden group transition-all">
+          <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 hover:border-emerald-400/50 hover:bg-[rgba(10,20,15,0.28)] rounded-2xl p-5 relative overflow-hidden group transition-all shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
             <div className="flex items-center justify-between text-xs font-medium text-slate-400 mb-2">
               <span>{t.dashboard?.cropStageTitle || 'Crop Growth Stage'}</span>
               <Sprout className="w-4 h-4 text-emerald-400" />
@@ -183,7 +183,7 @@ function DashboardContent() {
           </div>
 
           {/* Card 2: Field Weather */}
-          <div className="bg-transparent border border-slate-700/60 hover:border-emerald-400/50 hover:bg-white/[0.02] rounded-2xl p-5 relative overflow-hidden group transition-all">
+          <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 hover:border-emerald-400/50 hover:bg-[rgba(10,20,15,0.28)] rounded-2xl p-5 relative overflow-hidden group transition-all shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
             <div className="flex items-center justify-between text-xs font-medium text-slate-400 mb-2">
               <span>{t.dashboard?.weatherCardTitle || 'Field Weather'}</span>
               <CloudSun className="w-4 h-4 text-amber-400" />
@@ -206,7 +206,7 @@ function DashboardContent() {
           </div>
 
           {/* Card 3: Soil Health Index */}
-          <div className="bg-transparent border border-slate-700/60 hover:border-emerald-400/50 hover:bg-white/[0.02] rounded-2xl p-5 relative overflow-hidden group transition-all">
+          <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 hover:border-emerald-400/50 hover:bg-[rgba(10,20,15,0.28)] rounded-2xl p-5 relative overflow-hidden group transition-all shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
             <div className="flex items-center justify-between text-xs font-medium text-slate-400 mb-2">
               <span>{t.dashboard?.soilCardTitle || 'Soil Condition'}</span>
               <Layers className="w-4 h-4 text-teal-400" />
@@ -223,7 +223,7 @@ function DashboardContent() {
           </div>
 
           {/* Card 4: Field Alert Status */}
-          <div className="bg-transparent border border-slate-700/60 hover:border-emerald-400/50 hover:bg-white/[0.02] rounded-2xl p-5 relative overflow-hidden group transition-all">
+          <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 hover:border-emerald-400/50 hover:bg-[rgba(10,20,15,0.28)] rounded-2xl p-5 relative overflow-hidden group transition-all shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
             <div className="flex items-center justify-between text-xs font-medium text-slate-400 mb-2">
               <span>{t.dashboard?.activeAlertsTitle || 'Field Alerts'}</span>
               <AlertTriangle className="w-4 h-4 text-amber-400" />
@@ -253,7 +253,7 @@ function DashboardContent() {
             {/* Action 1: Manage Farms */}
             <Link
               href="/my-farm"
-              className="bg-transparent border border-slate-700/60 hover:border-emerald-400/50 rounded-2xl p-4 flex flex-col items-center text-center gap-2 hover:bg-white/[0.03] transition-all group"
+              className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 hover:border-emerald-400/50 hover:bg-[rgba(10,20,15,0.28)] rounded-2xl p-4 flex flex-col items-center text-center gap-2 transition-all group shadow-[0_4px_16px_rgba(0,0,0,0.10)]"
             >
               <div className="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center group-hover:scale-110 transition-transform">
                 <Layers className="w-5 h-5" />
@@ -266,7 +266,7 @@ function DashboardContent() {
             {/* Action 2: Crop Doctor */}
             <Link
               href="/crop-doctor"
-              className="bg-transparent border border-slate-700/60 hover:border-emerald-400/50 rounded-2xl p-4 flex flex-col items-center text-center gap-2 hover:bg-white/[0.03] transition-all group"
+              className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 hover:border-emerald-400/50 hover:bg-[rgba(10,20,15,0.28)] rounded-2xl p-4 flex flex-col items-center text-center gap-2 transition-all group shadow-[0_4px_16px_rgba(0,0,0,0.10)]"
             >
               <div className="w-10 h-10 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center group-hover:scale-110 transition-transform">
                 <Stethoscope className="w-5 h-5" />
@@ -279,7 +279,7 @@ function DashboardContent() {
             {/* Action 3: Farm Digital Twin */}
             <Link
               href="/farm-digital-twin"
-              className="bg-transparent border border-slate-700/60 hover:border-emerald-400/50 rounded-2xl p-4 flex flex-col items-center text-center gap-2 hover:bg-white/[0.03] transition-all group"
+              className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 hover:border-emerald-400/50 hover:bg-[rgba(10,20,15,0.28)] rounded-2xl p-4 flex flex-col items-center text-center gap-2 transition-all group shadow-[0_4px_16px_rgba(0,0,0,0.10)]"
             >
               <div className="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center group-hover:scale-110 transition-transform">
                 <Compass className="w-5 h-5" />
@@ -292,7 +292,7 @@ function DashboardContent() {
             {/* Action 4: Today's Advisory */}
             <Link
               href="/todays-advisory"
-              className="bg-transparent border border-slate-700/60 hover:border-emerald-400/50 rounded-2xl p-4 flex flex-col items-center text-center gap-2 hover:bg-white/[0.03] transition-all group"
+              className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 hover:border-emerald-400/50 hover:bg-[rgba(10,20,15,0.28)] rounded-2xl p-4 flex flex-col items-center text-center gap-2 transition-all group shadow-[0_4px_16px_rgba(0,0,0,0.10)]"
             >
               <div className="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center group-hover:scale-110 transition-transform">
                 <Calendar className="w-5 h-5" />
@@ -306,7 +306,7 @@ function DashboardContent() {
             <button
               type="button"
               onClick={() => openAskKrishi()}
-              className="bg-transparent border border-slate-700/60 hover:border-emerald-400/50 rounded-2xl p-4 flex flex-col items-center text-center gap-2 hover:bg-white/[0.03] transition-all group"
+              className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 hover:border-emerald-400/50 hover:bg-[rgba(10,20,15,0.28)] rounded-2xl p-4 flex flex-col items-center text-center gap-2 transition-all group shadow-[0_4px_16px_rgba(0,0,0,0.10)]"
             >
               <div className="w-10 h-10 rounded-xl bg-violet-500/20 text-violet-400 flex items-center justify-center group-hover:scale-110 transition-transform">
                 <Sparkles className="w-5 h-5" />
@@ -319,7 +319,7 @@ function DashboardContent() {
             {/* Action 6: History & Records */}
             <Link
               href="/history"
-              className="bg-transparent border border-slate-700/60 hover:border-emerald-400/50 rounded-2xl p-4 flex flex-col items-center text-center gap-2 hover:bg-white/[0.03] transition-all group"
+              className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 hover:border-emerald-400/50 hover:bg-[rgba(10,20,15,0.28)] rounded-2xl p-4 flex flex-col items-center text-center gap-2 transition-all group shadow-[0_4px_16px_rgba(0,0,0,0.10)]"
             >
               <div className="w-10 h-10 rounded-xl bg-teal-500/20 text-teal-400 flex items-center justify-center group-hover:scale-110 transition-transform">
                 <FileText className="w-5 h-5" />
@@ -334,7 +334,7 @@ function DashboardContent() {
         {/* Dual Section: Activity Log & Profile Card */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Activity Timeline (2 cols) */}
-          <div className="lg:col-span-2 bg-transparent border border-slate-700/60 rounded-3xl p-6 space-y-4">
+          <div className="lg:col-span-2 bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 rounded-3xl p-6 space-y-4 shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
             <div className="flex items-center justify-between pb-3 border-b border-slate-700">
               <h3 className="font-bold text-white flex items-center gap-2">
                 <Clock className="w-4 h-4 text-emerald-400" />
@@ -376,7 +376,7 @@ function DashboardContent() {
           </div>
 
           {/* Quick Profile Summary Card (1 col) */}
-          <div className="bg-transparent border border-slate-700/60 rounded-3xl p-6 space-y-5">
+          <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 rounded-3xl p-6 space-y-5 shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
             <div className="flex items-center justify-between pb-3 border-b border-slate-700">
               <h3 className="font-bold text-white flex items-center gap-2">
                 <ShieldCheck className="w-4 h-4 text-emerald-400" />

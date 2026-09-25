@@ -24,7 +24,7 @@ export default function RiskBreakdownCard({ breakdown, className = '' }: RiskBre
   }
 
   return (
-    <div className={`bg-transparent rounded-2xl border border-slate-200/90 hover:border-emerald-500/40 transition-all overflow-hidden ${className}`}>
+    <div className={`bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 hover:border-emerald-500/40 transition-all overflow-hidden shadow-sm ${className}`}>
       {/* Header */}
       <div className="px-5 py-4 border-b border-gray-100">
         <h3 className="text-sm font-semibold text-gray-800 tracking-tight">Risk Factor Breakdown</h3>

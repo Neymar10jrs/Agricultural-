@@ -46,7 +46,7 @@ export default function ConfidenceAdvisoryCard({
   }
 
   return (
-    <div className="bg-transparent rounded-2xl border border-slate-200/90 hover:border-emerald-500/40 transition-all overflow-hidden">
+    <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 hover:border-emerald-500/40 transition-all overflow-hidden shadow-sm">
       {/* Header band */}
       <div className={`flex items-center justify-between px-5 py-3 border-b ${uc.border} ${uc.bg}`}>
         <div className="flex items-center gap-2 min-w-0">

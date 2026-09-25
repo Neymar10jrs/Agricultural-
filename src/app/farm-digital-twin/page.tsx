@@ -106,7 +106,7 @@ function RiskFactorBar({ factor }: { factor: typeof demoRiskBreakdown.factors[0]
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="rounded-lg border border-slate-100 bg-white p-3 hover:shadow-sm transition-shadow">
+    <div className="rounded-lg border border-white/10 bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] p-3 hover:bg-[rgba(10,20,15,0.28)] transition-all shadow-[0_2px_8px_rgba(0,0,0,0.08)]">
       <div className="flex items-center justify-between gap-2 cursor-pointer" onClick={() => setOpen(v => !v)}>
         <div className="flex items-center gap-2 min-w-0">
           <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${c.badge}`}>{factor.level.toUpperCase()}</span>
@@ -275,7 +275,7 @@ function CropStageProgress() {
 function WhyAtRisk() {
   const [open, setOpen] = useState(false);
   return (
-    <div className="rounded-xl border border-amber-200 bg-amber-50">
+    <div className="rounded-xl border border-amber-500/30 bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
       <button
         onClick={() => setOpen(v => !v)}
         className="w-full flex items-center justify-between px-4 py-3 text-left"
@@ -312,7 +312,7 @@ function DataQualityPanel() {
   const scoreColor = q.overallScore >= 80 ? 'text-emerald-700' : q.overallScore >= 60 ? 'text-amber-700' : 'text-rose-700';
 
   return (
-    <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-4 space-y-3">
+    <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-xl border border-white/10 shadow-[0_4px_16px_rgba(0,0,0,0.10)] p-4 space-y-3">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Database className="w-4 h-4 text-slate-500" />
@@ -408,18 +408,18 @@ export default function FarmDigitalTwinPage() {
 
 
         {/* ── Breadcrumb to National Grid ── */}
-        <div className="flex items-center gap-2 text-xs text-slate-500 bg-transparent p-3 rounded-xl border border-slate-200/80">
-          <Link href="/india-network" className="text-emerald-700 font-semibold hover:underline">
+        <div className="flex items-center gap-2 text-xs text-slate-400 bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] p-3 rounded-xl border border-white/10 shadow-sm">
+          <Link href="/india-network" className="text-emerald-400 font-semibold hover:underline">
             {isHi ? 'राष्ट्रीय ग्रिड' : 'National Grid'}
           </Link>
           <span>/</span>
-          <Link href="/state-dashboard" className="text-emerald-700 font-semibold hover:underline">
+          <Link href="/state-dashboard" className="text-emerald-400 font-semibold hover:underline">
             {isHi ? 'पंजाब नोड' : 'Punjab Node'}
           </Link>
           <span>/</span>
           <span className="text-slate-400">Ludhiana &gt; Samrala &gt; Rohno Kalan</span>
           <span>/</span>
-          <span className="font-bold text-slate-800">BKIN-PB-LDH-042</span>
+          <span className="font-bold text-slate-200">BKIN-PB-LDH-042</span>
         </div>
 
         {/* ── Key Metrics Grid ── */}
@@ -499,7 +499,7 @@ export default function FarmDigitalTwinPage() {
 
         {/* ── Crop Stage Progress ── */}
         <section>
-          <div className="bg-transparent rounded-xl border border-slate-200/80 p-5">
+          <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-xl border border-white/10 p-5 shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
             <div className="flex items-center gap-2 mb-4">
               <Wheat className="w-5 h-5 text-amber-500" />
               <h2 className="text-base font-bold text-slate-800">Crop Growth Stage Tracker</h2>
@@ -512,7 +512,7 @@ export default function FarmDigitalTwinPage() {
         {/* ── Risk Breakdown + Why at Risk ── */}
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Risk Factors */}
-          <div className="bg-transparent rounded-xl border border-slate-200/80 p-5 space-y-3">
+          <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-xl border border-white/10 p-5 space-y-3 shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <AlertTriangle className="w-5 h-5 text-amber-500" />
@@ -535,7 +535,7 @@ export default function FarmDigitalTwinPage() {
           </div>
 
           {/* NDVI Chart */}
-          <div className="bg-transparent rounded-xl border border-slate-200/80 p-5 space-y-3">
+          <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-xl border border-white/10 p-5 space-y-3 shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
             <div className="flex items-center gap-2">
               <Leaf className="w-5 h-5 text-emerald-600" />
               <h2 className="text-base font-bold text-slate-800">NDVI Time Series</h2>
@@ -547,7 +547,7 @@ export default function FarmDigitalTwinPage() {
 
         {/* ── Satellite Anomaly ── */}
         <section>
-          <div className="rounded-xl border border-amber-300/40 bg-amber-500/5 p-5">
+          <div className="rounded-xl border border-amber-500/30 bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] p-5 shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
             <div className="flex items-start gap-3">
               <div className="w-10 h-10 rounded-lg bg-amber-100 border border-amber-200 flex items-center justify-center shrink-0">
                 <Satellite className="w-5 h-5 text-amber-600" />
@@ -561,15 +561,15 @@ export default function FarmDigitalTwinPage() {
                   <div key={i} className="space-y-2">
                     <p className="text-sm font-semibold text-slate-700">📍 {a.zoneName}</p>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
-                      <div className="bg-white/70 rounded-lg border border-amber-100 p-2.5">
+                      <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-lg border border-white/10 p-2.5">
                         <p className="text-slate-500 font-medium mb-0.5">Issue Detected</p>
                         <p className="text-slate-800 font-semibold">{a.detectedIssue}</p>
                       </div>
-                      <div className="bg-white/70 rounded-lg border border-amber-100 p-2.5">
+                      <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-lg border border-white/10 p-2.5">
                         <p className="text-slate-500 font-medium mb-0.5">Probable Reason</p>
                         <p className="text-slate-800">{a.probableReason}</p>
                       </div>
-                      <div className="bg-white/70 rounded-lg border border-amber-100 p-2.5">
+                      <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-lg border border-white/10 p-2.5">
                         <p className="text-slate-500 font-medium mb-0.5">Recommended Action</p>
                         <p className="text-slate-800">{a.recommendedAction}</p>
                       </div>
@@ -595,7 +595,7 @@ export default function FarmDigitalTwinPage() {
         </section>
 
         {/* ── Disclaimer ── */}
-        <section className="bg-transparent border border-slate-200/80 rounded-xl px-4 py-3 flex items-start gap-2">
+        <section className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 rounded-xl px-4 py-3 flex items-start gap-2 shadow-sm">
           <Info className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
           <p className="text-xs text-slate-500 leading-relaxed">
             <strong className="text-slate-700">Demo Mode:</strong> All data, scores, and risk values are simulated for demonstration purposes only and are based on the BKIN-PB-LDH-042 prototype farm profile. {risk.disclaimer}

@@ -63,18 +63,21 @@
   background: #10b981;
 }
 
-/* Telemetry Grid & Accent Framing (Transparent Editorial Layer) */
+/* Telemetry Grid & Accent Framing (80% Transparent Surface) */
 .telemetry-card {
   position: relative;
-  background: transparent;
-  border: 1px solid rgba(226, 232, 240, 0.7);
+  background: rgba(10, 20, 15, 0.20);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: 0.75rem;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
 }
 
 .telemetry-card:hover {
-  border-color: rgba(16, 185, 129, 0.5);
-  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(16, 185, 129, 0.45);
+  background: rgba(10, 20, 15, 0.28);
 }
 
 
@@ -273,29 +276,38 @@
   );
 }
 
-/* ── Transparent Editorial Layers (Replaces Opaque Panels) ── */
+/* ── 80% Transparent Information Surfaces (20% Opacity Surface Layer) ── */
 .glass-panel {
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(10, 20, 15, 0.20);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
 }
 
 .glass-panel-dark {
-  background: transparent;
-  border: 1px solid rgba(16, 185, 129, 0.25);
+  background: rgba(6, 25, 16, 0.22);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(16, 185, 129, 0.20);
   border-radius: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
 }
 
 .glass-card {
-  background: transparent;
+  background: rgba(10, 20, 15, 0.20);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: 0.75rem;
   transition: all 0.25s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
 
 .glass-card:hover {
-  background: rgba(255, 255, 255, 0.03);
-  border-color: rgba(16, 185, 129, 0.45);
+  background: rgba(10, 20, 15, 0.28);
+  border-color: rgba(16, 185, 129, 0.40);
 }
 
 
@@ -435,37 +447,74 @@
   animation: subtlePulse 3s ease-in-out infinite;
 }
 
-/* ── Transparent Hero Stat Card ── */
+/* ── 80% Transparent Hero Stat Card ── */
 .hero-stat-card {
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(10, 20, 15, 0.20);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: 0.875rem;
   transition: all 0.2s ease;
 }
 
 .hero-stat-card:hover {
-  background: rgba(255, 255, 255, 0.04);
-  border-color: rgba(16, 185, 129, 0.45);
+  background: rgba(10, 20, 15, 0.28);
+  border-color: rgba(16, 185, 129, 0.40);
 }
 
-/* ── Transparent Information Layer Classes ── */
+/* ── 80% Transparent Information Layer Classes ── */
 .floating-layer {
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
+  background: rgba(10, 20, 15, 0.20) !important;
+  backdrop-filter: blur(6px) !important;
+  -webkit-backdrop-filter: blur(6px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.10) !important;
 }
 
 .floating-card {
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(10, 20, 15, 0.20);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: 1rem;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
 }
 
 .floating-card:hover {
-  border-color: rgba(16, 185, 129, 0.45);
-  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(16, 185, 129, 0.40);
+  background: rgba(10, 20, 15, 0.28);
   transform: translateY(-2px);
+}
+
+/* ── 80% Transparent Global Standard Classes ── */
+.info-box,
+.info-surface,
+.translucent-card,
+.surface-80 {
+  background: rgba(10, 20, 15, 0.20);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.info-box:hover,
+.info-surface:hover,
+.translucent-card:hover {
+  background: rgba(10, 20, 15, 0.28);
+  border-color: rgba(16, 185, 129, 0.35);
+}
+
+@media (max-width: 640px) {
+  .info-box,
+  .info-surface,
+  .translucent-card,
+  .surface-80,
+  .glass-card,
+  .glass-panel,
+  .floating-card,
+  .telemetry-card {
+    background: rgba(10, 20, 15, 0.25);
+  }
 }
 
 .text-shadow-agri {

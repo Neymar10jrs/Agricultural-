@@ -45,7 +45,7 @@ export default function SoilHealthPage() {
       {/* Primary Parameters Grid (Section 16: pH, N, P, K, OC, EC, Moisture, Type, Texture) */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5">
         {/* pH */}
-        <div className="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm space-y-2">
+        <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 p-4 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-2">
           <div className="text-[10px] uppercase font-bold text-slate-400">Soil Reaction (pH)</div>
           <div className="text-2xl font-extrabold text-slate-900">{soil.ph}</div>
           <div className="flex items-center justify-between text-[11px]">
@@ -58,7 +58,7 @@ export default function SoilHealthPage() {
         </div>
 
         {/* Nitrogen */}
-        <div className="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm space-y-2">
+        <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 p-4 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-2">
           <div className="text-[10px] uppercase font-bold text-slate-400">Available Nitrogen (N)</div>
           <div className="text-2xl font-extrabold text-slate-900">
             {soil.nitrogenKgPerHa} <span className="text-xs font-normal text-slate-500">kg/ha</span>
@@ -73,7 +73,7 @@ export default function SoilHealthPage() {
         </div>
 
         {/* Phosphorus */}
-        <div className="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm space-y-2">
+        <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 p-4 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-2">
           <div className="text-[10px] uppercase font-bold text-slate-400">Available Phosphorus (P)</div>
           <div className="text-2xl font-extrabold text-slate-900">
             {soil.phosphorusKgPerHa} <span className="text-xs font-normal text-slate-500">kg/ha</span>
@@ -88,7 +88,7 @@ export default function SoilHealthPage() {
         </div>
 
         {/* Potassium */}
-        <div className="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm space-y-2">
+        <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 p-4 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-2">
           <div className="text-[10px] uppercase font-bold text-slate-400">Available Potassium (K)</div>
           <div className="text-2xl font-extrabold text-slate-900">
             {soil.potassiumKgPerHa} <span className="text-xs font-normal text-slate-500">kg/ha</span>
@@ -103,7 +103,7 @@ export default function SoilHealthPage() {
         </div>
 
         {/* Organic Carbon */}
-        <div className="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm space-y-2 col-span-2 sm:col-span-1">
+        <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 p-4 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-2 col-span-2 sm:col-span-1">
           <div className="text-[10px] uppercase font-bold text-slate-400">Organic Carbon (OC)</div>
           <div className="text-2xl font-extrabold text-slate-900">{soil.organicCarbonPercent}%</div>
           <div className="flex items-center justify-between text-[11px]">
@@ -117,7 +117,7 @@ export default function SoilHealthPage() {
       </div>
 
       {/* Secondary Soil Properties Strip */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-slate-100/70 p-4 rounded-2xl border border-slate-200 text-xs">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] p-4 rounded-2xl border border-white/10 text-xs shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
         <div>
           <span className="text-slate-500 block text-[10px] uppercase font-bold">Soil Classification</span>
           <span className="font-bold text-slate-800 text-sm mt-0.5 block">{soil.soilType}</span>
@@ -159,7 +159,7 @@ export default function SoilHealthPage() {
           {soil.recommendations.map((rec, idx) => (
             <div
               key={idx}
-              className="telemetry-card p-5 space-y-3 bg-white border border-slate-200 rounded-2xl"
+              className="telemetry-card p-5 space-y-3 bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 rounded-2xl shadow-[0_4px_16px_rgba(0,0,0,0.10)]"
             >
               <div className="flex items-center justify-between border-b border-slate-100 pb-2">
                 <span className="font-bold text-sm text-slate-900">{rec.nutrient}</span>

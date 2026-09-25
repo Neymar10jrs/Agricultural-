@@ -369,7 +369,7 @@ export function SatelliteIntelligenceHub() {
                 className={`p-4 rounded-2xl border text-left transition ${
                   activeSpectralIndex === 'ndvi'
                     ? 'bg-emerald-950 text-white border-emerald-500 shadow-md ring-2 ring-emerald-500/30'
-                    : 'bg-white hover:bg-slate-50 text-slate-800 border-slate-200'
+                    : 'bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] hover:bg-[rgba(10,20,15,0.28)] text-slate-800 border-white/10 shadow-sm'
                 }`}
               >
                 <div className="flex items-center justify-between mb-1">
@@ -389,7 +389,7 @@ export function SatelliteIntelligenceHub() {
                 className={`p-4 rounded-2xl border text-left transition ${
                   activeSpectralIndex === 'ndwi'
                     ? 'bg-slate-900 text-white border-blue-500 shadow-md ring-2 ring-blue-500/30'
-                    : 'bg-white hover:bg-slate-50 text-slate-800 border-slate-200'
+                    : 'bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] hover:bg-[rgba(10,20,15,0.28)] text-slate-800 border-white/10 shadow-sm'
                 }`}
               >
                 <div className="flex items-center justify-between mb-1">
@@ -409,7 +409,7 @@ export function SatelliteIntelligenceHub() {
                 className={`p-4 rounded-2xl border text-left transition ${
                   activeSpectralIndex === 'ndmi'
                     ? 'bg-slate-900 text-white border-teal-500 shadow-md ring-2 ring-teal-500/30'
-                    : 'bg-white hover:bg-slate-50 text-slate-800 border-slate-200'
+                    : 'bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] hover:bg-[rgba(10,20,15,0.28)] text-slate-800 border-white/10 shadow-sm'
                 }`}
               >
                 <div className="flex items-center justify-between mb-1">
@@ -429,7 +429,7 @@ export function SatelliteIntelligenceHub() {
                 className={`p-4 rounded-2xl border text-left transition ${
                   activeSpectralIndex === 'lst'
                     ? 'bg-slate-900 text-white border-amber-500 shadow-md ring-2 ring-amber-500/30'
-                    : 'bg-white hover:bg-slate-50 text-slate-800 border-slate-200'
+                    : 'bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] hover:bg-[rgba(10,20,15,0.28)] text-slate-800 border-white/10 shadow-sm'
                 }`}
               >
                 <div className="flex items-center justify-between mb-1">
@@ -449,7 +449,7 @@ export function SatelliteIntelligenceHub() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             {/* Left 5 cols: Formula & Physical Principle */}
             <div className="lg:col-span-5 space-y-4">
-              <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm space-y-4">
+              <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-3xl border border-white/10 p-6 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-4">
                 <div className="space-y-1">
                   <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-700">
                     Spectral Index Mechanics
@@ -484,7 +484,7 @@ export function SatelliteIntelligenceHub() {
 
             {/* Right 7 cols: 30-Day Historical Trend Area Chart */}
             <div className="lg:col-span-7 space-y-4">
-              <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm space-y-4">
+              <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-3xl border border-white/10 p-6 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-4">
                 <div className="flex items-center justify-between border-b border-slate-100 pb-3">
                   <div>
                     <h4 className="font-bold text-sm text-slate-900">
@@ -539,7 +539,7 @@ export function SatelliteIntelligenceHub() {
           </div>
 
           {/* ── Automated Parcel Anomaly & Stress Investigation Card ── */}
-          <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-7 shadow-sm space-y-4">
+          <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-3xl border border-white/10 p-6 sm:p-7 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-4">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
               <div>
                 <span className="text-[10px] uppercase font-bold text-amber-700 tracking-wider">

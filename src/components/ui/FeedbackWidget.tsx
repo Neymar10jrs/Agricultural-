@@ -64,7 +64,7 @@ export default function FeedbackWidget({ advisoryId, advisoryTitle, onSubmit }: 
 
   // ── Main widget ────────────────────────────────────────────────────────────
   return (
-    <div className="rounded-xl border border-gray-200 bg-white shadow-sm overflow-hidden">
+    <div className="rounded-xl border border-white/10 bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] shadow-sm overflow-hidden">
       {/* Prompt row */}
       <div className="flex items-center justify-between px-4 py-3 gap-4 flex-wrap">
         <p className="text-xs text-gray-600 font-medium">

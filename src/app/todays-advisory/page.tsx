@@ -71,7 +71,7 @@ export default function TodaysAdvisoryPage() {
 
       {/* Category Filter Pills */}
       <div className="flex items-center gap-2 overflow-x-auto pb-1 text-xs">
-        <span className="text-slate-500 font-semibold text-xs shrink-0 flex items-center gap-1">
+        <span className="text-slate-400 font-semibold text-xs shrink-0 flex items-center gap-1">
           <Filter className="w-3.5 h-3.5" />
           Filter Action Area:
         </span>
@@ -79,10 +79,10 @@ export default function TodaysAdvisoryPage() {
           <button
             key={cat}
             onClick={() => setSelectedCategory(cat)}
-            className={`px-3.5 py-1.5 rounded-full font-semibold transition shrink-0 ${
+            className={`px-3.5 py-1.5 rounded-full font-semibold transition shrink-0 backdrop-blur-[6px] ${
               selectedCategory === cat
-                ? 'bg-emerald-700 text-white shadow-sm'
-                : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'
+                ? 'bg-emerald-500 text-slate-950 font-bold shadow-sm'
+                : 'bg-[rgba(10,20,15,0.20)] text-slate-300 border border-white/10 hover:bg-white/10'
             }`}
           >
             {cat}
@@ -91,17 +91,17 @@ export default function TodaysAdvisoryPage() {
       </div>
 
       {/* View Format Selector (Phase 9) */}
-      <div className="flex items-center justify-between text-xs bg-slate-50 p-2.5 rounded-xl border border-slate-200">
-        <span className="font-semibold text-slate-600">
+      <div className="flex items-center justify-between text-xs bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] p-2.5 rounded-xl border border-white/10 shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
+        <span className="font-semibold text-slate-300">
           {isHi ? 'परामर्श प्रस्तुति प्रारूप:' : 'Advisory Explanation Format:'}
         </span>
-        <div className="flex items-center gap-1 bg-white p-1 rounded-lg border border-slate-200">
+        <div className="flex items-center gap-1 bg-[rgba(10,20,15,0.40)] p-1 rounded-lg border border-white/10">
           <button
             onClick={() => setViewMode('structured')}
             className={`px-3 py-1 rounded-md font-bold transition text-xs ${
               viewMode === 'structured'
-                ? 'bg-emerald-700 text-white shadow-sm'
-                : 'text-slate-600 hover:text-slate-900'
+                ? 'bg-emerald-500 text-slate-950 shadow-sm'
+                : 'text-slate-300 hover:text-white'
             }`}
           >
             {isHi ? '5-भाग विस्तृत साक्ष्य' : '5-Part Explainable Dossier'}
@@ -110,8 +110,8 @@ export default function TodaysAdvisoryPage() {
             onClick={() => setViewMode('compact')}
             className={`px-3 py-1 rounded-md font-bold transition text-xs ${
               viewMode === 'compact'
-                ? 'bg-emerald-700 text-white shadow-sm'
-                : 'text-slate-600 hover:text-slate-900'
+                ? 'bg-emerald-500 text-slate-950 shadow-sm'
+                : 'text-slate-300 hover:text-white'
             }`}
           >
             {isHi ? 'त्वरित दृश्य' : 'Compact Field View'}
@@ -131,11 +131,11 @@ export default function TodaysAdvisoryPage() {
       </div>
 
       {/* Help Banner */}
-      <div className="bg-slate-100/80 rounded-2xl p-5 border border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+      <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl p-5 border border-white/10 shadow-[0_4px_16px_rgba(0,0,0,0.10)] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
         <div className="space-y-0.5 text-center sm:text-left">
-          <span className="font-bold text-slate-800">Need help implementing these recommendations?</span>
-          <p className="text-slate-500 text-[11px]">
-            Call the Kisan Call Centre at toll-free <strong className="text-emerald-700">1800-180-1551</strong> or consult your local block agriculture officer.
+          <span className="font-bold text-white">Need help implementing these recommendations?</span>
+          <p className="text-slate-300 text-[11px]">
+            Call the Kisan Call Centre at toll-free <strong className="text-emerald-400">1800-180-1551</strong> or consult your local block agriculture officer.
           </p>
         </div>
         <Link

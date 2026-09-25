@@ -234,7 +234,7 @@ export default function CropDoctorPage() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Left Column: Input Form & Upload */}
         <div className="lg:col-span-5 space-y-6">
-          <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-4">
+          <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 p-5 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-4">
             <h3 className="font-bold text-base text-slate-900 flex items-center gap-2">
               <Camera className="w-4 h-4 text-emerald-700" />
               1. Crop Imagery Input
@@ -375,7 +375,7 @@ export default function CropDoctorPage() {
           {diagnosisResult ? (
             <div className="space-y-5 animate-in fade-in slide-in-from-bottom-2 duration-300">
               {/* Diagnosis Header Card */}
-              <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-7 shadow-sm space-y-5">
+              <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-3xl border border-white/10 p-6 sm:p-7 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-5">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
                   <div>
                     <span className="text-[10px] uppercase font-bold text-emerald-800 tracking-wider">
@@ -427,13 +427,13 @@ export default function CropDoctorPage() {
                       {diagnosisResult.alternativeDiagnoses.map((alt) => (
                         <div
                           key={alt.name}
-                          className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-200/80 text-xs"
+                          className="flex items-center justify-between p-2.5 rounded-xl bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 text-xs shadow-sm"
                         >
                           <div className="space-y-0.5">
                             <span className="font-semibold text-slate-800 block">{alt.name}</span>
                             <span className="text-[10px] text-slate-500">{alt.reason}</span>
                           </div>
-                          <span className="font-mono font-bold text-slate-600 bg-white px-2 py-1 rounded border border-slate-200 shrink-0">
+                          <span className="font-mono font-bold text-slate-600 bg-white/80 px-2 py-1 rounded border border-slate-200 shrink-0">
                             {alt.probability}%
                           </span>
                         </div>
@@ -449,7 +449,7 @@ export default function CropDoctorPage() {
                   </h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
                     {/* Symptoms */}
-                    <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+                    <div className="p-3.5 rounded-2xl bg-slate-50/80 border border-slate-200 space-y-2">
                       <span className="font-bold text-slate-700 flex items-center gap-1.5">
                         <Eye className="w-3.5 h-3.5 text-emerald-600" />
                         Observed Symptoms
@@ -465,7 +465,7 @@ export default function CropDoctorPage() {
                     </div>
 
                     {/* Environmental Evidence */}
-                    <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+                    <div className="p-3.5 rounded-2xl bg-slate-50/80 border border-slate-200 space-y-2">
                       <span className="font-bold text-slate-700 flex items-center gap-1.5">
                         <CloudSun className="w-3.5 h-3.5 text-sky-600" />
                         Environmental Context
@@ -558,7 +558,7 @@ export default function CropDoctorPage() {
               </div>
             </div>
           ) : (
-            <div className="bg-white rounded-3xl border border-slate-200 p-8 sm:p-12 text-center space-y-4 shadow-sm">
+            <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-3xl border border-white/10 p-8 sm:p-12 text-center space-y-4 shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
               <div className="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center mx-auto border border-emerald-100">
                 <Activity className="w-7 h-7" />
               </div>

@@ -36,7 +36,7 @@ export default function SystemStatusPanel({ status, compact = false }: SystemSta
   const timeLabel = now.toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' });
 
   return (
-    <div className="bg-transparent rounded-2xl border border-slate-200/90 hover:border-emerald-500/40 transition-all overflow-hidden">
+    <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 hover:border-emerald-500/40 transition-all overflow-hidden shadow-sm">
       {/* Header */}
       <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
         <div className="flex items-center gap-2.5">

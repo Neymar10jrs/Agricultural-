@@ -147,9 +147,9 @@ export default function HomePage() {
               </Link>
             </div>
 
-            {/* Quick Indicators Strip — Floating Transparent Metrics */}
-            <div className="pt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto text-left border-y border-white/10 py-5">
-              <div className="p-2 sm:p-3 text-white border-l-2 border-emerald-400/60 pl-3.5 hover:border-emerald-300 transition-colors">
+            {/* Quick Indicators Strip — 80% Transparent Surfaces */}
+            <div className="pt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto text-left py-5">
+              <div className="p-3 text-white border-l-2 border-emerald-400/60 pl-3.5 bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 rounded-xl hover:border-emerald-300 hover:bg-[rgba(10,20,15,0.28)] transition-all">
                 <div className="text-[10px] uppercase font-bold tracking-wider text-emerald-400">Demo Farm Health</div>
                 <div className="text-xl sm:text-2xl font-black text-white mt-0.5 flex items-center gap-1.5 text-shadow-agri">
                   78 / 100
@@ -160,19 +160,19 @@ export default function HomePage() {
                 <div className="text-[11px] text-slate-200 text-shadow-sm-agri font-medium">Punjab • 2.4 Acres Wheat</div>
               </div>
 
-              <div className="p-2 sm:p-3 text-white border-l-2 border-amber-400/60 pl-3.5 hover:border-amber-300 transition-colors">
+              <div className="p-3 text-white border-l-2 border-amber-400/60 pl-3.5 bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 rounded-xl hover:border-amber-300 hover:bg-[rgba(10,20,15,0.28)] transition-all">
                 <div className="text-[10px] uppercase font-bold tracking-wider text-amber-400">Rain Alert</div>
                 <div className="text-xl sm:text-2xl font-black text-white mt-0.5 text-shadow-agri">12.5 mm</div>
                 <div className="text-[11px] text-amber-300 font-semibold text-shadow-sm-agri">Delay Irrigation 24h</div>
               </div>
 
-              <div className="p-2 sm:p-3 text-white border-l-2 border-emerald-400/60 pl-3.5 hover:border-emerald-300 transition-colors">
+              <div className="p-3 text-white border-l-2 border-emerald-400/60 pl-3.5 bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 rounded-xl hover:border-emerald-300 hover:bg-[rgba(10,20,15,0.28)] transition-all">
                 <div className="text-[10px] uppercase font-bold tracking-wider text-emerald-400">Satellite NDVI</div>
                 <div className="text-xl sm:text-2xl font-black text-white mt-0.5 text-shadow-agri">0.68 Avg</div>
                 <div className="text-[11px] text-emerald-300 font-medium text-shadow-sm-agri">North Parcel Dip (0.51)</div>
               </div>
 
-              <div className="p-2 sm:p-3 text-white border-l-2 border-cyan-400/60 pl-3.5 hover:border-cyan-300 transition-colors">
+              <div className="p-3 text-white border-l-2 border-cyan-400/60 pl-3.5 bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 rounded-xl hover:border-cyan-300 hover:bg-[rgba(10,20,15,0.28)] transition-all">
                 <div className="text-[10px] uppercase font-bold tracking-wider text-cyan-400">Federated States</div>
                 <div className="text-xl sm:text-2xl font-black text-white mt-0.5 text-shadow-agri">6 Nodes</div>
                 <div className="text-[11px] text-cyan-300 font-semibold text-shadow-sm-agri">Active Interoperability</div>
@@ -208,8 +208,8 @@ export default function HomePage() {
                     onClick={() => setActivePipelineStep(idx)}
                     className={`cursor-pointer rounded-2xl p-4 transition-all relative border flex flex-col justify-between ${
                       isSelected
-                        ? 'bg-emerald-900/30 border-emerald-400 shadow-[0_0_25px_rgba(16,185,129,0.3)] scale-[1.02]'
-                        : 'bg-transparent border-white/15 hover:border-emerald-400/40 hover:bg-white/[0.02]'
+                        ? 'bg-emerald-900/35 border-emerald-400 shadow-[0_0_25px_rgba(16,185,129,0.3)] scale-[1.02]'
+                        : 'bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border-white/10 hover:border-emerald-400/40 hover:bg-[rgba(10,20,15,0.28)]'
                     }`}
                   >
                     <div className="flex items-center justify-between mb-3">
@@ -237,8 +237,8 @@ export default function HomePage() {
               })}
             </div>
 
-            {/* Real-World Contrast Box — Transparent Comparison Grid */}
-            <div className="rounded-2xl p-6 sm:p-8 border border-white/15 grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-transparent">
+            {/* Real-World Contrast Box — 80% Transparent Surface Comparison Grid */}
+            <div className="rounded-2xl p-6 sm:p-8 border border-white/10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] shadow-sm">
               <div className="space-y-2.5 border-b md:border-b-0 md:border-r border-white/15 pb-6 md:pb-0 md:pr-8">
                 <span className="text-[11px] font-bold uppercase text-rose-400 tracking-wider flex items-center gap-1.5">
                   <span>❌</span> What generic portals show:
@@ -289,7 +289,7 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {/* Card 1 */}
-            <div className="bg-transparent border border-white/10 hover:border-emerald-400/40 p-5 space-y-3 rounded-2xl transition-all duration-300 hover:-translate-y-1 text-white group">
+            <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 hover:border-emerald-400/40 p-5 space-y-3 rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:bg-[rgba(10,20,15,0.28)] text-white shadow-[0_4px_16px_rgba(0,0,0,0.10)] group">
               <div className="w-10 h-10 rounded-xl bg-amber-500/15 text-amber-300 flex items-center justify-center border border-amber-500/30 group-hover:scale-110 transition-transform">
                 <CloudSun className="w-5 h-5" />
               </div>
@@ -300,7 +300,7 @@ export default function HomePage() {
             </div>
 
             {/* Card 2 */}
-            <div className="bg-transparent border border-white/10 hover:border-emerald-400/40 p-5 space-y-3 rounded-2xl transition-all duration-300 hover:-translate-y-1 text-white group">
+            <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 hover:border-emerald-400/40 p-5 space-y-3 rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:bg-[rgba(10,20,15,0.28)] text-white shadow-[0_4px_16px_rgba(0,0,0,0.10)] group">
               <div className="w-10 h-10 rounded-xl bg-blue-500/15 text-blue-300 flex items-center justify-center border border-blue-500/30 group-hover:scale-110 transition-transform">
                 <Layers className="w-5 h-5" />
               </div>
@@ -311,7 +311,7 @@ export default function HomePage() {
             </div>
 
             {/* Card 3 */}
-            <div className="bg-transparent border border-white/10 hover:border-emerald-400/40 p-5 space-y-3 rounded-2xl transition-all duration-300 hover:-translate-y-1 text-white group">
+            <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 hover:border-emerald-400/40 p-5 space-y-3 rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:bg-[rgba(10,20,15,0.28)] text-white shadow-[0_4px_16px_rgba(0,0,0,0.10)] group">
               <div className="w-10 h-10 rounded-xl bg-rose-500/15 text-rose-300 flex items-center justify-center border border-rose-500/30 group-hover:scale-110 transition-transform">
                 <Activity className="w-5 h-5" />
               </div>
@@ -322,7 +322,7 @@ export default function HomePage() {
             </div>
 
             {/* Card 4 */}
-            <div className="bg-transparent border border-white/10 hover:border-emerald-400/40 p-5 space-y-3 rounded-2xl transition-all duration-300 hover:-translate-y-1 text-white group">
+            <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 hover:border-emerald-400/40 p-5 space-y-3 rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:bg-[rgba(10,20,15,0.28)] text-white shadow-[0_4px_16px_rgba(0,0,0,0.10)] group">
               <div className="w-10 h-10 rounded-xl bg-emerald-500/15 text-emerald-300 flex items-center justify-center border border-emerald-500/30 group-hover:scale-110 transition-transform">
                 <Smartphone className="w-5 h-5" />
               </div>
@@ -393,8 +393,8 @@ export default function HomePage() {
               </button>
             </div>
 
-            {/* Mock Phone Container — Translucent Minimal Frame */}
-            <div className="max-w-md mx-auto bg-black/50 backdrop-blur-md rounded-3xl p-5 border-2 border-white/20 shadow-2xl space-y-4">
+            {/* Mock Phone Container — 80% Transparent Surface Frame */}
+            <div className="max-w-md mx-auto bg-[rgba(10,20,15,0.25)] backdrop-blur-[6px] rounded-3xl p-5 border-2 border-white/20 shadow-2xl space-y-4">
               <div className="flex items-center justify-between border-b border-white/10 pb-2 text-[11px] text-slate-400">
                 <span>9:41 AM • 4G VoLTE</span>
                 <span className="font-bold text-slate-200">BKIN Krishi Seva</span>
@@ -449,9 +449,9 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* 6. FINAL HOMEPAGE CTA (Section 61) — Transparent Editorial CTA */}
+        {/* 6. FINAL HOMEPAGE CTA (Section 61) — 80% Transparent Surface CTA */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
-          <div className="border border-emerald-500/30 rounded-3xl p-8 sm:p-14 text-center text-white space-y-6 relative overflow-hidden bg-transparent">
+          <div className="border border-emerald-500/30 rounded-3xl p-8 sm:p-14 text-center text-white space-y-6 relative overflow-hidden bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] shadow-[0_4px_20px_rgba(0,0,0,0.12)]">
             <div className="max-w-3xl mx-auto space-y-4">
               <h2 className="text-3xl sm:text-4xl font-black tracking-tight leading-tight agri-heading-glow">
                 Turn Agricultural Data Into Better Decisions.

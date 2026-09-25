@@ -99,25 +99,25 @@ export default function OfficerDashboardPage() {
 
       {/* Officer KPI Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-1">
+        <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 p-5 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-1">
           <span className="text-[10px] uppercase font-bold text-slate-400">Jurisdiction Reach</span>
           <div className="text-2xl font-black text-slate-900">42,800 Farmers</div>
           <div className="text-xs text-emerald-700 font-medium">Samrala & Khanna Blocks</div>
         </div>
 
-        <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-1">
+        <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 p-5 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-1">
           <span className="text-[10px] uppercase font-bold text-slate-400">Advisory Delivery Rate</span>
           <div className="text-2xl font-black text-emerald-800">98.4%</div>
           <div className="text-xs text-slate-500">SMS, WhatsApp & App Push</div>
         </div>
 
-        <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-1">
+        <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 p-5 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-1">
           <span className="text-[10px] uppercase font-bold text-slate-400">Active Disease Flags</span>
           <div className="text-2xl font-black text-amber-700">2 Hotspots</div>
           <div className="text-xs text-slate-500">Stripe Rust surveillance in border villages</div>
         </div>
 
-        <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-1">
+        <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 p-5 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-1">
           <span className="text-[10px] uppercase font-bold text-slate-400">Field Scout Reports</span>
           <div className="text-2xl font-black text-slate-900">14 Verified</div>
           <div className="text-xs text-emerald-700 font-semibold">PAU Extension Linked</div>
@@ -128,7 +128,7 @@ export default function OfficerDashboardPage() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Left: Broadcast Advisory Tool */}
         <div className="lg:col-span-5 space-y-6">
-          <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-sm space-y-4">
+          <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 p-5 sm:p-6 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-4">
             <div className="flex items-center gap-2">
               <Radio className="w-4 h-4 text-emerald-600 animate-pulse" />
               <h3 className="font-bold text-base text-slate-900">
@@ -200,7 +200,7 @@ export default function OfficerDashboardPage() {
 
         {/* Right: Farmer Scout Grievance / Surveillance Queue */}
         <div className="lg:col-span-7 space-y-4">
-          <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-sm space-y-4">
+          <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 p-5 sm:p-6 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-4">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <h3 className="font-bold text-base text-slate-900 flex items-center gap-2">
                 <Activity className="w-4 h-4 text-emerald-600" />

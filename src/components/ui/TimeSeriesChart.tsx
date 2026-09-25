@@ -59,7 +59,7 @@ export default function TimeSeriesChart({
   const isEmpty = filteredPoints.length === 0;
 
   return (
-    <div className={`bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden ${className}`}>
+    <div className={`bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 shadow-sm overflow-hidden ${className}`}>
       {/* Header */}
       <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
         <div className="flex items-center gap-2">

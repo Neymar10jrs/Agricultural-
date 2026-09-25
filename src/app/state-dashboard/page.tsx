@@ -75,7 +75,7 @@ export default function StateDashboardPage() {
 
       {/* State Metric KPIs Strip */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-1">
+        <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 p-5 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-1">
           <span className="text-[10px] uppercase font-bold text-slate-400">Total Registered Farmers</span>
           <div className="text-2xl font-black text-slate-900">
             {currentState.connectedFarmersCount.toLocaleString('en-IN')}
@@ -86,7 +86,7 @@ export default function StateDashboardPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-1">
+        <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 p-5 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-1">
           <span className="text-[10px] uppercase font-bold text-slate-400">Active Block Advisories</span>
           <div className="text-2xl font-black text-slate-900">
             {currentState.activeAdvisoriesCount.toLocaleString('en-IN')}
@@ -94,7 +94,7 @@ export default function StateDashboardPage() {
           <div className="text-xs text-slate-500">Issued across all agro-climatic zones</div>
         </div>
 
-        <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-1">
+        <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 p-5 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-1">
           <span className="text-[10px] uppercase font-bold text-slate-400">Satellite Coverage</span>
           <div className="text-2xl font-black text-emerald-800">
             {currentState.satelliteCoveragePercent}%
@@ -102,7 +102,7 @@ export default function StateDashboardPage() {
           <div className="text-xs text-slate-500">Sentinel-2 10m cloud-free coverage</div>
         </div>
 
-        <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-1">
+        <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 p-5 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-1">
           <span className="text-[10px] uppercase font-bold text-slate-400">Node Sync Status</span>
           <div className="text-2xl font-black text-slate-900 flex items-center gap-2">
             <Radio className="w-4 h-4 text-emerald-500 animate-pulse" />
@@ -114,7 +114,7 @@ export default function StateDashboardPage() {
 
       {/* State Agro-Climatic Profile & Major Crops */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
+        <div className="lg:col-span-2 bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 p-6 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-4">
           <div className="flex items-center justify-between border-b border-slate-100 pb-3">
             <h3 className="font-bold text-base text-slate-900">
               {currentState.name} Agro-Ecological Profile
@@ -168,7 +168,7 @@ export default function StateDashboardPage() {
         </div>
 
         {/* Active Outbreak Surveillance Flags */}
-        <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
+        <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 p-6 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-4">
           <div className="flex items-center justify-between border-b border-slate-100 pb-3">
             <h3 className="font-bold text-base text-slate-900 flex items-center gap-2">
               <Activity className="w-4 h-4 text-amber-600" />

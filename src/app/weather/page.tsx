@@ -137,8 +137,8 @@ export default function WeatherPage() {
                 onClick={() => setSelectedDayIndex(idx)}
                 className={`cursor-pointer rounded-2xl p-3.5 border transition-all text-xs flex flex-col justify-between ${
                   isSelected
-                    ? 'bg-emerald-50 border-emerald-600 shadow-md ring-2 ring-emerald-500/20'
-                    : 'bg-white border-slate-200 hover:border-slate-300 hover:bg-slate-50/50'
+                    ? 'bg-emerald-950/40 border-emerald-500 shadow-md ring-2 ring-emerald-500/20'
+                    : 'bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border-white/10 hover:border-emerald-400/40 hover:bg-[rgba(10,20,15,0.28)] shadow-sm'
                 }`}
               >
                 <div className="flex items-center justify-between">
@@ -178,7 +178,7 @@ export default function WeatherPage() {
       </div>
 
       {/* Selected Day Deep-Dive Agricultural Impact Translation (Section 15 Core Requirement) */}
-      <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
+      <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 p-6 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
           <div>
             <span className="text-[10px] uppercase font-bold text-emerald-800 tracking-wider">

@@ -143,25 +143,25 @@ export default function ExpertConnectPage() {
           </a>
         </div>
 
-      {/* How It Works Diagram */}
-      <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-4">
-        <h2 className="text-sm font-bold text-slate-900 uppercase tracking-wider">
+      {/* How It Works Diagram — 80% Translucent Surface */}
+      <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 rounded-3xl p-6 sm:p-8 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-4">
+        <h2 className="text-sm font-bold text-white uppercase tracking-wider">
           {isHi ? 'बीकेआईएन विशेषज्ञ सत्यापन कैसे कार्य करता है' : 'How BKIN Expert Verification Works'}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {workflowSteps.map((s, idx) => (
             <div
               key={s.step}
-              className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-2 relative"
+              className="p-4 rounded-2xl bg-[rgba(10,20,15,0.30)] backdrop-blur-[6px] border border-white/10 space-y-2 relative"
             >
-              <div className="w-8 h-8 rounded-xl bg-emerald-700 text-white font-bold flex items-center justify-center text-xs shadow-sm">
+              <div className="w-8 h-8 rounded-xl bg-emerald-500 text-slate-950 font-black flex items-center justify-center text-xs shadow-sm">
                 0{s.step}
               </div>
-              <h3 className="text-sm font-bold text-slate-800">{s.label}</h3>
-              <p className="text-xs text-slate-500 leading-relaxed">{s.desc}</p>
+              <h3 className="text-sm font-bold text-white">{s.label}</h3>
+              <p className="text-xs text-slate-300 leading-relaxed">{s.desc}</p>
               {idx < 3 && (
                 <div className="hidden lg:block absolute -right-2.5 top-1/2 -translate-y-1/2 z-10">
-                  <ArrowRight className="w-4 h-4 text-slate-400" />
+                  <ArrowRight className="w-4 h-4 text-emerald-400" />
                 </div>
               )}
             </div>
@@ -173,15 +173,15 @@ export default function ExpertConnectPage() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Left: Submission Form */}
         <div id="new-request" className="lg:col-span-5 space-y-6">
-          <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-7 shadow-sm space-y-5">
+          <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 rounded-3xl p-6 sm:p-7 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-5">
             <div className="space-y-1">
-              <span className="text-[10px] font-bold text-emerald-700 uppercase tracking-wider">
+              <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider">
                 {isHi ? 'मामला प्रस्तुति' : 'Case Submission'}
               </span>
-              <h2 className="text-lg font-bold text-slate-900">
+              <h2 className="text-lg font-bold text-white">
                 {isHi ? 'कृषि वैज्ञानिक समीक्षा का अनुरोध करें' : 'Request Agronomist Review'}
               </h2>
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-slate-300">
                 {isHi
                   ? 'कृषि विज्ञान या पादप रोग विशेषज्ञ द्वारा समीक्षा हेतु विवरण प्रदान करें।'
                   : 'Provide details for review by an agronomy or plant pathology officer.'}
@@ -189,13 +189,13 @@ export default function ExpertConnectPage() {
             </div>
 
             {isSubmitted && (
-              <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+              <div className="p-4 rounded-2xl bg-emerald-950/40 border border-emerald-500/30 flex items-start gap-3">
+                <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
                 <div className="space-y-1">
-                  <h4 className="text-xs font-bold text-emerald-900">
+                  <h4 className="text-xs font-bold text-emerald-300">
                     {isHi ? 'मामला सफलतापूर्वक दर्ज हुआ' : 'Case Submitted Successfully'}
                   </h4>
-                  <p className="text-xs text-emerald-700">
+                  <p className="text-xs text-emerald-200">
                     {isHi
                       ? 'आपका अनुरोध क्षेत्रीय केवीके डेस्क को अग्रेषित कर दिया गया है। कार्य दिवसों में अनुमानित प्रतिक्रिया समय 4-8 घंटे है।'
                       : 'Your request has been routed to the regional KVK desk. Typical response time is 4–8 hours during working days.'}
@@ -207,80 +207,80 @@ export default function ExpertConnectPage() {
             <form onSubmit={handleSubmit} className="space-y-4 text-xs">
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1">
-                  <label className="font-semibold text-slate-700">
+                  <label className="font-semibold text-slate-300">
                     {isHi ? 'लक्षित फसल' : 'Target Crop'}
                   </label>
                   <select
                     value={formCrop}
                     onChange={(e) => setFormCrop(e.target.value)}
-                    className="w-full rounded-xl border border-slate-300 p-2.5 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-emerald-500 outline-none"
+                    className="w-full rounded-xl border border-white/20 p-2.5 bg-[rgba(10,20,15,0.60)] text-white focus:ring-2 focus:ring-emerald-500 outline-none"
                   >
-                    <option value="Wheat">Wheat (गेहूं)</option>
-                    <option value="Rice">Rice (धान / चावल)</option>
-                    <option value="Cotton">Cotton (कपास)</option>
-                    <option value="Mustard">Mustard (सरसों)</option>
-                    <option value="Potato">Potato (आलू)</option>
-                    <option value="Maize">Maize (मक्का)</option>
+                    <option value="Wheat" className="bg-slate-900 text-white">Wheat (गेहूं)</option>
+                    <option value="Rice" className="bg-slate-900 text-white">Rice (धान / चावल)</option>
+                    <option value="Cotton" className="bg-slate-900 text-white">Cotton (कपास)</option>
+                    <option value="Mustard" className="bg-slate-900 text-white">Mustard (सरसों)</option>
+                    <option value="Potato" className="bg-slate-900 text-white">Potato (आलू)</option>
+                    <option value="Maize" className="bg-slate-900 text-white">Maize (मक्का)</option>
                   </select>
                 </div>
 
                 <div className="space-y-1">
-                  <label className="font-semibold text-slate-700">
+                  <label className="font-semibold text-slate-300">
                     {isHi ? 'वृद्धि अवस्था' : 'Growth Stage'}
                   </label>
                   <select
                     value={formStage}
                     onChange={(e) => setFormStage(e.target.value)}
-                    className="w-full rounded-xl border border-slate-300 p-2.5 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-emerald-500 outline-none"
+                    className="w-full rounded-xl border border-white/20 p-2.5 bg-[rgba(10,20,15,0.60)] text-white focus:ring-2 focus:ring-emerald-500 outline-none"
                   >
-                    <option value="Germination">{isHi ? 'अंकुरण (Germination)' : 'Germination'}</option>
-                    <option value="Tillering">{isHi ? 'कल्ले फूटना (Tillering)' : 'Crown Root / Tillering'}</option>
-                    <option value="Jointing">{isHi ? 'गांठ बनना (Jointing)' : 'Jointing'}</option>
-                    <option value="Flowering">{isHi ? 'फूल / बाली आना (Flowering)' : 'Flowering / Booting'}</option>
-                    <option value="Grain Fill">{isHi ? 'दाना भरना (Grain Fill)' : 'Grain Filling / Milking'}</option>
+                    <option value="Germination" className="bg-slate-900 text-white">{isHi ? 'अंकुरण (Germination)' : 'Germination'}</option>
+                    <option value="Tillering" className="bg-slate-900 text-white">{isHi ? 'कल्ले फूटना (Tillering)' : 'Crown Root / Tillering'}</option>
+                    <option value="Jointing" className="bg-slate-900 text-white">{isHi ? 'गांठ बनना (Jointing)' : 'Jointing'}</option>
+                    <option value="Flowering" className="bg-slate-900 text-white">{isHi ? 'फूल / बाली आना (Flowering)' : 'Flowering / Booting'}</option>
+                    <option value="Grain Fill" className="bg-slate-900 text-white">{isHi ? 'दाना भरना (Grain Fill)' : 'Grain Filling / Milking'}</option>
                   </select>
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1">
-                  <label className="font-semibold text-slate-700">
+                  <label className="font-semibold text-slate-300">
                     {isHi ? 'राज्य' : 'State'}
                   </label>
                   <input
                     type="text"
                     value={formState}
                     onChange={(e) => setFormState(e.target.value)}
-                    className="w-full rounded-xl border border-slate-300 p-2.5 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-emerald-500 outline-none"
+                    className="w-full rounded-xl border border-white/20 p-2.5 bg-[rgba(10,20,15,0.60)] text-white focus:ring-2 focus:ring-emerald-500 outline-none"
                   />
                 </div>
                 <div className="space-y-1">
-                  <label className="font-semibold text-slate-700">
+                  <label className="font-semibold text-slate-300">
                     {isHi ? 'जिला' : 'District'}
                   </label>
                   <input
                     type="text"
                     value={formDistrict}
                     onChange={(e) => setFormDistrict(e.target.value)}
-                    className="w-full rounded-xl border border-slate-300 p-2.5 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-emerald-500 outline-none"
+                    className="w-full rounded-xl border border-white/20 p-2.5 bg-[rgba(10,20,15,0.60)] text-white focus:ring-2 focus:ring-emerald-500 outline-none"
                   />
                 </div>
               </div>
 
               <div className="space-y-1">
-                <label className="font-semibold text-slate-700">
+                <label className="font-semibold text-slate-300">
                   {isHi ? 'बीकेआईएन प्रारंभिक पूर्वानुमान' : 'BKIN Preliminary Prediction'}
                 </label>
                 <input
                   type="text"
                   value={formPrediction}
                   onChange={(e) => setFormPrediction(e.target.value)}
-                  className="w-full rounded-xl border border-slate-300 p-2.5 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-emerald-500 outline-none"
+                  className="w-full rounded-xl border border-white/20 p-2.5 bg-[rgba(10,20,15,0.60)] text-white focus:ring-2 focus:ring-emerald-500 outline-none"
                 />
               </div>
 
               <div className="space-y-1">
-                <label className="font-semibold text-slate-700">
+                <label className="font-semibold text-slate-300">
                   {isHi ? 'देखे गए लक्षण व खेत की स्थिति' : 'Observed Symptoms & Field Notes'}
                 </label>
                 <textarea
@@ -292,13 +292,13 @@ export default function ExpertConnectPage() {
                       ? 'पत्तियों पर धब्बे, फैलाव का स्वरूप, मौसम या हाल में डाले गए उर्वरक का विवरण दें...'
                       : 'Describe leaf symptoms, spread pattern, weather conditions, or recent fertilizer applications...'
                   }
-                  className="w-full rounded-xl border border-slate-300 p-2.5 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-emerald-500 outline-none leading-relaxed"
+                  className="w-full rounded-xl border border-white/20 p-2.5 bg-[rgba(10,20,15,0.60)] text-white focus:ring-2 focus:ring-emerald-500 outline-none leading-relaxed"
                 />
               </div>
 
-              <div className="p-3 rounded-xl border border-dashed border-slate-300 bg-slate-50 text-center space-y-1">
+              <div className="p-3 rounded-xl border border-dashed border-white/20 bg-[rgba(10,20,15,0.30)] text-center space-y-1">
                 <Camera className="w-5 h-5 text-slate-400 mx-auto" />
-                <span className="text-[11px] font-semibold text-slate-600 block">
+                <span className="text-[11px] font-semibold text-slate-300 block">
                   {isHi ? 'खेत की तस्वीर संलग्न करें (वैकल्पिक डेमो)' : 'Attach Field Photo (Optional Demo)'}
                 </span>
                 <span className="text-[10px] text-slate-400 block">
@@ -308,7 +308,7 @@ export default function ExpertConnectPage() {
 
               <button
                 type="submit"
-                className="w-full py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold transition flex items-center justify-center gap-2 shadow-sm text-xs"
+                className="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold transition flex items-center justify-center gap-2 shadow-sm text-xs"
               >
                 <Send className="w-4 h-4" />
                 {isHi ? 'विशेषज्ञ सत्यापन हेतु भेजें' : 'Submit for Expert Verification'}
@@ -326,10 +326,10 @@ export default function ExpertConnectPage() {
         {/* Right: Active Reviews Tracker */}
         <div className="lg:col-span-7 space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-base sm:text-lg font-bold text-slate-900">
+            <h2 className="text-base sm:text-lg font-bold text-white">
               {isHi ? 'सक्रिय मामला सत्यापन ट्रैकर' : 'Active Case Verification Tracker'} ({reviews.length})
             </h2>
-            <span className="text-xs text-slate-500">
+            <span className="text-xs text-slate-400">
               {isHi ? 'सक्रिय पायलट कतार' : 'Live Pilot Queue'}
             </span>
           </div>
@@ -342,7 +342,7 @@ export default function ExpertConnectPage() {
               return (
                 <div
                   key={rev.id}
-                  className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-sm hover:shadow-md transition space-y-4"
+                  className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 rounded-2xl p-5 sm:p-6 shadow-[0_4px_16px_rgba(0,0,0,0.10)] hover:shadow-md transition space-y-4 text-white"
                 >
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <div className="space-y-0.5">
@@ -353,10 +353,10 @@ export default function ExpertConnectPage() {
                           {badge.icon}
                           {badge.label}
                         </span>
-                        <span className="text-xs font-bold text-slate-800">
+                        <span className="text-xs font-bold text-white">
                           {rev.crop} • {isHi ? 'अवस्था' : 'Stage'}: {rev.cropStage}
                         </span>
-                        <span className="text-xs text-slate-500">
+                        <span className="text-xs text-slate-400">
                           📍 {rev.district}, {rev.state}
                         </span>
                       </div>
@@ -367,7 +367,7 @@ export default function ExpertConnectPage() {
 
                     <button
                       onClick={() => setExpandedId(isExpanded ? null : rev.id)}
-                      className="text-xs text-emerald-700 font-semibold flex items-center gap-1 hover:underline self-start sm:self-center"
+                      className="text-xs text-emerald-400 font-semibold flex items-center gap-1 hover:underline self-start sm:self-center"
                     >
                       {isExpanded ? (isHi ? 'विवरण छिपाएं' : 'Hide Details') : (isHi ? 'पूर्ण विवरण देखें' : 'View Full Case')}
                       {isExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
@@ -375,48 +375,48 @@ export default function ExpertConnectPage() {
                   </div>
 
                   {/* Summary row */}
-                  <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs space-y-1">
+                  <div className="p-3 rounded-xl bg-[rgba(10,20,15,0.30)] border border-white/10 text-xs space-y-1">
                     <div className="flex items-center justify-between">
-                      <span className="text-slate-500 font-medium">
+                      <span className="text-slate-400 font-medium">
                         {isHi ? 'बीकेआईएन एआई आकलन:' : 'BKIN AI Assessment:'}
                       </span>
-                      <span className="font-bold text-emerald-800">
+                      <span className="font-bold text-emerald-400">
                         {rev.bkinPrediction} ({rev.bkinConfidence}% {isHi ? 'विश्वसनीयता' : 'confidence'})
                       </span>
                     </div>
-                    <p className="text-slate-700 font-medium pt-1">
-                      <strong className="text-slate-500">{isHi ? 'खेत के लक्षण:' : 'Field Symptoms:'}</strong> {rev.symptoms}
+                    <p className="text-slate-200 font-medium pt-1">
+                      <strong className="text-slate-400">{isHi ? 'खेत के लक्षण:' : 'Field Symptoms:'}</strong> {rev.symptoms}
                     </p>
                   </div>
 
                   {/* Expert Response Section */}
                   {rev.expertResponse && (
-                    <div className="p-4 rounded-2xl bg-emerald-50/70 border border-emerald-200 space-y-3">
-                      <div className="flex items-center justify-between flex-wrap gap-2 border-b border-emerald-200/60 pb-2">
+                    <div className="p-4 rounded-2xl bg-emerald-950/40 border border-emerald-500/30 space-y-3">
+                      <div className="flex items-center justify-between flex-wrap gap-2 border-b border-emerald-500/20 pb-2">
                         <div className="flex items-center gap-2">
-                          <Award className="w-4 h-4 text-emerald-700" />
+                          <Award className="w-4 h-4 text-emerald-400" />
                           <div>
-                            <span className="text-xs font-bold text-slate-900 block leading-tight">
+                            <span className="text-xs font-bold text-white block leading-tight">
                               {rev.expertName}
                             </span>
-                            <span className="text-[10px] text-slate-600 block">
+                            <span className="text-[10px] text-emerald-300 block">
                               {rev.expertDesignation}
                             </span>
                           </div>
                         </div>
                         {rev.reviewedAt && (
-                          <span className="text-[10px] text-emerald-800 font-medium">
+                          <span className="text-[10px] text-emerald-300 font-medium">
                             {isHi ? 'समीक्षित:' : 'Reviewed:'} {rev.reviewedAt}
                           </span>
                         )}
                       </div>
 
-                      <p className="text-xs text-slate-800 leading-relaxed font-normal">
+                      <p className="text-xs text-slate-200 leading-relaxed font-normal">
                         {rev.expertResponse}
                       </p>
 
                       {/* Integrated Farmer Feedback Loop for Verified Cases */}
-                      <div className="pt-2 border-t border-emerald-200/50">
+                      <div className="pt-2 border-t border-emerald-500/20">
                         <FeedbackWidget
                           advisoryId={rev.id}
                           advisoryTitle={`${rev.crop} - ${rev.bkinPrediction}`}
@@ -426,8 +426,8 @@ export default function ExpertConnectPage() {
                   )}
 
                   {rev.status === 'under_review' && (
-                    <div className="p-3 rounded-xl bg-amber-50 border border-amber-200 flex items-center gap-2 text-xs text-amber-800">
-                      <Clock className="w-4 h-4 text-amber-600 shrink-0 animate-spin" />
+                    <div className="p-3 rounded-xl bg-amber-950/40 border border-amber-500/30 flex items-center gap-2 text-xs text-amber-200">
+                      <Clock className="w-4 h-4 text-amber-400 shrink-0 animate-spin" />
                       <span>
                         {isHi
                           ? 'मामला वर्तमान में डॉ. आर. के. शर्मा (सस्य विज्ञान विभाग) के पास है। आज प्रतिक्रिया अपेक्षित है।'
@@ -437,7 +437,7 @@ export default function ExpertConnectPage() {
                   )}
 
                   {rev.status === 'submitted' && (
-                    <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-center gap-2 text-xs text-slate-600">
+                    <div className="p-3 rounded-xl bg-[rgba(10,20,15,0.40)] border border-white/10 flex items-center gap-2 text-xs text-slate-300">
                       <Info className="w-4 h-4 text-slate-400 shrink-0" />
                       <span>
                         {isHi

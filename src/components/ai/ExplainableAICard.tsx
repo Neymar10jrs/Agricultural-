@@ -53,7 +53,7 @@ export function ExplainableAICard({ advisory, onFieldVerify }: ExplainableAICard
   };
 
   return (
-    <div className="bg-transparent rounded-2xl border border-slate-200/90 hover:border-emerald-500/50 transition-all overflow-hidden">
+    <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 hover:border-emerald-500/40 transition-all overflow-hidden shadow-sm">
       {/* Card Header */}
       <div className="p-4 sm:p-5 border-b border-slate-100">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">

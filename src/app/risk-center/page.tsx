@@ -215,7 +215,7 @@ function AdvisoryCard({ advisory }: { advisory: AdvisoryItem }) {
   const [feedback, setFeedback] = useState<'up' | 'down' | null>(null);
 
   return (
-    <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+    <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-xl border border-white/10 shadow-[0_4px_16px_rgba(0,0,0,0.10)] overflow-hidden">
       <button
         onClick={() => setExpanded((p) => !p)}
         className="w-full text-left p-4 flex items-start justify-between gap-3 hover:bg-slate-50/70 transition"
@@ -384,7 +384,7 @@ export default function RiskCenterPage() {
       {/* ── Overall Risk Gauge + Summary ───────────────────────────────────── */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Gauge */}
-        <div className="bg-white rounded-2xl border border-rose-200 p-6 shadow-sm flex flex-col items-center gap-4">
+        <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-rose-500/30 p-6 shadow-[0_4px_16px_rgba(0,0,0,0.10)] flex flex-col items-center gap-4">
           <h2 className="font-bold text-base text-slate-800 self-start flex items-center gap-2">
             <ShieldAlert className="w-5 h-5 text-rose-500" />
             Overall Farm Risk Score
@@ -410,10 +410,10 @@ export default function RiskCenterPage() {
                   key={f.key}
                   className={`rounded-xl border p-3 text-center ${
                     color === 'rose'
-                      ? 'bg-rose-50 border-rose-200'
+                      ? 'bg-rose-50/80 border-rose-200'
                       : color === 'amber'
-                      ? 'bg-amber-50 border-amber-200'
-                      : 'bg-emerald-50 border-emerald-200'
+                      ? 'bg-amber-50/80 border-amber-200'
+                      : 'bg-emerald-50/80 border-emerald-200'
                   }`}
                 >
                   <div
@@ -447,7 +447,7 @@ export default function RiskCenterPage() {
       </div>
 
       {/* ── 6 Risk Factor Bars ────────────────────────────────────────────── */}
-      <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-sm">
+      <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 p-5 sm:p-6 shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
         <h2 className="font-bold text-base text-slate-900 mb-4 flex items-center gap-2">
           <Brain className="w-5 h-5 text-slate-500" />
           Risk Factor Breakdown
@@ -460,10 +460,10 @@ export default function RiskCenterPage() {
       </div>
 
       {/* ── Why is my farm at risk? ───────────────────────────────────────── */}
-      <div className="bg-rose-50 rounded-2xl border border-rose-200 overflow-hidden">
+      <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-rose-500/30 overflow-hidden shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
         <button
           onClick={() => setDriversExpanded((p) => !p)}
-          className="w-full flex items-center justify-between p-5 hover:bg-rose-100/60 transition"
+          className="w-full flex items-center justify-between p-5 hover:bg-rose-500/10 transition"
         >
           <h2 className="font-bold text-base text-rose-900 flex items-center gap-2">
             <AlertTriangle className="w-5 h-5 text-rose-500" />
@@ -478,7 +478,7 @@ export default function RiskCenterPage() {
         {driversExpanded && (
           <div className="px-5 pb-5 space-y-3">
             {rb.primaryDrivers.map((driver, idx) => (
-              <div key={idx} className="flex items-start gap-3 bg-white rounded-xl p-3.5 border border-rose-100">
+              <div key={idx} className="flex items-start gap-3 bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-xl p-3.5 border border-white/10 shadow-sm">
                 <span className="w-6 h-6 rounded-full bg-rose-500 text-white text-xs font-black flex items-center justify-center shrink-0">
                   {idx + 1}
                 </span>
@@ -490,7 +490,7 @@ export default function RiskCenterPage() {
       </div>
 
       {/* ── Transparent Mathematical Formulation & Calibration (Phase 8) ──────── */}
-      <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-6">
+      <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 p-6 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
           <div className="space-y-1">
             <div className="flex items-center gap-2">
@@ -594,7 +594,7 @@ export default function RiskCenterPage() {
       </div>
 
       {/* ── AI Confidence Routing ─────────────────────────────────────────── */}
-      <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-sm">
+      <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 p-5 sm:p-6 shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
         <h2 className="font-bold text-base text-slate-900 mb-5 flex items-center gap-2">
           <Brain className="w-5 h-5 text-violet-500" />
           AI Confidence Routing — How BKIN Uses Confidence
@@ -602,7 +602,7 @@ export default function RiskCenterPage() {
 
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 text-xs overflow-x-auto">
           {/* Step 1 */}
-          <div className="flex-1 min-w-[140px] bg-slate-50 border border-slate-200 rounded-xl p-3.5 text-center space-y-1.5">
+          <div className="flex-1 min-w-[140px] bg-slate-50/80 border border-slate-200/80 rounded-xl p-3.5 text-center space-y-1.5">
             <div className="w-9 h-9 rounded-xl bg-violet-100 text-violet-700 flex items-center justify-center mx-auto">
               <Brain className="w-5 h-5" />
             </div>
@@ -613,7 +613,7 @@ export default function RiskCenterPage() {
           <ArrowRight className="w-5 h-5 text-slate-400 mx-auto sm:mx-0 shrink-0 rotate-90 sm:rotate-0" />
 
           {/* Step 2 */}
-          <div className="flex-1 min-w-[140px] bg-slate-50 border border-slate-200 rounded-xl p-3.5 text-center space-y-1.5">
+          <div className="flex-1 min-w-[140px] bg-slate-50/80 border border-slate-200/80 rounded-xl p-3.5 text-center space-y-1.5">
             <div className="w-9 h-9 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center mx-auto">
               <Activity className="w-5 h-5" />
             </div>
@@ -626,7 +626,7 @@ export default function RiskCenterPage() {
           {/* Routing outcome */}
           <div className="flex-1 min-w-[180px] space-y-2">
             {/* HIGH */}
-            <div className="flex items-center gap-2 bg-emerald-50 border border-emerald-200 rounded-xl p-2.5">
+            <div className="flex items-center gap-2 bg-emerald-50/80 border border-emerald-200 rounded-xl p-2.5">
               <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
               <div>
                 <p className="font-bold text-emerald-800 text-[11px]">HIGH (&gt;80%)</p>
@@ -634,7 +634,7 @@ export default function RiskCenterPage() {
               </div>
             </div>
             {/* MEDIUM */}
-            <div className="flex items-center gap-2 bg-amber-50 border border-amber-200 rounded-xl p-2.5">
+            <div className="flex items-center gap-2 bg-amber-50/80 border border-amber-200 rounded-xl p-2.5">
               <HelpCircle className="w-5 h-5 text-amber-600 shrink-0" />
               <div>
                 <p className="font-bold text-amber-800 text-[11px]">MEDIUM (50–80%)</p>
@@ -642,7 +642,7 @@ export default function RiskCenterPage() {
               </div>
             </div>
             {/* LOW */}
-            <div className="flex items-center gap-2 bg-rose-50 border border-rose-200 rounded-xl p-2.5">
+            <div className="flex items-center gap-2 bg-rose-50/80 border border-rose-200 rounded-xl p-2.5">
               <AlertTriangle className="w-5 h-5 text-rose-500 shrink-0" />
               <div>
                 <p className="font-bold text-rose-800 text-[11px]">LOW (&lt;50%)</p>
@@ -658,7 +658,7 @@ export default function RiskCenterPage() {
       </div>
 
       {/* ── Disease Risk Time Series ─────────────────────────────────────── */}
-      <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-sm">
+      <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 p-5 sm:p-6 shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
           <h2 className="font-bold text-base text-slate-900 flex items-center gap-2">
             <Activity className="w-5 h-5 text-rose-500" />
@@ -751,13 +751,13 @@ export default function RiskCenterPage() {
       </div>
 
       {/* ── Data Freshness ────────────────────────────────────────────────── */}
-      <div className="bg-slate-50 rounded-2xl border border-slate-200 p-5 shadow-sm">
+      <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 p-5 shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
         <h2 className="font-bold text-sm text-slate-800 mb-3 flex items-center gap-2">
           <Clock className="w-4 h-4 text-slate-500" />
           Data Freshness — Last Updated
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          <div className="bg-white rounded-xl border border-slate-200 p-3.5 flex items-start gap-3">
+          <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-xl border border-white/10 p-3.5 flex items-start gap-3 shadow-sm">
             <Satellite className="w-5 h-5 text-violet-500 shrink-0 mt-0.5" />
             <div>
               <p className="font-bold text-xs text-slate-800">Satellite (NDVI)</p>
@@ -765,7 +765,7 @@ export default function RiskCenterPage() {
               <p className="text-[10px] text-slate-400 mt-0.5">Sentinel-2 · Next pass in 3–4 days</p>
             </div>
           </div>
-          <div className="bg-white rounded-xl border border-slate-200 p-3.5 flex items-start gap-3">
+          <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-xl border border-white/10 p-3.5 flex items-start gap-3 shadow-sm">
             <CloudRain className="w-5 h-5 text-sky-500 shrink-0 mt-0.5" />
             <div>
               <p className="font-bold text-xs text-slate-800">Weather Data</p>
@@ -773,7 +773,7 @@ export default function RiskCenterPage() {
               <p className="text-[10px] text-slate-400 mt-0.5">IMD Agro-met Station Ludhiana · Live</p>
             </div>
           </div>
-          <div className="bg-white rounded-xl border border-slate-200 p-3.5 flex items-start gap-3">
+          <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-xl border border-white/10 p-3.5 flex items-start gap-3 shadow-sm">
             <FlaskConical className="w-5 h-5 text-lime-600 shrink-0 mt-0.5" />
             <div>
               <p className="font-bold text-xs text-slate-800">Soil Health Data</p>
@@ -785,7 +785,7 @@ export default function RiskCenterPage() {
       </div>
 
       {/* ── Disclaimer ───────────────────────────────────────────────────── */}
-      <div className="bg-amber-50 rounded-xl border border-amber-200 p-4 flex items-start gap-3">
+      <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-xl border border-amber-500/30 p-4 flex items-start gap-3 shadow-sm">
         <Info className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
         <div className="space-y-1">
           <p className="text-xs font-bold text-amber-900">Prototype Disclaimer</p>
