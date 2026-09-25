@@ -10,7 +10,6 @@ import {
   RotateCcw,
   Info,
   CheckCircle2,
-  Sparkles,
   Loader2,
   Edit2,
 } from 'lucide-react';
@@ -36,8 +35,7 @@ function VerifyOtpContent() {
   const phone = searchParams?.get('phone') || '';
   const redirectTo = searchParams?.get('redirectTo') || '/dashboard';
 
-
-  const { user, verifyOtp, sendOtp, isDevMode } = useAuth();
+  const { user, loginWithFirebaseSession } = useAuth();
   const { dict: t } = useApp();
 
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
@@ -45,11 +43,10 @@ function VerifyOtpContent() {
   const [isVerifying, setIsVerifying] = useState(false);
   const [cooldown, setCooldown] = useState(60);
   const [canResend, setCanResend] = useState(false);
-  const [resending, setResending] = useState(false);
 
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
-  // If no phone provided, redirect back to login
+  // If no phone or no confirmation result, redirect back to unified login page
   useEffect(() => {
     if (!phone) {
       router.push('/login');
@@ -81,7 +78,6 @@ function VerifyOtpContent() {
   }, []);
 
   const handleOtpChange = (index: number, val: string) => {
-    // Only accept numeric characters
     const numeric = val.replace(/\D/g, '');
     if (!numeric && val !== '') return;
 
@@ -90,7 +86,6 @@ function VerifyOtpContent() {
     const newOtp = [...otp];
 
     if (numeric.length > 1) {
-      // Pasted string
       const digits = numeric.slice(0, 6).split('');
       for (let i = 0; i < 6; i++) {
         newOtp[i] = digits[i] || '';
@@ -98,24 +93,12 @@ function VerifyOtpContent() {
       setOtp(newOtp);
       const nextFocus = Math.min(digits.length, 5);
       inputRefs.current[nextFocus]?.focus();
-
-      if (digits.length === 6) {
-        handleVerification(digits.join(''));
+    } else {
+      newOtp[index] = numeric;
+      setOtp(newOtp);
+      if (numeric && index < 5) {
+        inputRefs.current[index + 1]?.focus();
       }
-      return;
-    }
-
-    newOtp[index] = numeric;
-    setOtp(newOtp);
-
-    // Auto-advance
-    if (numeric && index < 5) {
-      inputRefs.current[index + 1]?.focus();
-    }
-
-    // Auto submit if all 6 filled
-    if (index === 5 && numeric && newOtp.every((d) => d !== '')) {
-      handleVerification(newOtp.join(''));
     }
   };
 
@@ -125,7 +108,9 @@ function VerifyOtpContent() {
     }
   };
 
-  const handleVerification = async (code: string) => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const code = otp.join('');
     if (code.length !== 6) {
       setError(t.auth?.otpLabel || 'Please enter all 6 digits');
       return;
@@ -135,41 +120,48 @@ function VerifyOtpContent() {
     setError(null);
 
     try {
-      const res = await verifyOtp(phone, code);
-      if (res.success) {
-        if (res.isNewUser) {
-          router.push('/profile?onboarding=true');
-        } else {
-          router.push(redirectTo);
-        }
-      } else {
-        setError(res.error || 'Invalid or expired verification code');
+      const confirmation = typeof window !== 'undefined' ? window.confirmationResult : undefined;
+      if (!confirmation) {
+        // If confirmationResult was lost (e.g. page refresh), redirect back to login
+        router.push(`/login?redirectTo=${encodeURIComponent(redirectTo)}`);
+        return;
       }
+
+      // 1. Confirm OTP with Firebase
+      const userCredential = await confirmation.confirm(code);
+      const firebaseUser = userCredential.user;
+
+      // 2. Fetch ID token
+      const idToken = await firebaseUser.getIdToken();
+
+      // 3. Verify session with backend
+      const res = await fetch('/api/auth/verify-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ idToken }),
+      });
+
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || 'Server session verification failed');
+      }
+
+      // 4. Update AuthContext
+      await loginWithFirebaseSession(firebaseUser.uid, phone);
+
+      // 5. Navigate to destination
+      router.push(redirectTo);
     } catch (err: any) {
-      setError(err?.message || 'Verification failed. Please retry.');
+      console.error('Verification error:', err);
+      if (err.code === 'auth/invalid-verification-code') {
+        setError('Invalid verification code. Please check your SMS and try again.');
+      } else if (err.code === 'auth/code-expired') {
+        setError('Verification code has expired. Please request a new code.');
+      } else {
+        setError(err?.message || 'Verification failed. Please retry.');
+      }
     } finally {
       setIsVerifying(false);
-    }
-  };
-
-  const handleResend = async () => {
-    if (!canResend || resending) return;
-    setResending(true);
-    setError(null);
-    try {
-      const res = await sendOtp(phone);
-      if (res.success) {
-        setCooldown(60);
-        setCanResend(false);
-        setOtp(['', '', '', '', '', '']);
-        inputRefs.current[0]?.focus();
-      } else {
-        setError(res.message);
-      }
-    } catch (err: any) {
-      setError(err?.message || 'Failed to resend code');
-    } finally {
-      setResending(false);
     }
   };
 
@@ -201,22 +193,16 @@ function VerifyOtpContent() {
           </div>
         </div>
 
-        {/* Verification Card */}
+        {/* Card */}
         <div className="bg-slate-900/90 border border-emerald-500/30 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-xl">
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              handleVerification(fullCode);
-            }}
-            className="space-y-6"
-          >
-            {/* 6 Digit Inputs */}
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-emerald-400 mb-3 text-center">
+              <label className="block text-xs font-semibold uppercase tracking-wider text-emerald-400 mb-4 text-center">
                 {t.auth?.otpLabel || '6-Digit Verification Code'}
               </label>
 
-              <div className="flex justify-between gap-2 sm:gap-3">
+              {/* 6 Digit Inputs */}
+              <div className="grid grid-cols-6 gap-2 sm:gap-3">
                 {otp.map((digit, idx) => (
                   <input
                     key={idx}
@@ -225,14 +211,15 @@ function VerifyOtpContent() {
                     }}
                     type="text"
                     inputMode="numeric"
-                    maxLength={1}
+                    pattern="[0-9]*"
+                    maxLength={6}
                     value={digit}
                     onChange={(e) => handleOtpChange(idx, e.target.value)}
                     onKeyDown={(e) => handleKeyDown(idx, e)}
-                    className={`w-12 h-14 sm:w-14 sm:h-16 text-center text-2xl font-bold rounded-2xl bg-slate-950 border transition-all focus:outline-none ${
+                    className={`w-full aspect-square text-center text-xl sm:text-2xl font-bold rounded-2xl bg-slate-950 border transition-all text-white focus:outline-none ${
                       digit
-                        ? 'border-emerald-500 text-emerald-400 shadow-inner ring-1 ring-emerald-500/40'
-                        : 'border-slate-700 text-white focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/30'
+                        ? 'border-emerald-500 bg-emerald-950/20 text-emerald-300'
+                        : 'border-slate-700/80 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/30'
                     }`}
                   />
                 ))}
@@ -270,22 +257,16 @@ function VerifyOtpContent() {
             </button>
           </form>
 
-          {/* Resend Cooldown Section */}
+          {/* Resend Section */}
           <div className="mt-6 pt-5 border-t border-slate-800/80 text-center">
             {canResend ? (
-              <button
-                type="button"
-                onClick={handleResend}
-                disabled={resending}
+              <Link
+                href="/login"
                 className="text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition-colors inline-flex items-center gap-1.5"
               >
-                {resending ? (
-                  <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                ) : (
-                  <RotateCcw className="w-3.5 h-3.5" />
-                )}
+                <RotateCcw className="w-3.5 h-3.5" />
                 <span>{t.auth?.resendOtp || 'Resend Verification Code'}</span>
-              </button>
+              </Link>
             ) : (
               <p className="text-xs text-slate-400 flex items-center justify-center gap-1">
                 <span>{t.auth?.resendCooldown || 'Resend code in'}</span>
@@ -294,16 +275,6 @@ function VerifyOtpContent() {
               </p>
             )}
           </div>
-
-          {/* Dev Mode Helper */}
-          {isDevMode && (
-            <div className="mt-4 p-3 bg-emerald-950/40 border border-emerald-500/30 rounded-xl text-xs text-emerald-300 flex items-center justify-center gap-2 text-center">
-              <Sparkles className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-              <span>
-                Dev Mode: Enter code <strong className="font-mono text-white underline">123456</strong>
-              </span>
-            </div>
-          )}
         </div>
 
         {/* Security badges */}

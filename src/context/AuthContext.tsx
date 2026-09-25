@@ -2,6 +2,8 @@
 
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { getSupabaseBrowserClient, isSupabaseConfigured } from '@/lib/supabase/client';
+import { auth as firebaseAuth } from '@/firebase-config';
+import { signOut as firebaseSignOut } from 'firebase/auth';
 import { generateFarmerId } from '@/lib/auth/farmerId';
 import {
   FarmerProfile,
@@ -35,6 +37,7 @@ interface AuthContextType {
   // Auth methods
   sendOtp: (phone: string) => Promise<{ success: boolean; message: string }>;
   verifyOtp: (phone: string, token: string) => Promise<{ success: boolean; isNewUser: boolean; error?: string }>;
+  loginWithFirebaseSession: (uid: string, phone: string) => Promise<{ success: boolean; isNewUser: boolean }>;
   signOut: () => Promise<void>;
   // Profile & Farm management
   updateProfile: (data: Partial<FarmerProfile>) => Promise<boolean>;
@@ -240,7 +243,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
 
   const supabase = getSupabaseBrowserClient();
-  const isDevMode = !isSupabaseConfigured;
+  const isDevMode = false;
 
   // Initialize from storage or Supabase session
   useEffect(() => {
@@ -410,6 +413,43 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem(STORAGE_KEYS.ACTIVITY, JSON.stringify(activityLogs));
   }, [activityLogs]);
 
+  // Login with Firebase session after verification
+  const loginWithFirebaseSession = async (uid: string, phone: string) => {
+    const cleanPhone = phone.replace(/\D/g, '').slice(-10);
+    const authUser: AuthUser = { id: uid, phone: cleanPhone };
+    setUser(authUser);
+    localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(authUser));
+
+    const storedProfile = localStorage.getItem(STORAGE_KEYS.PROFILE);
+    let isNew = false;
+
+    if (!storedProfile) {
+      isNew = true;
+      const fid = generateFarmerId();
+      const seed = createInitialSeedData(uid, fid, cleanPhone);
+      setProfile(seed.initialProfile);
+      setFarms(seed.initialFarms);
+      setActiveFarmIdState(seed.initialFarms[0].id);
+      setCrops(seed.initialCrops);
+      setSoilRecords(seed.initialSoil);
+      setDiseaseRecords(seed.initialDisease);
+      setWeatherHistory(seed.initialWeather);
+      setAiHistory(seed.initialAi);
+      setActivityLogs(seed.initialActivity);
+      localStorage.setItem(STORAGE_KEYS.PROFILE, JSON.stringify(seed.initialProfile));
+      localStorage.setItem(STORAGE_KEYS.FARMS, JSON.stringify(seed.initialFarms));
+    } else {
+      try {
+        const parsed = JSON.parse(storedProfile);
+        setProfile(parsed);
+      } catch {
+        // Fallback if parsing failed
+      }
+    }
+
+    return { success: true, isNewUser: isNew };
+  };
+
   // Send OTP
   const sendOtp = async (phone: string) => {
     const cleanPhone = phone.replace(/\D/g, '').slice(-10);
@@ -431,10 +471,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
     }
 
-    // Dev Fallback
     return {
       success: true,
-      message: `[Dev Mode] Verification code generated for +91 ${cleanPhone}. Use code: 123456`,
+      message: `OTP dispatch initiated for +91 ${cleanPhone}`,
     };
   };
 
@@ -455,107 +494,42 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           return { success: false, isNewUser: false, error: error?.message || 'Invalid or expired OTP' };
         }
 
-        const uid = data.user.id;
-        setUser({ id: uid, phone: cleanPhone });
-
-        // Check if profile exists
-        const { data: existingProfile } = await supabase
-          .from('profiles')
-          .select('*')
-          .eq('id', uid)
-          .single();
-
-        let isNew = false;
-        if (!existingProfile) {
-          isNew = true;
-          const fid = generateFarmerId();
-          const newProfile = {
-            id: uid,
-            farmer_id: fid,
-            phone: cleanPhone,
-            full_name: 'Farmer ' + cleanPhone.slice(-4),
-            state: 'Punjab',
-            district: 'Ludhiana',
-            village: 'Rural Sector',
-            language: 'en',
-          };
-          await supabase.from('profiles').insert(newProfile);
-          setProfile({
-            id: uid,
-            farmerId: fid,
-            phone: cleanPhone,
-            fullName: newProfile.full_name,
-            state: newProfile.state,
-            district: newProfile.district,
-            village: newProfile.village,
-            language: 'en',
-            createdAt: new Date().toISOString(),
-            updatedAt: new Date().toISOString(),
-          });
-        } else {
-          setProfile({
-            id: existingProfile.id,
-            farmerId: existingProfile.farmer_id,
-            phone: existingProfile.phone,
-            fullName: existingProfile.full_name,
-            state: existingProfile.state,
-            district: existingProfile.district,
-            village: existingProfile.village,
-            language: existingProfile.language || 'en',
-            createdAt: existingProfile.created_at,
-            updatedAt: existingProfile.updated_at,
-          });
-        }
-
-        return { success: true, isNewUser: isNew };
+        return await loginWithFirebaseSession(data.user.id, cleanPhone);
       } catch (err: any) {
         return { success: false, isNewUser: false, error: err.message || 'OTP verification failed' };
       }
     }
 
-    // Dev Fallback verification
-    // Accepts '123456' or any 6-digit number in dev mode
-    if (cleanToken.length !== 6) {
-      return { success: false, isNewUser: false, error: 'OTP must be 6 digits' };
-    }
-
-    const mockUserId = `farmer-user-${cleanPhone}`;
-    const newUser: AuthUser = { id: mockUserId, phone: cleanPhone };
-    setUser(newUser);
-
-    const storedProfile = localStorage.getItem(STORAGE_KEYS.PROFILE);
-    let isNew = false;
-
-    if (!storedProfile) {
-      isNew = true;
-      const fid = generateFarmerId();
-      const seed = createInitialSeedData(mockUserId, fid, cleanPhone);
-      setProfile(seed.initialProfile);
-      setFarms(seed.initialFarms);
-      setActiveFarmIdState(seed.initialFarms[0].id);
-      setCrops(seed.initialCrops);
-      setSoilRecords(seed.initialSoil);
-      setDiseaseRecords(seed.initialDisease);
-      setWeatherHistory(seed.initialWeather);
-      setAiHistory(seed.initialAi);
-      setActivityLogs(seed.initialActivity);
-    } else {
-      const parsed = JSON.parse(storedProfile);
-      setProfile(parsed);
-    }
-
-    return { success: true, isNewUser: isNew };
+    return {
+      success: false,
+      isNewUser: false,
+      error: 'OTP verification is handled securely via Firebase Phone Authentication.',
+    };
   };
 
   // Sign out
   const signOut = async () => {
-    if (isSupabaseConfigured && supabase) {
-      await supabase.auth.signOut();
+    try {
+      await firebaseSignOut(firebaseAuth);
+    } catch (err) {
+      console.warn('Firebase signout error:', err);
     }
+
+    if (isSupabaseConfigured && supabase) {
+      try {
+        await supabase.auth.signOut();
+      } catch (err) {
+        console.warn('Supabase signout error:', err);
+      }
+    }
+
     setUser(null);
     setProfile(null);
     localStorage.removeItem(STORAGE_KEYS.USER);
     localStorage.removeItem(STORAGE_KEYS.ACTIVE_FARM_ID);
+    if (typeof document !== 'undefined') {
+      document.cookie = 'bkin_auth_session=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+    }
   };
 
   // Update Profile
@@ -786,6 +760,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         isDevMode,
         sendOtp,
         verifyOtp,
+        loginWithFirebaseSession,
         signOut,
         updateProfile,
         addFarm,

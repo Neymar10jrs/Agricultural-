@@ -386,7 +386,7 @@ export const en = {
     resendCooldown: 'Resend code in',
     seconds: 'seconds',
     noPasswordNotice: 'Secure passwordless login with one-time verification code.',
-    devNotice: 'Development Mode: Enter any 6-digit code (e.g. 123456) to sign in.',
+    devNotice: 'Enter the 6-digit verification code sent via SMS to your phone.',
     signOut: 'Sign Out',
     signOutConfirm: 'Are you sure you want to sign out?',
   },
