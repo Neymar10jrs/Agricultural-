@@ -384,7 +384,7 @@ export default function RiskCenterPage() {
       {/* ── Overall Risk Gauge + Summary ───────────────────────────────────── */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Gauge */}
-        <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-rose-500/30 p-6 shadow-[0_4px_16px_rgba(0,0,0,0.10)] flex flex-col items-center gap-4">
+        <div id="guide-risk-gauge" className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-rose-500/30 p-6 shadow-[0_4px_16px_rgba(0,0,0,0.10)] flex flex-col items-center gap-4">
           <h2 className="font-bold text-base text-slate-800 self-start flex items-center gap-2">
             <ShieldAlert className="w-5 h-5 text-rose-500" />
             Overall Farm Risk Score
@@ -447,7 +447,7 @@ export default function RiskCenterPage() {
       </div>
 
       {/* ── 6 Risk Factor Bars ────────────────────────────────────────────── */}
-      <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 p-5 sm:p-6 shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
+      <div id="guide-risk-factors" className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 p-5 sm:p-6 shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
         <h2 className="font-bold text-base text-slate-900 mb-4 flex items-center gap-2">
           <Brain className="w-5 h-5 text-slate-500" />
           Risk Factor Breakdown
@@ -460,7 +460,7 @@ export default function RiskCenterPage() {
       </div>
 
       {/* ── Why is my farm at risk? ───────────────────────────────────────── */}
-      <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-rose-500/30 overflow-hidden shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
+      <div id="guide-risk-drivers" className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-rose-500/30 overflow-hidden shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
         <button
           onClick={() => setDriversExpanded((p) => !p)}
           className="w-full flex items-center justify-between p-5 hover:bg-rose-500/10 transition"
@@ -594,7 +594,7 @@ export default function RiskCenterPage() {
       </div>
 
       {/* ── AI Confidence Routing ─────────────────────────────────────────── */}
-      <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 p-5 sm:p-6 shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
+      <div id="guide-risk-confidence" className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 p-5 sm:p-6 shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
         <h2 className="font-bold text-base text-slate-900 mb-5 flex items-center gap-2">
           <Brain className="w-5 h-5 text-violet-500" />
           AI Confidence Routing — How BKIN Uses Confidence
@@ -658,7 +658,7 @@ export default function RiskCenterPage() {
       </div>
 
       {/* ── Disease Risk Time Series ─────────────────────────────────────── */}
-      <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 p-5 sm:p-6 shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
+      <div id="guide-risk-chart" className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 p-5 sm:p-6 shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
           <h2 className="font-bold text-base text-slate-900 flex items-center gap-2">
             <Activity className="w-5 h-5 text-rose-500" />

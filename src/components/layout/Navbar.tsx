@@ -35,6 +35,7 @@ import {
 import { useApp } from '@/context/AppContext';
 import { useAuth } from '@/context/AuthContext';
 import { supportedLanguages } from '@/i18n';
+import { SmartGuideNavButton } from '@/components/guide';
 
 
 export function Navbar() {
@@ -59,11 +60,11 @@ export function Navbar() {
 
 
   const mainNavLinks = [
-    { href: '/my-farm', label: dict.nav.myFarm, icon: Sprout },
-    { href: '/farm-digital-twin', label: dict.nav.farmTwin, icon: Layers },
-    { href: '/risk-center', label: dict.nav.riskCenter, icon: ShieldAlert },
-    { href: '/crop-doctor', label: dict.nav.cropDoctor, icon: Activity },
-    { href: '/todays-advisory', label: dict.nav.todaysAdvisory, icon: Sparkles },
+    { href: '/my-farm', label: dict.nav.myFarm, icon: Sprout, id: 'nav-my-farm' },
+    { href: '/farm-digital-twin', label: dict.nav.farmTwin, icon: Layers, id: 'nav-farm-digital-twin' },
+    { href: '/risk-center', label: dict.nav.riskCenter, icon: ShieldAlert, id: 'nav-risk-center' },
+    { href: '/crop-doctor', label: dict.nav.cropDoctor, icon: Activity, id: 'nav-crop-doctor' },
+    { href: '/todays-advisory', label: dict.nav.todaysAdvisory, icon: Sparkles, id: 'nav-todays-advisory' },
   ];
 
   const moreNavLinks = [
@@ -124,7 +125,7 @@ export function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Brand Logo */}
           <div className="flex items-center gap-3">
-            <Link href="/" className="flex items-center gap-2.5 group">
+            <Link href="/" id="nav-brand" className="flex items-center gap-2.5 group">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-600 to-emerald-900 flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
                 <Sprout className="w-6 h-6" />
               </div>
@@ -150,6 +151,7 @@ export function Navbar() {
               return (
                 <Link
                   key={link.href}
+                  id={link.id}
                   href={link.href}
                   className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition ${
                     isActive
@@ -164,7 +166,7 @@ export function Navbar() {
             })}
 
             {/* More Dropdown */}
-            <div className="relative">
+            <div className="relative" id="nav-more">
               <button
                 onClick={() => setMoreDropdownOpen(!moreDropdownOpen)}
                 onBlur={() => setTimeout(() => setMoreDropdownOpen(false), 200)}
@@ -211,6 +213,7 @@ export function Navbar() {
           <div className="flex items-center gap-2 sm:gap-3">
             {/* Ask Krishi AI Voice Trigger */}
             <button
+              id="nav-ask-krishi"
               onClick={() => openAskKrishi()}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-emerald-600 to-teal-700 text-white text-xs font-semibold shadow-sm hover:shadow hover:from-emerald-500 hover:to-teal-600 transition transform active:scale-95"
               aria-label="Open Ask Krishi AI Voice Assistant"
@@ -223,6 +226,9 @@ export function Navbar() {
               <span className="hidden sm:inline">{dict.nav.askKrishi}</span>
               <span className="sm:hidden">एआई</span>
             </button>
+
+            {/* Smart Guide Button */}
+            <SmartGuideNavButton />
 
             {/* User Mode Switcher: Farmer | Expert | Institution (Phases 14 & 15) */}
             <div className="relative hidden md:block">
@@ -275,7 +281,7 @@ export function Navbar() {
             </div>
 
             {/* Language Selector: English | हिंदी Toggle (Phase 1 Requirement) */}
-            <div className="flex items-center rounded-xl border border-slate-300 bg-slate-100 p-0.5 shadow-inner">
+            <div id="nav-language" className="flex items-center rounded-xl border border-slate-300 bg-slate-100 p-0.5 shadow-inner">
               <button
                 onClick={() => setLanguage('en')}
                 className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition ${

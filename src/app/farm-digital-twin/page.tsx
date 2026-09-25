@@ -374,6 +374,7 @@ export default function FarmDigitalTwinPage() {
   return (
     <div className="min-h-screen bg-slate-50">
       {/* ── Page Header — Premium SectionHero ── */}
+      <div id="guide-twin-health">
       <SectionHero
         imageSrc="/assets/agriculture/fields-pattern.svg"
         theme="forest"
@@ -403,6 +404,7 @@ export default function FarmDigitalTwinPage() {
           <span className="text-xs text-emerald-200/80">{isHi ? 'कल्ले फूटना' : 'Tillering stage'}</span>
         </div>
       </SectionHero>
+      </div>
 
       <main className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8 space-y-8">
 
@@ -423,7 +425,7 @@ export default function FarmDigitalTwinPage() {
         </div>
 
         {/* ── Key Metrics Grid ── */}
-        <section>
+        <section id="guide-twin-metrics">
           <h2 className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-3">
             {isHi ? 'लाइव खेत मेट्रिक्स व टेलीमेट्री' : 'Live Farm Metrics & Telemetry'}
           </h2>
@@ -498,7 +500,7 @@ export default function FarmDigitalTwinPage() {
         </section>
 
         {/* ── Crop Stage Progress ── */}
-        <section>
+        <section id="guide-twin-stage">
           <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-xl border border-white/10 p-5 shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
             <div className="flex items-center gap-2 mb-4">
               <Wheat className="w-5 h-5 text-amber-500" />
@@ -512,7 +514,7 @@ export default function FarmDigitalTwinPage() {
         {/* ── Risk Breakdown + Why at Risk ── */}
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Risk Factors */}
-          <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-xl border border-white/10 p-5 space-y-3 shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
+          <div id="guide-twin-factors" className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-xl border border-white/10 p-5 space-y-3 shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <AlertTriangle className="w-5 h-5 text-amber-500" />
@@ -535,7 +537,7 @@ export default function FarmDigitalTwinPage() {
           </div>
 
           {/* NDVI Chart */}
-          <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-xl border border-white/10 p-5 space-y-3 shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
+          <div id="guide-twin-ndvi" className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-xl border border-white/10 p-5 space-y-3 shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
             <div className="flex items-center gap-2">
               <Leaf className="w-5 h-5 text-emerald-600" />
               <h2 className="text-base font-bold text-slate-800">NDVI Time Series</h2>

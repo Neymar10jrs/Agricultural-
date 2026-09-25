@@ -347,7 +347,7 @@ export function SatelliteIntelligenceHub() {
       ) : (
         <>
           {/* ── Key Indices Grid for Selected Region ── */}
-          <div className="space-y-3">
+          <div id="guide-satellite-bands" className="space-y-3">
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="text-base sm:text-lg font-bold text-slate-900">
@@ -448,7 +448,7 @@ export function SatelliteIntelligenceHub() {
           {/* ── Active Index Technical Breakdown & Historical Trend ── */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             {/* Left 5 cols: Formula & Physical Principle */}
-            <div className="lg:col-span-5 space-y-4">
+            <div id="guide-satellite-mechanics" className="lg:col-span-5 space-y-4">
               <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-3xl border border-white/10 p-6 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-4">
                 <div className="space-y-1">
                   <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-700">
@@ -483,7 +483,7 @@ export function SatelliteIntelligenceHub() {
             </div>
 
             {/* Right 7 cols: 30-Day Historical Trend Area Chart */}
-            <div className="lg:col-span-7 space-y-4">
+            <div id="guide-satellite-trends" className="lg:col-span-7 space-y-4">
               <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-3xl border border-white/10 p-6 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-4">
                 <div className="flex items-center justify-between border-b border-slate-100 pb-3">
                   <div>

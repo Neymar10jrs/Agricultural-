@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { AuthProvider } from '@/context/AuthContext';
 import { AppProvider } from '@/context/AppContext';
+import { GuideProvider, SmartGuideSystem } from '@/components/guide';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { MobileNav } from '@/components/layout/MobileNav';
@@ -56,15 +57,18 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col antialiased bg-slate-50 text-slate-900 selection:bg-emerald-200 selection:text-emerald-900">
         <AuthProvider>
           <AppProvider>
-            <DemoModeBanner />
-            <OfflineIndicator />
-            <Navbar />
-            <main id="main-content" tabIndex={-1} className="flex-1 pb-16 lg:pb-0 outline-none">
-              {children}
-            </main>
-            <Footer />
-            <MobileNav />
-            <AskKrishiModal />
+            <GuideProvider>
+              <DemoModeBanner />
+              <OfflineIndicator />
+              <Navbar />
+              <main id="main-content" tabIndex={-1} className="flex-1 pb-16 lg:pb-0 outline-none">
+                {children}
+              </main>
+              <Footer />
+              <MobileNav />
+              <AskKrishiModal />
+              <SmartGuideSystem />
+            </GuideProvider>
           </AppProvider>
         </AuthProvider>
       </body>

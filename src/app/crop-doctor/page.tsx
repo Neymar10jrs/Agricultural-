@@ -196,7 +196,7 @@ export default function CropDoctorPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
 
       {/* Quick Test Sample Gallery */}
-      <div className="bg-slate-100/70 p-4 rounded-2xl border border-slate-200 space-y-2.5">
+      <div id="guide-doctor-presets" className="bg-slate-100/70 p-4 rounded-2xl border border-slate-200 space-y-2.5">
         <div className="flex items-center justify-between text-xs">
           <span className="font-bold text-slate-700 flex items-center gap-1.5">
             <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
@@ -234,7 +234,7 @@ export default function CropDoctorPage() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Left Column: Input Form & Upload */}
         <div className="lg:col-span-5 space-y-6">
-          <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 p-5 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-4">
+          <div id="guide-doctor-input" className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 p-5 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-4">
             <h3 className="font-bold text-base text-slate-900 flex items-center gap-2">
               <Camera className="w-4 h-4 text-emerald-700" />
               1. Crop Imagery Input
@@ -371,7 +371,7 @@ export default function CropDoctorPage() {
         </div>
 
         {/* Right Column: Diagnostic Output & Explainable AI */}
-        <div className="lg:col-span-7 space-y-6">
+        <div id="guide-doctor-results" className="lg:col-span-7 space-y-6">
           {diagnosisResult ? (
             <div className="space-y-5 animate-in fade-in slide-in-from-bottom-2 duration-300">
               {/* Diagnosis Header Card */}
@@ -401,7 +401,7 @@ export default function CropDoctorPage() {
                 </div>
 
                 {/* AI Confidence Routing Strip */}
-                <div className="p-3.5 rounded-2xl bg-emerald-50/80 border border-emerald-200 space-y-2">
+                <div id="guide-doctor-confidence" className="p-3.5 rounded-2xl bg-emerald-50/80 border border-emerald-200 space-y-2">
                   <div className="flex items-center justify-between text-xs">
                     <span className="font-bold text-emerald-950 flex items-center gap-1.5">
                       <ShieldCheck className="w-4 h-4 text-emerald-700" />
@@ -418,7 +418,7 @@ export default function CropDoctorPage() {
 
                 {/* Alternative Diagnoses Breakdown */}
                 {diagnosisResult.alternativeDiagnoses && (
-                  <div className="space-y-2">
+                  <div id="guide-doctor-alternatives" className="space-y-2">
                     <h4 className="font-bold text-xs text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
                       <HelpCircle className="w-3.5 h-3.5 text-slate-500" />
                       Differential Diagnoses &amp; Alternative Probabilities:

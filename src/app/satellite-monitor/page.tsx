@@ -32,7 +32,7 @@ export default function SatelliteMonitorPage() {
         <SatelliteIntelligenceHub />
 
         {/* ── High-Resolution Farm Parcel Field Map ── */}
-        <div className="space-y-3 pt-6 border-t border-slate-200">
+        <div id="guide-satellite-canvas" className="space-y-3 pt-6 border-t border-slate-200">
           <div>
             <h3 className="text-base sm:text-lg font-bold text-slate-900">
               {isHi ? 'खेत पार्सल बहु-स्पेक्ट्रल कैनवास' : 'High-Resolution Farm Parcel Multi-Spectral Canvas'}

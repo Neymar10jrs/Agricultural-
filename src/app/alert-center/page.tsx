@@ -163,7 +163,7 @@ export default function AlertCenterPage() {
 
 
       {/* System Status Mini Strip — 80% Translucent Surface */}
-      <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 rounded-2xl p-4 shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
+      <div id="guide-alert-status" className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 rounded-2xl p-4 shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
@@ -197,7 +197,7 @@ export default function AlertCenterPage() {
       </div>
 
       {/* Filters — 80% Translucent Surface */}
-      <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 rounded-2xl p-5 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-4">
+      <div id="guide-alert-filters" className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 rounded-2xl p-5 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-4">
         {/* Severity Tabs */}
         <div className="flex items-center justify-between flex-wrap gap-3">
           <div className="flex items-center gap-1.5 flex-wrap">
@@ -246,7 +246,7 @@ export default function AlertCenterPage() {
       </div>
 
       {/* Alert Feed */}
-      <div className="space-y-4">
+      <div id="guide-alert-feed" className="space-y-4">
         {filteredAlerts.length === 0 ? (
           <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 rounded-2xl p-12 text-center space-y-3 shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
             <CheckCircle2 className="w-12 h-12 text-emerald-400 mx-auto" />
@@ -350,7 +350,7 @@ export default function AlertCenterPage() {
       </div>
 
       {/* Multichannel Notification Design Strip — 80% Translucent Surface */}
-      <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 rounded-3xl p-6 sm:p-8 text-white space-y-4 shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
+      <div id="guide-alert-omnichannel" className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 rounded-3xl p-6 sm:p-8 text-white space-y-4 shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
         <div className="space-y-1">
           <span className="text-xs font-bold text-emerald-400 uppercase tracking-wider">
             BKIN Omnichannel Delivery Protocol
@@ -403,7 +403,7 @@ export default function AlertCenterPage() {
       </div>
 
       {/* ── Two-way Community Ground Intelligence (Phase 13) — 80% Translucent Surface ── */}
-      <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 rounded-3xl p-6 sm:p-8 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-6 text-white">
+      <div id="guide-alert-community" className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 rounded-3xl p-6 sm:p-8 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-6 text-white">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-4">
           <div className="space-y-1">
             <div className="flex items-center gap-2">

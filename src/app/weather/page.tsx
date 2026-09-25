@@ -73,7 +73,7 @@ export default function WeatherPage() {
       )}
 
       {/* Current Real-Time Conditions Banner */}
-      <div className="bg-gradient-to-br from-slate-900 via-emerald-950 to-slate-900 rounded-3xl p-6 sm:p-8 text-white shadow-lg grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+      <div id="guide-weather-overview" className="bg-gradient-to-br from-slate-900 via-emerald-950 to-slate-900 rounded-3xl p-6 sm:p-8 text-white shadow-lg grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
         <div className="lg:col-span-6 space-y-3">
           <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-400">
             Current Farm Micro-Climate
@@ -118,7 +118,7 @@ export default function WeatherPage() {
       </div>
 
       {/* 7-Day Agricultural Impact Forecast Carousel / Cards */}
-      <div className="space-y-4">
+      <div id="guide-weather-forecast" className="space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="font-bold text-base text-slate-900 flex items-center gap-2">
             <Calendar className="w-4 h-4 text-emerald-600" />
@@ -178,7 +178,7 @@ export default function WeatherPage() {
       </div>
 
       {/* Selected Day Deep-Dive Agricultural Impact Translation (Section 15 Core Requirement) */}
-      <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 p-6 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-4">
+      <div id="guide-weather-operational" className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 p-6 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
           <div>
             <span className="text-[10px] uppercase font-bold text-emerald-800 tracking-wider">

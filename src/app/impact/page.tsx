@@ -114,7 +114,7 @@ export default function ImpactPage() {
       </div>
 
       {/* Metrics Grid */}
-      <div className="space-y-3">
+      <div id="guide-impact-metrics" className="space-y-3">
         <div className="flex items-center justify-between">
           <h2 className="text-sm font-bold text-slate-900 uppercase tracking-wider">
             {isHi ? 'पायलट कार्यक्रम मुख्य मेट्रिक्स (सिम्युलेटेड)' : 'Pilot Program Core Metrics (Simulated)'}
@@ -150,7 +150,7 @@ export default function ImpactPage() {
       </div>
 
       {/* Before / After Comparison */}
-      <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-3xl border border-white/10 p-6 sm:p-8 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-6">
+      <div id="guide-impact-comparison" className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-3xl border border-white/10 p-6 sm:p-8 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-6">
         <div className="text-center max-w-2xl mx-auto space-y-1">
           <span className="text-xs font-bold text-emerald-700 uppercase tracking-wider">
             {isHi ? 'कृषि कार्यप्रणाली परिवर्तन' : 'Paradigm Shift'}
@@ -337,7 +337,7 @@ export default function ImpactPage() {
       </div>
 
       {/* System Status Panel */}
-      <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-3xl border border-white/10 p-6 sm:p-8 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-4">
+      <div id="guide-impact-status" className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-3xl border border-white/10 p-6 sm:p-8 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-4">
         <div className="flex items-center justify-between flex-wrap gap-2">
           <div>
             <h2 className="text-base sm:text-lg font-bold text-slate-900">

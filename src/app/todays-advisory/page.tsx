@@ -70,7 +70,7 @@ export default function TodaysAdvisoryPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
 
       {/* Category Filter Pills */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-1 text-xs">
+      <div id="guide-advisory-filters" className="flex items-center gap-2 overflow-x-auto pb-1 text-xs">
         <span className="text-slate-400 font-semibold text-xs shrink-0 flex items-center gap-1">
           <Filter className="w-3.5 h-3.5" />
           Filter Action Area:
@@ -91,7 +91,7 @@ export default function TodaysAdvisoryPage() {
       </div>
 
       {/* View Format Selector (Phase 9) */}
-      <div className="flex items-center justify-between text-xs bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] p-2.5 rounded-xl border border-white/10 shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
+      <div id="guide-advisory-format" className="flex items-center justify-between text-xs bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] p-2.5 rounded-xl border border-white/10 shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
         <span className="font-semibold text-slate-300">
           {isHi ? 'परामर्श प्रस्तुति प्रारूप:' : 'Advisory Explanation Format:'}
         </span>
@@ -120,7 +120,7 @@ export default function TodaysAdvisoryPage() {
       </div>
 
       {/* Priority Advisories Feed */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div id="guide-advisory-feed" className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {filteredAdvisories.map((advisory) =>
           viewMode === 'structured' ? (
             <ConfidenceAdvisoryCard key={advisory.id} advisory={advisory} />
@@ -131,7 +131,7 @@ export default function TodaysAdvisoryPage() {
       </div>
 
       {/* Help Banner */}
-      <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl p-5 border border-white/10 shadow-[0_4px_16px_rgba(0,0,0,0.10)] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+      <div id="guide-advisory-help" className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl p-5 border border-white/10 shadow-[0_4px_16px_rgba(0,0,0,0.10)] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
         <div className="space-y-0.5 text-center sm:text-left">
           <span className="font-bold text-white">Need help implementing these recommendations?</span>
           <p className="text-slate-300 text-[11px]">

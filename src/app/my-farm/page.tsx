@@ -232,6 +232,7 @@ export default function MyFarmPage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
         {/* Multi-Farm Parcels Switcher Strip — 80% Translucent Surface */}
+        <div id="guide-myfarm-parcels" className="space-y-4">
         {user && farms.length > 0 && (
           <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 rounded-3xl p-6 space-y-4 shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -343,6 +344,7 @@ export default function MyFarmPage() {
             </Link>
           </div>
         )}
+        </div>
 
         {/* Farm Profile Edit Modal / Form */}
         {isEditing && (
@@ -464,7 +466,7 @@ export default function MyFarmPage() {
         )}
 
         {/* Farm Health Composite Banner — 80% Translucent Surface */}
-        <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 rounded-2xl p-6 text-white shadow-[0_4px_16px_rgba(0,0,0,0.10)] relative overflow-hidden">
+        <div id="guide-myfarm-health" className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 rounded-2xl p-6 text-white shadow-[0_4px_16px_rgba(0,0,0,0.10)] relative overflow-hidden">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
             <div className="space-y-2">
               <div className="flex items-center gap-2">
@@ -496,7 +498,7 @@ export default function MyFarmPage() {
         </div>
 
         {/* Diagnostic Health Matrix */}
-        <div className="space-y-3">
+        <div id="guide-myfarm-matrix" className="space-y-3">
           <div className="flex items-center justify-between">
             <h3 className="font-bold text-base text-white">Diagnostic Health Matrix</h3>
             <span className="text-xs text-slate-300">Updated today from ISRO/IMD/KVK feeds</span>
@@ -588,7 +590,7 @@ export default function MyFarmPage() {
         </div>
 
         {/* Embedded Satellite Crop Monitoring Canvas */}
-        <div className="space-y-3">
+        <div id="guide-myfarm-satellite" className="space-y-3">
           <div className="flex items-center justify-between">
             <h3 className="font-bold text-base text-white">
               Satellite Multi-Spectral Field Observer
@@ -605,7 +607,7 @@ export default function MyFarmPage() {
         </div>
 
         {/* Immediate Farmer Advisories */}
-        <div className="space-y-4">
+        <div id="guide-myfarm-advisories" className="space-y-4">
           <div className="flex items-center justify-between">
             <h3 className="font-bold text-base text-white">
               Active Priority Advisories for this Farm

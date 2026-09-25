@@ -12,9 +12,9 @@ export function MobileNav() {
 
   const items = [
     { href: '/', label: dict.common.back === 'वापस जाएं' ? 'होम' : 'Home', icon: Home },
-    { href: '/my-farm', label: dict.nav.myFarm, icon: Sprout },
+    { href: '/my-farm', label: dict.nav.myFarm, icon: Sprout, id: 'mobile-nav-my-farm' },
     { isVoice: true, label: dict.nav.askKrishi, icon: Mic },
-    { href: '/risk-center', label: dict.nav.riskCenter, icon: Activity },
+    { href: '/risk-center', label: dict.nav.riskCenter, icon: Activity, id: 'mobile-nav-risk-center' },
     { href: '/alert-center', label: dict.nav.alertCenter, icon: Bell },
   ];
 
@@ -44,6 +44,7 @@ export function MobileNav() {
           return (
             <Link
               key={item.href || idx}
+              id={item.id}
               href={item.href!}
               className={`flex flex-col items-center justify-center py-1 px-3 min-w-[56px] rounded-lg transition ${
                 isActive ? 'text-emerald-700 font-semibold' : 'text-slate-500 hover:text-slate-800'

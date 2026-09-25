@@ -43,7 +43,7 @@ export default function SoilHealthPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
 
       {/* Primary Parameters Grid (Section 16: pH, N, P, K, OC, EC, Moisture, Type, Texture) */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5">
+      <div id="guide-soil-npk" className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5">
         {/* pH */}
         <div className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] rounded-2xl border border-white/10 p-4 shadow-[0_4px_16px_rgba(0,0,0,0.10)] space-y-2">
           <div className="text-[10px] uppercase font-bold text-slate-400">Soil Reaction (pH)</div>
@@ -117,7 +117,7 @@ export default function SoilHealthPage() {
       </div>
 
       {/* Secondary Soil Properties Strip */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] p-4 rounded-2xl border border-white/10 text-xs shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
+      <div id="guide-soil-secondary" className="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] p-4 rounded-2xl border border-white/10 text-xs shadow-[0_4px_16px_rgba(0,0,0,0.10)]">
         <div>
           <span className="text-slate-500 block text-[10px] uppercase font-bold">Soil Classification</span>
           <span className="font-bold text-slate-800 text-sm mt-0.5 block">{soil.soilType}</span>
@@ -144,7 +144,7 @@ export default function SoilHealthPage() {
       </div>
 
       {/* Explainable Nutrient Recommendations (Section 16: "Why this recommendation?") */}
-      <div className="space-y-4">
+      <div id="guide-soil-recommendations" className="space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="font-bold text-base text-slate-900 flex items-center gap-2">
             <Sparkles className="w-4 h-4 text-emerald-600" />
