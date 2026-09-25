@@ -277,6 +277,7 @@ export interface DemoFarmState {
   variety: string;
   sowingDate: string;
   daysAfterSowing: number;
+  soilType?: string;
   irrigationType: 'Canal' | 'Tubewell / Borewell' | 'Drip Micro-irrigation' | 'Sprinkler' | 'Rainfed';
   previousCrop: string;
   overallHealthScore: number;
@@ -466,4 +467,104 @@ export interface WhatIfScenario {
     interpretation: string;
   }[];
   disclaimer: string;
+}
+
+// ─── NEW: Farmer Accounts & Multi-Farm Domain Models ─────────────────────────
+
+export interface FarmerProfile {
+  id: string; // auth.users UUID
+  farmerId: string; // Unique permanent ID e.g. FARM-IND-8X42K91
+  phone: string;
+  fullName: string;
+  state: string;
+  district: string;
+  village: string;
+  language: 'en' | 'hi';
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface FarmerFarm {
+  id: string;
+  userId: string;
+  name: string;
+  state: string;
+  district: string;
+  village: string;
+  totalAreaAcres: number;
+  soilType: string;
+  primaryCrop: string;
+  sowingDate: string;
+  irrigationType: string;
+  isActive: boolean;
+  createdAt: string;
+}
+
+export interface CropHistoryRecord {
+  id: string;
+  farmId: string;
+  cropName: string;
+  variety: string;
+  season: string;
+  sowingDate: string;
+  harvestDate?: string;
+  yieldQuintal?: number;
+  status: 'active' | 'harvested' | 'failed' | 'planned';
+  notes?: string;
+}
+
+export interface SoilHistoryRecord {
+  id: string;
+  farmId: string;
+  testDate: string;
+  phLevel: number;
+  nitrogenKgHa: number;
+  phosphorusKgHa: number;
+  potassiumKgHa: number;
+  organicCarbonPct: number;
+  moisturePct: number;
+  healthStatus: string;
+  recommendations: string;
+}
+
+export interface DiseaseHistoryRecord {
+  id: string;
+  farmId?: string;
+  cropName: string;
+  diseaseName: string;
+  confidenceScore: number;
+  severity: 'low' | 'moderate' | 'high' | 'critical';
+  imageUrl?: string;
+  symptoms: string;
+  treatment: string;
+  scannedAt: string;
+}
+
+export interface WeatherHistoryRecord {
+  id: string;
+  farmId: string;
+  recordedAt: string;
+  temperatureC: number;
+  humidityPct: number;
+  rainfallMm: number;
+  windSpeedKmh: number;
+  alertTitle?: string;
+}
+
+export interface AiChatHistoryRecord {
+  id: string;
+  farmId?: string;
+  query: string;
+  response: string;
+  category: string;
+  createdAt: string;
+}
+
+export interface ActivityLogRecord {
+  id: string;
+  farmId?: string;
+  title: string;
+  description: string;
+  category: 'farm' | 'crop' | 'soil' | 'disease' | 'weather' | 'account' | 'ai';
+  createdAt: string;
 }

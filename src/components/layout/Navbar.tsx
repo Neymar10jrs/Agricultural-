@@ -27,17 +27,36 @@ import {
   Users,
   TrendingUp,
   Cpu,
+  User,
+  LogOut,
+  Check,
+  Copy,
 } from 'lucide-react';
 import { useApp } from '@/context/AppContext';
+import { useAuth } from '@/context/AuthContext';
 import { supportedLanguages } from '@/i18n';
+
 
 export function Navbar() {
   const pathname = usePathname();
   const { language, setLanguage, t, dict, openAskKrishi, isHighContrast, toggleHighContrast, userMode, setUserMode } = useApp();
+  const { user, profile, signOut } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const [moreDropdownOpen, setMoreDropdownOpen] = useState(false);
   const [modeDropdownOpen, setModeDropdownOpen] = useState(false);
+  const [userDropdownOpen, setUserDropdownOpen] = useState(false);
+  const [copiedNavId, setCopiedNavId] = useState(false);
+
+  const handleCopyNavFarmerId = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (profile?.farmerId) {
+      navigator.clipboard.writeText(profile.farmerId);
+      setCopiedNavId(true);
+      setTimeout(() => setCopiedNavId(false), 2000);
+    }
+  };
+
 
   const mainNavLinks = [
     { href: '/my-farm', label: dict.nav.myFarm, icon: Sprout },
@@ -298,6 +317,125 @@ export function Navbar() {
               </span>
             </button>
 
+            {/* Farmer Authentication State / Profile Dropdown */}
+            {user ? (
+              <div className="relative">
+                <button
+                  onClick={() => setUserDropdownOpen(!userDropdownOpen)}
+                  onBlur={() => setTimeout(() => setUserDropdownOpen(false), 250)}
+                  className="flex items-center gap-2 pl-2 pr-3 py-1 rounded-xl bg-emerald-50 hover:bg-emerald-100 border border-emerald-300/80 text-emerald-950 transition shadow-xs"
+                >
+                  <div className="w-7 h-7 rounded-lg bg-emerald-700 text-white flex items-center justify-center font-bold text-xs">
+                    {profile?.fullName ? profile.fullName.charAt(0).toUpperCase() : 'F'}
+                  </div>
+                  <div className="flex flex-col text-left hidden sm:flex">
+                    <span className="text-xs font-bold leading-tight truncate max-w-[100px]">
+                      {profile?.fullName || `Farmer ${user.phone.slice(-4)}`}
+                    </span>
+                    <span className="text-[10px] text-emerald-700 font-mono font-medium">
+                      {profile?.farmerId ? profile.farmerId.slice(-8) : 'Farmer'}
+                    </span>
+                  </div>
+                  <ChevronDown className="w-3.5 h-3.5 text-emerald-700 ml-0.5" />
+                </button>
+
+                {userDropdownOpen && (
+                  <div className="absolute right-0 mt-2 w-64 bg-white rounded-2xl shadow-xl border border-slate-200 py-2 z-50 animate-in fade-in slide-in-from-top-2">
+                    {/* User Card */}
+                    <div className="px-4 py-2 border-b border-slate-100">
+                      <div className="font-bold text-xs text-slate-900 truncate">
+                        {profile?.fullName || 'Farmer Partner'}
+                      </div>
+                      <div className="text-[11px] text-slate-500 font-mono">+91 {user.phone}</div>
+
+                      <div className="mt-2 p-1.5 rounded-lg bg-slate-50 border border-slate-200 flex items-center justify-between font-mono text-[11px] text-emerald-800 font-bold">
+                        <span>{profile?.farmerId || 'FARM-IND-PENDING'}</span>
+                        <button
+                          type="button"
+                          onClick={handleCopyNavFarmerId}
+                          className="text-slate-400 hover:text-emerald-700 p-0.5"
+                          title="Copy Farmer ID"
+                        >
+                          {copiedNavId ? (
+                            <Check className="w-3.5 h-3.5 text-emerald-600" />
+                          ) : (
+                            <Copy className="w-3.5 h-3.5" />
+                          )}
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Links */}
+                    <div className="py-1">
+                      <Link
+                        href="/dashboard"
+                        onClick={() => setUserDropdownOpen(false)}
+                        className="flex items-center gap-2.5 px-4 py-2 text-xs font-medium text-slate-700 hover:bg-emerald-50 hover:text-emerald-900 transition"
+                      >
+                        <Sprout className="w-3.5 h-3.5 text-emerald-600" />
+                        <span>Farmer Dashboard</span>
+                      </Link>
+                      <Link
+                        href="/my-farm"
+                        onClick={() => setUserDropdownOpen(false)}
+                        className="flex items-center gap-2.5 px-4 py-2 text-xs font-medium text-slate-700 hover:bg-emerald-50 hover:text-emerald-900 transition"
+                      >
+                        <Layers className="w-3.5 h-3.5 text-emerald-600" />
+                        <span>My Farm & Parcels</span>
+                      </Link>
+                      <Link
+                        href="/history"
+                        onClick={() => setUserDropdownOpen(false)}
+                        className="flex items-center gap-2.5 px-4 py-2 text-xs font-medium text-slate-700 hover:bg-emerald-50 hover:text-emerald-900 transition"
+                      >
+                        <Activity className="w-3.5 h-3.5 text-emerald-600" />
+                        <span>Agricultural History</span>
+                      </Link>
+                      <Link
+                        href="/profile"
+                        onClick={() => setUserDropdownOpen(false)}
+                        className="flex items-center gap-2.5 px-4 py-2 text-xs font-medium text-slate-700 hover:bg-emerald-50 hover:text-emerald-900 transition"
+                      >
+                        <User className="w-3.5 h-3.5 text-emerald-600" />
+                        <span>Farmer Profile</span>
+                      </Link>
+                      <Link
+                        href="/settings"
+                        onClick={() => setUserDropdownOpen(false)}
+                        className="flex items-center gap-2.5 px-4 py-2 text-xs font-medium text-slate-700 hover:bg-emerald-50 hover:text-emerald-900 transition"
+                      >
+                        <SlidersHorizontal className="w-3.5 h-3.5 text-emerald-600" />
+                        <span>Account Settings</span>
+                      </Link>
+                    </div>
+
+                    {/* Sign Out */}
+                    <div className="pt-1 border-t border-slate-100">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setUserDropdownOpen(false);
+                          signOut();
+                        }}
+                        className="w-full flex items-center gap-2.5 px-4 py-2 text-xs font-medium text-rose-600 hover:bg-rose-50 transition"
+                      >
+                        <LogOut className="w-3.5 h-3.5 text-rose-500" />
+                        <span>Sign Out</span>
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link
+                href="/login"
+                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold shadow-xs transition transform active:scale-95"
+              >
+                <User className="w-3.5 h-3.5" />
+                <span>{language === 'hi' ? 'लॉग इन' : 'Sign In'}</span>
+              </Link>
+            )}
+
             {/* Mobile Hamburger Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -313,6 +451,75 @@ export function Navbar() {
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
         <div className="lg:hidden border-t border-slate-200 bg-white px-4 pt-2 pb-6 max-h-[85vh] overflow-y-auto">
+          {/* Mobile Auth Header */}
+          {user ? (
+            <div className="p-3 mb-3 bg-emerald-50/70 border border-emerald-200 rounded-2xl">
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="font-bold text-xs text-slate-900">
+                    {profile?.fullName || `Farmer ${user.phone.slice(-4)}`}
+                  </div>
+                  <div className="text-[11px] text-slate-500 font-mono">+91 {user.phone}</div>
+                </div>
+                <div className="text-[11px] font-mono font-bold text-emerald-800 bg-white px-2 py-1 rounded border border-emerald-200">
+                  {profile?.farmerId ? profile.farmerId.slice(-8) : 'Farmer'}
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-2 mt-3 pt-2 border-t border-emerald-200/60 text-xs">
+                <Link
+                  href="/dashboard"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="p-1.5 rounded-lg bg-white border border-emerald-200 text-emerald-900 font-semibold text-center hover:bg-emerald-50"
+                >
+                  Dashboard
+                </Link>
+                <Link
+                  href="/profile"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="p-1.5 rounded-lg bg-white border border-emerald-200 text-emerald-900 font-semibold text-center hover:bg-emerald-50"
+                >
+                  Profile
+                </Link>
+                <Link
+                  href="/history"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="p-1.5 rounded-lg bg-white border border-emerald-200 text-emerald-900 font-semibold text-center hover:bg-emerald-50"
+                >
+                  History
+                </Link>
+                <Link
+                  href="/settings"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="p-1.5 rounded-lg bg-white border border-emerald-200 text-emerald-900 font-semibold text-center hover:bg-emerald-50"
+                >
+                  Settings
+                </Link>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  signOut();
+                }}
+                className="w-full mt-2 py-1.5 text-xs text-rose-600 font-semibold flex items-center justify-center gap-1 hover:bg-rose-50 rounded-lg"
+              >
+                <LogOut className="w-3.5 h-3.5" />
+                <span>Sign Out</span>
+              </button>
+            </div>
+          ) : (
+            <div className="mb-3">
+              <Link
+                href="/login"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full py-2.5 px-4 rounded-xl bg-emerald-700 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-sm"
+              >
+                <User className="w-4 h-4" />
+                <span>{language === 'hi' ? 'मोबाइल नंबर से लॉग इन करें' : 'Sign In with Mobile'}</span>
+              </Link>
+            </div>
+          )}
+
           {/* Mobile Language Switcher */}
           <div className="py-2 mb-2 border-b border-slate-100 flex items-center justify-between">
             <span className="text-xs font-semibold text-slate-600">भाषा / Language:</span>
@@ -337,6 +544,7 @@ export function Navbar() {
           </div>
 
           <div className="space-y-1">
+
             <div className="px-2 py-1 text-[10px] font-bold uppercase text-slate-400">
               {dict.nav.sections.intelligence}
             </div>
