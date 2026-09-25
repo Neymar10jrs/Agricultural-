@@ -33,7 +33,7 @@ export default function DataQualityPanel({ report, className = '' }: DataQuality
   const qc = qualityConfig[report.overallLabel];
 
   return (
-    <div className={`bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden ${className}`}>
+    <div className={`bg-transparent rounded-2xl border border-slate-200/90 hover:border-emerald-500/40 transition-all overflow-hidden ${className}`}>
       {/* Collapsible header */}
       <button
         className="w-full flex items-center justify-between px-5 py-4 hover:bg-gray-50 transition-colors"

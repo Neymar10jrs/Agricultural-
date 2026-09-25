@@ -231,9 +231,9 @@ export default function MyFarmPage() {
       </SectionHero>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-        {/* Multi-Farm Parcels Switcher Strip */}
+        {/* Multi-Farm Parcels Switcher Strip — Transparent Information Layer */}
         {user && farms.length > 0 && (
-          <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl space-y-4">
+          <div className="bg-transparent border border-slate-700/60 rounded-3xl p-6 space-y-4">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div>
                 <h3 className="text-base font-bold text-white flex items-center gap-2">
@@ -248,7 +248,7 @@ export default function MyFarmPage() {
               <button
                 type="button"
                 onClick={() => setShowAddModal(true)}
-                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-emerald-400 text-xs font-semibold self-start sm:self-auto"
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 border border-slate-700 text-emerald-400 text-xs font-semibold self-start sm:self-auto"
               >
                 <PlusCircle className="w-4 h-4" />
                 <span>Add Parcel</span>
@@ -265,10 +265,11 @@ export default function MyFarmPage() {
                     onClick={() => handleSelectFarm(f.id)}
                     className={`p-4 rounded-2xl border cursor-pointer transition-all ${
                       isActive
-                        ? 'bg-emerald-950/40 border-emerald-500 shadow-md shadow-emerald-950/50 ring-1 ring-emerald-500'
-                        : 'bg-slate-950/60 border-slate-800 hover:border-slate-700'
+                        ? 'bg-emerald-950/30 border-emerald-500 shadow-md ring-1 ring-emerald-500'
+                        : 'bg-transparent border-slate-700/60 hover:border-slate-600'
                     }`}
                   >
+
                     <div className="flex items-start justify-between">
                       <div className="font-bold text-sm text-white">{f.name}</div>
                       {isActive ? (

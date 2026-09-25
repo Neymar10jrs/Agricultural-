@@ -35,20 +35,21 @@ export function StatCard({
 }: StatCardProps) {
   return (
     <div
-      className={`bg-white rounded-xl border border-slate-200 p-4 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden ${className}`}
+      className={`bg-transparent rounded-xl border border-slate-200/80 hover:border-emerald-500/50 hover:bg-white/[0.03] transition-all p-4 relative overflow-hidden ${className}`}
     >
       <div className="flex items-start justify-between">
         <div className="space-y-1">
           <span className="text-xs font-semibold text-slate-500 tracking-tight">{title}</span>
           <div className="flex items-baseline gap-1.5">
-            <span className="text-2xl font-bold text-slate-900">{value}</span>
+            <span className="text-2xl font-extrabold text-slate-900 tracking-tight">{value}</span>
             {unit && <span className="text-xs font-medium text-slate-500">{unit}</span>}
           </div>
         </div>
-        <div className="w-9 h-9 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0 border border-emerald-100">
+        <div className="w-9 h-9 rounded-lg bg-emerald-500/10 text-emerald-700 flex items-center justify-center shrink-0 border border-emerald-500/20">
           <Icon className="w-5 h-5" />
         </div>
       </div>
+
 
       <div className="mt-3 flex items-center justify-between gap-2 pt-2 border-t border-slate-100">
         {riskLevel ? (

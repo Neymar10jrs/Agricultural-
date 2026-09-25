@@ -310,18 +310,19 @@ export function AgroScrollBackground({
         className="fixed inset-0 w-full h-full block pointer-events-none z-0"
       />
 
-      {/* Layer 2: Fixed Atmospheric Overlay Gradients for High Readability & Contrast */}
+      {/* Layer 2: Fixed Atmospheric Overlay Gradients for Transparent Information Layers */}
       <div
-        className="fixed inset-0 z-0 pointer-events-none"
+        className="fixed inset-0 z-0 pointer-events-none transition-opacity duration-500"
         style={{
           background:
-            'radial-gradient(circle at 50% 30%, rgba(2, 6, 23, 0.48) 0%, rgba(2, 6, 23, 0.72) 65%, rgba(2, 6, 23, 0.92) 100%)',
+            'radial-gradient(circle at 50% 35%, rgba(2, 6, 23, 0.15) 0%, rgba(2, 6, 23, 0.35) 60%, rgba(2, 6, 23, 0.58) 100%)',
         }}
       />
 
-      {/* Layer 3: Fixed Ambient Vignettes (Top Header & Bottom Track distinction) */}
-      <div className="fixed inset-x-0 top-0 h-32 bg-gradient-to-b from-black/85 via-black/40 to-transparent pointer-events-none z-0" />
-      <div className="fixed inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/90 via-black/50 to-transparent pointer-events-none z-0" />
+      {/* Layer 3: Fixed Ambient Vignettes (Subtle Header & Bottom Track distinction) */}
+      <div className="fixed inset-x-0 top-0 h-28 bg-gradient-to-b from-black/60 via-black/20 to-transparent pointer-events-none z-0" />
+      <div className="fixed inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/60 via-black/20 to-transparent pointer-events-none z-0" />
+
 
       {/* Layer 4: Foreground Content (All Homepage Sections flow naturally over the canvas) */}
       <div className="relative z-10 w-full pointer-events-auto">

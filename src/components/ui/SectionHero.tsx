@@ -102,7 +102,7 @@ export function SectionHero({
           )}
 
           {/* Heading */}
-          <h1 className="text-white font-extrabold leading-tight tracking-tight"
+          <h1 className="text-white font-black leading-tight tracking-tight text-shadow-agri"
             style={{ fontSize: 'var(--text-hero)' }}
           >
             {heading}
@@ -110,7 +110,7 @@ export function SectionHero({
 
           {/* Description */}
           {description && (
-            <p className="text-emerald-100/80 max-w-2xl leading-relaxed"
+            <p className="text-emerald-100/90 max-w-2xl leading-relaxed text-shadow-agri"
               style={{ fontSize: 'clamp(0.9rem, 1.4vw, 1.125rem)' }}
             >
               {description}
@@ -120,18 +120,18 @@ export function SectionHero({
           {/* Children slot */}
           {children}
 
-          {/* Stats row */}
+          {/* Stats row — Floating Typography over background visual */}
           {stats && stats.length > 0 && (
-            <div className="flex flex-wrap gap-3 mt-2">
+            <div className="flex flex-wrap gap-6 mt-4 pt-4 border-t border-white/10">
               {stats.map((stat, i) => (
-                <div key={i} className="hero-stat-card px-4 py-3 min-w-[100px]">
+                <div key={i} className="min-w-[100px] border-l-2 border-emerald-400/40 pl-3.5 py-1">
                   <p
-                    className={`stat-hero ${stat.accent ?? 'text-gradient-agri'} count-reveal`}
+                    className={`text-2xl sm:text-3xl font-black ${stat.accent ?? 'text-gradient-agri'} count-reveal text-shadow-agri`}
                     style={{ animationDelay: `${i * 0.1}s` }}
                   >
                     {stat.value}
                   </p>
-                  <p className="text-white/60 text-xs font-medium mt-0.5 uppercase tracking-wide">
+                  <p className="text-emerald-100/70 text-xs font-semibold mt-0.5 uppercase tracking-wider">
                     {stat.label}
                   </p>
                 </div>

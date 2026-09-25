@@ -53,7 +53,7 @@ export function ExplainableAICard({ advisory, onFieldVerify }: ExplainableAICard
   };
 
   return (
-    <div className="telemetry-card overflow-hidden bg-white">
+    <div className="bg-transparent rounded-2xl border border-slate-200/90 hover:border-emerald-500/50 transition-all overflow-hidden">
       {/* Card Header */}
       <div className="p-4 sm:p-5 border-b border-slate-100">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
@@ -90,7 +90,7 @@ export function ExplainableAICard({ advisory, onFieldVerify }: ExplainableAICard
       </div>
 
       {/* Core Action Highlight */}
-      <div className="bg-emerald-50/70 p-4 sm:px-5 border-b border-emerald-100/60">
+      <div className="bg-emerald-500/5 p-4 sm:px-5 border-b border-emerald-500/15">
         <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-800 mb-1 flex items-center gap-1.5">
           <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
           Recommended Action
@@ -102,13 +102,13 @@ export function ExplainableAICard({ advisory, onFieldVerify }: ExplainableAICard
 
       {/* Explainable AI Details Breakdown */}
       {expanded && (
-        <div className="p-4 sm:p-5 space-y-3.5 bg-white text-xs">
+        <div className="p-4 sm:p-5 space-y-3.5 bg-transparent text-xs">
           {/* Why? */}
           <div>
             <span className="font-bold text-slate-700 block mb-1">
               Why is the system recommending this?
             </span>
-            <p className="text-slate-600 leading-relaxed bg-slate-50 p-2.5 rounded-lg border border-slate-200/80">
+            <p className="text-slate-600 leading-relaxed bg-slate-50/70 p-2.5 rounded-lg border border-slate-200/60">
               {advisory.why}
             </p>
           </div>
@@ -118,7 +118,7 @@ export function ExplainableAICard({ advisory, onFieldVerify }: ExplainableAICard
             <span className="font-bold text-slate-700 block mb-1">
               Ground-Truth Evidence & Telemetry:
             </span>
-            <p className="text-slate-600 leading-relaxed bg-slate-50 p-2.5 rounded-lg border border-slate-200/80">
+            <p className="text-slate-600 leading-relaxed bg-slate-50/70 p-2.5 rounded-lg border border-slate-200/60">
               {advisory.evidence}
             </p>
           </div>

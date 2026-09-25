@@ -63,19 +63,20 @@
   background: #10b981;
 }
 
-/* Telemetry Grid & Accent Framing */
+/* Telemetry Grid & Accent Framing (Transparent Editorial Layer) */
 .telemetry-card {
   position: relative;
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: transparent;
+  border: 1px solid rgba(226, 232, 240, 0.7);
   border-radius: 0.75rem;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .telemetry-card:hover {
-  border-color: #cbd5e1;
-  box-shadow: 0 10px 25px -5px rgba(15, 81, 50, 0.06), 0 8px 10px -6px rgba(15, 81, 50, 0.04);
+  border-color: rgba(16, 185, 129, 0.5);
+  background: rgba(255, 255, 255, 0.04);
 }
+
 
 .telemetry-frame {
   position: relative;
@@ -212,13 +213,13 @@
   z-index: 2;
 }
 
-/* Forest green overlay (default / crop / farm) */
+/* Forest green overlay (default / crop / farm) — Lightened to reveal background visuals */
 .agri-overlay-forest {
   background: linear-gradient(
     135deg,
-    rgba(5, 46, 22, 0.80) 0%,
-    rgba(13, 56, 36, 0.72) 50%,
-    rgba(5, 46, 22, 0.85) 100%
+    rgba(5, 46, 22, 0.45) 0%,
+    rgba(13, 56, 36, 0.35) 50%,
+    rgba(5, 46, 22, 0.55) 100%
   );
 }
 
@@ -226,9 +227,9 @@
 .agri-overlay-satellite {
   background: linear-gradient(
     135deg,
-    rgba(12, 74, 110, 0.82) 0%,
-    rgba(5, 46, 22, 0.72) 60%,
-    rgba(12, 74, 110, 0.88) 100%
+    rgba(12, 74, 110, 0.48) 0%,
+    rgba(5, 46, 22, 0.38) 60%,
+    rgba(12, 74, 110, 0.58) 100%
   );
 }
 
@@ -236,9 +237,9 @@
 .agri-overlay-soil {
   background: linear-gradient(
     135deg,
-    rgba(120, 53, 15, 0.80) 0%,
-    rgba(5, 46, 22, 0.70) 55%,
-    rgba(120, 53, 15, 0.86) 100%
+    rgba(120, 53, 15, 0.45) 0%,
+    rgba(5, 46, 22, 0.35) 55%,
+    rgba(120, 53, 15, 0.55) 100%
   );
 }
 
@@ -246,9 +247,9 @@
 .agri-overlay-risk {
   background: linear-gradient(
     135deg,
-    rgba(127, 29, 29, 0.82) 0%,
-    rgba(5, 46, 22, 0.68) 55%,
-    rgba(120, 53, 15, 0.84) 100%
+    rgba(127, 29, 29, 0.48) 0%,
+    rgba(5, 46, 22, 0.35) 55%,
+    rgba(120, 53, 15, 0.52) 100%
   );
 }
 
@@ -256,9 +257,9 @@
 .agri-overlay-weather {
   background: linear-gradient(
     135deg,
-    rgba(3, 105, 161, 0.82) 0%,
-    rgba(5, 46, 22, 0.68) 55%,
-    rgba(3, 105, 161, 0.88) 100%
+    rgba(3, 105, 161, 0.48) 0%,
+    rgba(5, 46, 22, 0.35) 55%,
+    rgba(3, 105, 161, 0.58) 100%
   );
 }
 
@@ -266,42 +267,37 @@
 .agri-overlay-impact {
   background: linear-gradient(
     135deg,
-    rgba(120, 53, 15, 0.78) 0%,
-    rgba(5, 46, 22, 0.72) 50%,
-    rgba(202, 138, 4, 0.78) 100%
+    rgba(120, 53, 15, 0.45) 0%,
+    rgba(5, 46, 22, 0.35) 50%,
+    rgba(202, 138, 4, 0.48) 100%
   );
 }
 
-/* ── Glassmorphism Panel ── */
+/* ── Transparent Editorial Layers (Replaces Opaque Panels) ── */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.10);
-  backdrop-filter: blur(14px) saturate(150%);
-  -webkit-backdrop-filter: blur(14px) saturate(150%);
-  border: 1px solid rgba(255, 255, 255, 0.20);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 1rem;
 }
 
 .glass-panel-dark {
-  background: rgba(5, 46, 22, 0.50);
-  backdrop-filter: blur(16px) saturate(160%);
-  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  background: transparent;
   border: 1px solid rgba(16, 185, 129, 0.25);
   border-radius: 1rem;
 }
 
 .glass-card {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: 0.75rem;
-  transition: background 0.25s ease, border-color 0.25s ease;
+  transition: all 0.25s ease;
 }
 
 .glass-card:hover {
-  background: rgba(255, 255, 255, 0.14);
-  border-color: rgba(16, 185, 129, 0.40);
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(16, 185, 129, 0.45);
 }
+
 
 /* ── Gradient Text ── */
 .text-gradient-agri {
@@ -439,20 +435,66 @@
   animation: subtlePulse 3s ease-in-out infinite;
 }
 
-/* ── Premium card on dark hero ── */
+/* ── Transparent Hero Stat Card ── */
 .hero-stat-card {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 0.875rem;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  transition: background 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .hero-stat-card:hover {
-  background: rgba(255, 255, 255, 0.14);
-  border-color: rgba(16, 185, 129, 0.4);
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(16, 185, 129, 0.45);
 }
+
+/* ── Transparent Information Layer Classes ── */
+.floating-layer {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.floating-card {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1rem;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.floating-card:hover {
+  border-color: rgba(16, 185, 129, 0.45);
+  background: rgba(255, 255, 255, 0.03);
+  transform: translateY(-2px);
+}
+
+.text-shadow-agri {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85), 0 2px 8px rgba(0, 0, 0, 0.65);
+}
+
+.text-shadow-lg-agri {
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9), 0 4px 16px rgba(0, 0, 0, 0.7);
+}
+
+.agri-heading-glow {
+  text-shadow: 0 0 24px rgba(16, 185, 129, 0.35), 0 2px 6px rgba(0, 0, 0, 0.9);
+}
+
+.editorial-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.15) 20%, rgba(16, 185, 129, 0.4) 50%, rgba(255, 255, 255, 0.15) 80%, transparent 100%);
+  margin: 2rem 0;
+}
+
+.agri-keyword-float {
+  display: inline;
+  font-weight: 600;
+  color: #6ee7b7;
+  text-decoration: underline;
+  text-decoration-color: rgba(16, 185, 129, 0.45);
+  text-underline-offset: 3px;
+}
+
 
 /* ── Background section themes ── */
 
@@ -502,19 +544,6 @@
   background: #10b981;
 }
 
-/* ── Telemetry Grid & Accent Framing ── */
-.telemetry-card {
-  position: relative;
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 0.75rem;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.telemetry-card:hover {
-  border-color: #a7f3d0;
-  box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.10), 0 8px 10px -6px rgba(16, 185, 129, 0.06);
-}
 
 .telemetry-frame {
   position: relative;
