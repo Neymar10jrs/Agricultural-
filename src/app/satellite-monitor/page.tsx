@@ -13,7 +13,6 @@ export default function SatelliteMonitorPage() {
   return (
     <div>
       <SectionHero
-        imageSrc="/resources/satellite-monitor/wallpaper.png"
         theme="satellite"
         label={isHi ? 'सैटेलाइट इंटेलिजेंस हब' : 'SATELLITE INTELLIGENCE HUB'}
 

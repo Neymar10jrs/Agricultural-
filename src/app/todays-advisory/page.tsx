@@ -42,7 +42,6 @@ export default function TodaysAdvisoryPage() {
   return (
     <div className="space-y-0">
       <SectionHero
-        imageSrc="/resources/todays-advisory/wallpaper.png"
         theme="forest"
         label={dict.advisories.actionCenter}
 

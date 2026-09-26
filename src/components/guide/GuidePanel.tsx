@@ -32,6 +32,7 @@ export function GuidePanel({ onPanelRectChange }: GuidePanelProps) {
     finishGuide,
     dontShowAgain,
     setDontShowAgain,
+    focusLockState,
   } = useGuide();
 
   const { language } = useApp();
@@ -155,6 +156,10 @@ export function GuidePanel({ onPanelRectChange }: GuidePanelProps) {
       aria-label="Interactive Smart Guide"
       aria-live="polite"
       className={`fixed z-50 transition-all duration-300 ease-out ${
+        focusLockState === 'locked'
+          ? 'opacity-100 pointer-events-auto scale-100'
+          : 'opacity-0 pointer-events-none scale-95'
+      } ${
         panelPosition.isMobile
           ? 'left-3 right-3 bottom-3 w-auto max-w-none'
           : 'w-[440px] max-w-[calc(100vw-32px)]'

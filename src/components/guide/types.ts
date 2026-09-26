@@ -1,5 +1,7 @@
 export type GuideLayer = 'global' | 'page';
 
+export type FocusLockState = 'focusing' | 'locked';
+
 export type PlacementPreference = 'top' | 'bottom' | 'left' | 'right' | 'auto';
 
 export interface GuideStep {

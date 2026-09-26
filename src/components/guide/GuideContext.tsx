@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect, useCallback, useRef } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { GuideConfig, GuideStep, TargetRect } from './types';
+import { GuideConfig, GuideStep, TargetRect, FocusLockState } from './types';
 import { GLOBAL_GUIDE, PAGE_GUIDES } from './guideConfig';
 
 interface GuideContextType {
@@ -13,6 +13,7 @@ interface GuideContextType {
   totalSteps: number;
   targetRect: TargetRect | null;
   targetElement: HTMLElement | null;
+  focusLockState: FocusLockState;
   isModalOpen: boolean;
   dontShowAgain: boolean;
   availablePageGuide: GuideConfig | null;
@@ -50,9 +51,28 @@ export function GuideProvider({ children }: { children: React.ReactNode }) {
   const [dontShowAgain, setDontShowAgainState] = useState(false);
   const [completedGuides, setCompletedGuides] = useState<string[]>([]);
   const [mounted, setMounted] = useState(false);
+  const [focusLockState, setFocusLockState] = useState<FocusLockState>('focusing');
 
   const retryTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const rafIdRef = useRef<number | null>(null);
+  const lockTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Trigger autofocus lock sequence on tour start and step changes
+  useEffect(() => {
+    if (isActive) {
+      setFocusLockState('focusing');
+      if (lockTimeoutRef.current) clearTimeout(lockTimeoutRef.current);
+      lockTimeoutRef.current = setTimeout(() => {
+        setFocusLockState('locked');
+      }, 300);
+    } else {
+      setFocusLockState('focusing');
+      if (lockTimeoutRef.current) clearTimeout(lockTimeoutRef.current);
+    }
+    return () => {
+      if (lockTimeoutRef.current) clearTimeout(lockTimeoutRef.current);
+    };
+  }, [isActive, currentStepIndex]);
 
   // Identify current available page guide
   const availablePageGuide = PAGE_GUIDES[pathname] || null;
@@ -391,6 +411,7 @@ export function GuideProvider({ children }: { children: React.ReactNode }) {
         totalSteps,
         targetRect,
         targetElement,
+        focusLockState,
         isModalOpen,
         dontShowAgain,
         availablePageGuide,

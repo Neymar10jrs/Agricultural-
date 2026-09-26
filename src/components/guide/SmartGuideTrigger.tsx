@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Compass, Sparkles } from 'lucide-react';
+import { Compass, Sparkles, Focus } from 'lucide-react';
 import { useGuide } from './GuideContext';
 import { useApp } from '@/context/AppContext';
 import { CameraSpotlight } from './CameraSpotlight';
@@ -12,27 +12,27 @@ import { SmartGuideModal } from './SmartGuideModal';
  * SmartGuideNavButton: Designed for inclusion inside Navbar.tsx
  */
 export function SmartGuideNavButton() {
-  const { openGuideModal, isActive } = useGuide();
+  const { startPageTour, isActive } = useGuide();
   const { language } = useApp();
   const isHi = language === 'hi';
 
   return (
     <button
       id="nav-smart-guide"
-      onClick={openGuideModal}
+      onClick={() => startPageTour()}
       className={`flex items-center gap-1.5 px-2.5 py-1 rounded-xl text-xs font-bold transition shadow-xs ${
         isActive
           ? 'bg-emerald-600 text-white border border-emerald-400'
           : 'bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300/80 hover:border-emerald-400'
       }`}
-      title={isHi ? 'बीकेआईएन स्मार्ट गाइड' : 'BKIN Smart Guide'}
-      aria-label="Open Smart Guide"
+      title={isHi ? 'बीकेआईएन कैमरा टूर' : 'BKIN Camera Tour'}
+      aria-label="Guide"
     >
       <span className="relative flex h-2 w-2">
         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
         <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600"></span>
       </span>
-      <span>🎯</span>
+      <Focus className="w-3.5 h-3.5 text-emerald-700" />
       <span className="hidden xl:inline">{isHi ? 'गाइड' : 'Guide'}</span>
     </button>
   );

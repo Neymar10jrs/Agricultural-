@@ -142,7 +142,6 @@ export default function MyFarmPage() {
     <div className="space-y-0">
       {/* Farm Identity Hero */}
       <SectionHero
-        imageSrc="/resources/my-farm/wallpaper.png"
         theme="forest"
         label={isHi ? 'मेरी खेत पहचान' : 'MY FARM IDENTITY'}
         heading={<span className="text-gradient-agri">{activeFarm?.name || farm.name}</span>}

@@ -8,8 +8,11 @@ interface CameraSpotlightProps {
 }
 
 export function CameraSpotlight({ panelRect }: CameraSpotlightProps) {
-  const { isActive, targetRect, currentStepIndex, currentStep, skipGuide } = useGuide();
+  const { isActive, targetRect, currentStepIndex, skipGuide, focusLockState } = useGuide();
   const [windowDimensions, setWindowDimensions] = useState({ width: 0, height: 0 });
+
+  const isFocusing = focusLockState === 'focusing';
+  const isLocked = focusLockState === 'locked';
 
   useEffect(() => {
     const updateSize = () => {
@@ -161,17 +164,88 @@ export function CameraSpotlight({ panelRect }: CameraSpotlightProps) {
         }}
       >
         {/* Soft glowing perimeter border */}
-        <div className="absolute inset-0 rounded-xl border border-emerald-400/70 shadow-[0_0_30px_rgba(16,185,129,0.35)] animate-pulse" />
+        <div className={`absolute inset-0 rounded-xl border transition-all duration-300 ${
+          isLocked
+            ? 'border-emerald-400/90 shadow-[0_0_24px_rgba(16,185,129,0.4)]'
+            : 'border-emerald-300/40 shadow-[0_0_12px_rgba(16,185,129,0.2)]'
+        }`} />
 
-        {/* Corner Viewfinder Brackets */}
+        {/* Four L-shaped Corner Brackets (SVG) with 300ms Scale-in & Autofocus Lock */}
         {/* Top-Left */}
-        <div className="absolute -top-1.5 -left-1.5 w-5 h-5 border-t-2 border-l-2 border-emerald-300 rounded-tl shadow-[0_0_8px_#34d399]" />
+        <div className={`absolute -top-2.5 -left-2.5 w-6 h-6 transition-transform duration-300 ease-out origin-top-left ${
+          isFocusing ? 'scale-125 -translate-x-1.5 -translate-y-1.5' : 'scale-100 translate-x-0 translate-y-0'
+        }`}>
+          <svg
+            className={`w-full h-full drop-shadow-sm ${isLocked ? 'anim-focus-lock text-white' : 'text-emerald-300'}`}
+            viewBox="0 0 24 24"
+            fill="none"
+          >
+            <path
+              d="M 4 20 L 4 4 L 20 4"
+              stroke="currentColor"
+              strokeWidth="3.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </div>
+
         {/* Top-Right */}
-        <div className="absolute -top-1.5 -right-1.5 w-5 h-5 border-t-2 border-r-2 border-emerald-300 rounded-tr shadow-[0_0_8px_#34d399]" />
+        <div className={`absolute -top-2.5 -right-2.5 w-6 h-6 transition-transform duration-300 ease-out origin-top-right ${
+          isFocusing ? 'scale-125 translate-x-1.5 -translate-y-1.5' : 'scale-100 translate-x-0 translate-y-0'
+        }`}>
+          <svg
+            className={`w-full h-full drop-shadow-sm ${isLocked ? 'anim-focus-lock text-white' : 'text-emerald-300'}`}
+            viewBox="0 0 24 24"
+            fill="none"
+          >
+            <path
+              d="M 4 4 L 20 4 L 20 20"
+              stroke="currentColor"
+              strokeWidth="3.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </div>
+
         {/* Bottom-Left */}
-        <div className="absolute -bottom-1.5 -left-1.5 w-5 h-5 border-b-2 border-l-2 border-emerald-300 rounded-bl shadow-[0_0_8px_#34d399]" />
+        <div className={`absolute -bottom-2.5 -left-2.5 w-6 h-6 transition-transform duration-300 ease-out origin-bottom-left ${
+          isFocusing ? 'scale-125 -translate-x-1.5 translate-y-1.5' : 'scale-100 translate-x-0 translate-y-0'
+        }`}>
+          <svg
+            className={`w-full h-full drop-shadow-sm ${isLocked ? 'anim-focus-lock text-white' : 'text-emerald-300'}`}
+            viewBox="0 0 24 24"
+            fill="none"
+          >
+            <path
+              d="M 4 4 L 4 20 L 20 20"
+              stroke="currentColor"
+              strokeWidth="3.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </div>
+
         {/* Bottom-Right */}
-        <div className="absolute -bottom-1.5 -right-1.5 w-5 h-5 border-b-2 border-r-2 border-emerald-300 rounded-br shadow-[0_0_8px_#34d399]" />
+        <div className={`absolute -bottom-2.5 -right-2.5 w-6 h-6 transition-transform duration-300 ease-out origin-bottom-right ${
+          isFocusing ? 'scale-125 translate-x-1.5 translate-y-1.5' : 'scale-100 translate-x-0 translate-y-0'
+        }`}>
+          <svg
+            className={`w-full h-full drop-shadow-sm ${isLocked ? 'anim-focus-lock text-white' : 'text-emerald-300'}`}
+            viewBox="0 0 24 24"
+            fill="none"
+          >
+            <path
+              d="M 4 20 L 20 20 L 20 4"
+              stroke="currentColor"
+              strokeWidth="3.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </div>
 
         {/* Center Edge Crosshairs */}
         <div className="absolute top-1/2 -left-2 w-1.5 h-0.5 bg-emerald-400/80 -translate-y-1/2" />
@@ -181,8 +255,8 @@ export function CameraSpotlight({ panelRect }: CameraSpotlightProps) {
 
         {/* Camera HUD Reticle Badge */}
         <div className="absolute -top-8 left-0 flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-slate-950/95 border border-emerald-500/80 text-[10px] font-mono tracking-wider text-emerald-300 shadow-md">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping inline-block" />
-          <span className="font-bold">⊙ CAMERA FOCUS LOCK</span>
+          <span className={`w-2 h-2 rounded-full inline-block ${isLocked ? 'bg-emerald-400 animate-pulse' : 'bg-white animate-ping'}`} />
+          <span className="font-bold">{isLocked ? '⊙ CAMERA FOCUS LOCK' : '◎ AUTOFOCUSING...'}</span>
           <span className="text-slate-400">|</span>
           <span className="text-emerald-400/90 font-semibold">
             STEP {currentStepIndex + 1}
