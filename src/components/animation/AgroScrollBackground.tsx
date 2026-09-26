@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useState, useCallback, ReactNode } from 'react';
+import React, { useEffect, useRef, useCallback, ReactNode } from 'react';
 
 export interface AgroScrollBackgroundProps {
   children?: ReactNode;
@@ -30,12 +30,6 @@ export function AgroScrollBackground({
   const animFrameIdRef = useRef<number | null>(null);
   const isMountedRef = useRef<boolean>(true);
   const prefersReducedMotionRef = useRef<boolean>(false);
-
-  // UI status states
-  const [loadPercent, setLoadPercent] = useState<number>(0);
-  const [isReady, setIsReady] = useState<boolean>(false);
-  const [currentFrameNumber, setCurrentFrameNumber] = useState<number>(1);
-  const [scrollPct, setScrollPct] = useState<number>(0);
 
   // Helper to format frame path
   const getFrameUrl = useCallback(
@@ -143,7 +137,6 @@ export function AgroScrollBackground({
 
     const images = imagesRef.current;
     const loadedFlags = loadedFlagsRef.current;
-    let totalLoadedCount = 0;
 
     const loadImage = (index: number, priority = false): Promise<void> => {
       return new Promise((resolve) => {
@@ -158,14 +151,11 @@ export function AgroScrollBackground({
           if (!isMountedRef.current) return;
           images[index] = img;
           loadedFlags[index] = true;
-          totalLoadedCount++;
 
           if (index === 0) {
             renderFrame(0, 0);
-            setIsReady(true);
           }
 
-          setLoadPercent(Math.round((totalLoadedCount / totalFrames) * 100));
           resolve();
         };
         img.onerror = () => {
@@ -225,8 +215,6 @@ export function AgroScrollBackground({
 
   // Main 60 FPS requestAnimationFrame Scroll Loop
   useEffect(() => {
-    let lastReportedFrame = -1;
-
     const tick = () => {
       if (prefersReducedMotionRef.current) {
         renderFrame(149, 0);
@@ -251,13 +239,6 @@ export function AgroScrollBackground({
       const fraction = exactFrame - baseIndex;
 
       renderFrame(baseIndex, fraction);
-
-      // Throttled UI status updates
-      if (baseIndex !== lastReportedFrame) {
-        lastReportedFrame = baseIndex;
-        setCurrentFrameNumber(baseIndex + 1);
-        setScrollPct(Math.round(progress * 100));
-      }
 
       animFrameIdRef.current = requestAnimationFrame(tick);
     };
@@ -329,39 +310,6 @@ export function AgroScrollBackground({
         {children}
       </div>
 
-      {/* Layer 5: Floating Minimal Scroll Progress HUD & Creator Credit */}
-      <div className="fixed bottom-5 left-4 right-4 sm:left-8 sm:right-8 z-40 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white pointer-events-none">
-        {/* Creator Credit (Requested: "Made by Rohit Kushwaha") */}
-        <div className="bg-black/75 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-emerald-500/40 flex items-center gap-2 shadow-2xl pointer-events-auto">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="text-[11px] text-slate-300 font-medium">
-            Made by <strong className="text-emerald-300 font-bold">Rohit Kushwaha</strong>
-          </span>
-        </div>
-
-        {/* Minimal 001 ━━━━━━━━━━━━━━━ 300 Track */}
-        <div className="bg-black/75 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 flex items-center gap-3 shadow-2xl pointer-events-auto">
-          <span className="font-mono text-emerald-400 font-bold text-[11px]">001</span>
-          <div className="w-28 sm:w-44 h-1.5 bg-white/20 rounded-full overflow-hidden relative">
-            <div
-              className="h-full bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-400 rounded-full transition-all duration-75"
-              style={{ width: `${scrollPct}%` }}
-            />
-          </div>
-          <span className="font-mono text-slate-300 font-bold text-[11px]">300</span>
-          <span className="text-[10px] text-emerald-300/90 font-mono pl-1.5 border-l border-white/20">
-            FRAME {String(currentFrameNumber).padStart(3, '0')}/300
-          </span>
-        </div>
-      </div>
-
-      {/* Preload Status Indicator (Fades out when fully ready) */}
-      {!isReady && (
-        <div className="fixed top-20 right-6 z-40 bg-black/85 backdrop-blur-md px-3 py-1.5 rounded-xl border border-emerald-500/30 text-[10px] text-emerald-300 font-mono flex items-center gap-2 shadow-xl">
-          <div className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-          <span>Loading Agro Animation: {loadPercent}%</span>
-        </div>
-      )}
     </div>
   );
 }
