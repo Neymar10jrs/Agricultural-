@@ -569,10 +569,10 @@ export function NationalRiskObservatory() {
                   </Link>
 
                   <Link
-                    href={`/farm-digital-twin`}
+                    href="/my-farm"
                     className="p-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-bold text-center transition flex items-center justify-center gap-1 shadow-sm"
                   >
-                    <span>{isHi ? 'खेत स्तर पर देखें' : 'View Farm Twin'}</span>
+                    <span>{isHi ? 'खेत स्तर पर देखें' : 'View Farm Level'}</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>

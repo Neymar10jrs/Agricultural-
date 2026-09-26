@@ -5,6 +5,15 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
+  async redirects() {
+    return [
+      {
+        source: '/farm-digital-twin',
+        destination: '/my-farm',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

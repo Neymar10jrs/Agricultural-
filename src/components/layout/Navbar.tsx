@@ -6,46 +6,31 @@ import { usePathname } from 'next/navigation';
 import {
   Sprout,
   Mic,
-  Globe,
-  ChevronDown,
   Menu,
   X,
-  Shield,
   Activity,
   CloudSun,
   Eye,
-  Layers,
   Sparkles,
-  BookOpen,
-  AlertTriangle,
-  Code,
-  Building2,
-  SlidersHorizontal,
   ShieldAlert,
-  BarChart3,
   Bell,
-  Users,
-  TrendingUp,
-  Cpu,
   User,
   LogOut,
   Check,
   Copy,
+  SlidersHorizontal,
+  ChevronDown,
+  Layers,
 } from 'lucide-react';
 import { useApp } from '@/context/AppContext';
 import { useAuth } from '@/context/AuthContext';
-import { supportedLanguages } from '@/i18n';
 import { SmartGuideNavButton } from '@/components/guide';
-
 
 export function Navbar() {
   const pathname = usePathname();
-  const { language, setLanguage, t, dict, openAskKrishi, isHighContrast, toggleHighContrast, userMode, setUserMode } = useApp();
+  const { language, setLanguage, t, dict, openAskKrishi, isHighContrast, toggleHighContrast } = useApp();
   const { user, profile, signOut } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [langDropdownOpen, setLangDropdownOpen] = useState(false);
-  const [moreDropdownOpen, setMoreDropdownOpen] = useState(false);
-  const [modeDropdownOpen, setModeDropdownOpen] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
   const [copiedNavId, setCopiedNavId] = useState(false);
 
@@ -58,58 +43,22 @@ export function Navbar() {
     }
   };
 
-
   const mainNavLinks = [
     { href: '/my-farm', label: dict.nav.myFarm, icon: Sprout, id: 'nav-my-farm' },
-    { href: '/farm-digital-twin', label: dict.nav.farmTwin, icon: Layers, id: 'nav-farm-digital-twin' },
     { href: '/risk-center', label: dict.nav.riskCenter, icon: ShieldAlert, id: 'nav-risk-center' },
     { href: '/crop-doctor', label: dict.nav.cropDoctor, icon: Activity, id: 'nav-crop-doctor' },
     { href: '/todays-advisory', label: dict.nav.todaysAdvisory, icon: Sparkles, id: 'nav-todays-advisory' },
+    { href: '/satellite-monitor', label: dict.nav.satelliteMonitor, icon: Eye, id: 'nav-satellite' },
+    { href: '/weather', label: dict.nav.weather, icon: CloudSun, id: 'nav-weather' },
+    { href: '/alert-center', label: dict.nav.alertCenter, icon: Bell, id: 'nav-alert' },
   ];
 
-  const moreNavLinks = [
-    {
-      section: dict.nav.sections.intelligence,
-      links: [
-        { href: '/alert-center', label: `🔔 ${dict.nav.alertCenter}`, desc: language === 'hi' ? 'गंभीर, उच्च व मध्यम अलर्ट' : 'Critical, high, moderate & info alerts' },
-        { href: '/expert-connect', label: `👨‍🌾 ${dict.nav.expertConnect}`, desc: language === 'hi' ? 'प्रमाणित कृषि वैज्ञानिकों से पूछें' : 'Ask certified agricultural officers' },
-        { href: '/impact', label: `📊 ${dict.nav.impact}`, desc: language === 'hi' ? 'पायलट कार्यक्रम परिणाम' : 'Demo pilot program outcomes' },
-        { href: '/scenario-simulator', label: `🔮 ${dict.nav.scenarioSimulator}`, desc: language === 'hi' ? 'फसल व इनपुट सिमुलेशन' : 'What-if crop & input simulations' },
-      ],
-    },
-    {
-      section: dict.nav.sections.fieldData,
-      links: [
-        { href: '/weather', label: dict.nav.weather, desc: language === 'hi' ? 'लाइव कृषि-मौसम पूर्वानुमान' : 'Live agro-met forecast' },
-        { href: '/soil-health', label: dict.nav.soilHealth, desc: language === 'hi' ? 'एनपीके, कार्बन, पीएच व नमी' : 'NPK, OC, pH and moisture' },
-        { href: '/satellite-monitor', label: dict.nav.satelliteMonitor, desc: language === 'hi' ? 'एनडीवीआई व वनस्पति विश्लेषण' : 'NDVI and vegetation analytics' },
-        { href: '/early-warnings', label: dict.nav.earlyWarnings, desc: language === 'hi' ? 'बहु-आपदा निगरानी फीड' : 'Multi-hazard surveillance feed' },
-      ],
-    },
-    {
-      section: dict.nav.sections.knowledge,
-      links: [
-        { href: '/climate-smart', label: dict.nav.climateSmart, desc: language === 'hi' ? 'तुलनात्मक कृषि परिदृश्य' : 'Comparative farming scenarios' },
-        { href: '/regenerative-ag', label: dict.nav.regenerativeAg, desc: language === 'hi' ? 'मृदा कार्बन व संरक्षण' : 'Soil carbon & conservation' },
-        { href: '/disease-library', label: dict.nav.diseaseLibrary, desc: language === 'hi' ? 'रोग व कीट खोज डेटाबेस' : 'Searchable pest & disease database' },
-        { href: '/india-network', label: dict.nav.indiaNetwork, desc: language === 'hi' ? 'राज्य नोड्स व कृषि-जलवायु क्षेत्र' : 'Federated states & agro-zones' },
-      ],
-    },
-    {
-      section: dict.nav.sections.platform,
-      links: [
-        { href: '/state-dashboard', label: dict.nav.stateDashboard, desc: language === 'hi' ? 'क्षेत्रीय कृषि एनालिटिक्स' : 'Regional agricultural analytics' },
-        { href: '/officer-dashboard', label: dict.nav.officerDashboard, desc: language === 'hi' ? 'अलर्ट, हॉटस्पॉट व स्काउट रिपोर्ट' : 'Alerts, hotspots & scout reports' },
-        { href: '/open-apis', label: dict.nav.openApis, desc: language === 'hi' ? 'डिजिटल पब्लिक गुड एंडपॉइंट्स' : 'Digital public good endpoints' },
-        { href: '/ai-engine', label: dict.nav.aiEngine, desc: language === 'hi' ? 'मल्टी-मॉडल इंटेलिजेंस पाइपलाइन' : 'Multi-modal intelligence pipeline' },
-        { href: '/privacy-trust', label: dict.nav.privacyTrust, desc: language === 'hi' ? 'सहमति व संप्रभुता चार्टर' : 'Consent & sovereignty charter' },
-        { href: '/about', label: dict.nav.about, desc: language === 'hi' ? 'मिशन, दृष्टिकोण व इकोसिस्टम' : 'Vision, ecosystem & public mission' },
-      ],
-    },
+  const secondaryNavLinks = [
+    { href: '/soil-health', label: dict.nav.soilHealth },
+    { href: '/early-warnings', label: dict.nav.earlyWarnings },
+    { href: '/expert-connect', label: dict.nav.expertConnect },
+    { href: '/impact', label: dict.nav.impact },
   ];
-
-  // Flatten for mobile menu
-  const allMoreLinks = moreNavLinks.flatMap((s) => s.links);
 
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-200">
@@ -145,7 +94,7 @@ export function Navbar() {
 
           {/* Desktop Navigation Links */}
           <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
-            {mainNavLinks.slice(0, 5).map((link) => {
+            {mainNavLinks.map((link) => {
               const isActive = pathname === link.href;
               const Icon = link.icon;
               return (
@@ -164,49 +113,6 @@ export function Navbar() {
                 </Link>
               );
             })}
-
-            {/* More Dropdown */}
-            <div className="relative" id="nav-more">
-              <button
-                onClick={() => setMoreDropdownOpen(!moreDropdownOpen)}
-                onBlur={() => setTimeout(() => setMoreDropdownOpen(false), 200)}
-                className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition"
-              >
-                <span>{dict.nav.more}</span>
-                <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
-              </button>
-
-              {moreDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-80 bg-white rounded-xl shadow-xl border border-slate-200 py-2 z-50 max-h-[80vh] overflow-y-auto">
-                  {moreNavLinks.map((section) => (
-                    <div key={section.section}>
-                      <div className="px-3 pt-2 pb-1 text-[9px] uppercase font-bold text-slate-400 tracking-wider border-b border-slate-100 mb-1">
-                        {section.section}
-                      </div>
-                      {section.links.map((item) => (
-                        <Link
-                          key={item.href}
-                          href={item.href}
-                          onClick={() => setMoreDropdownOpen(false)}
-                          className={`block px-3 py-1.5 hover:bg-emerald-50/70 transition rounded-md mx-1 ${
-                            pathname === item.href ? 'bg-emerald-50' : ''
-                          }`}
-                        >
-                          <div
-                            className={`text-xs font-semibold ${
-                              pathname === item.href ? 'text-emerald-800' : 'text-slate-800'
-                            }`}
-                          >
-                            {item.label}
-                          </div>
-                          <div className="text-[10px] text-slate-500">{item.desc}</div>
-                        </Link>
-                      ))}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
           </nav>
 
           {/* Right Action Controls: Voice AI + Bilingual Toggle + Accessibility */}
@@ -229,56 +135,6 @@ export function Navbar() {
 
             {/* Smart Guide Button */}
             <SmartGuideNavButton />
-
-            {/* User Mode Switcher: Farmer | Expert | Institution (Phases 14 & 15) */}
-            <div className="relative hidden md:block">
-              <button
-                onClick={() => setModeDropdownOpen(!modeDropdownOpen)}
-                onBlur={() => setTimeout(() => setModeDropdownOpen(false), 200)}
-                className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl border border-slate-300 bg-white text-xs font-bold text-slate-800 hover:border-emerald-500 shadow-xs transition"
-                title="Select User Mode"
-              >
-                <span>
-                  {userMode === 'farmer' ? '👨‍🌾 Farmer' : userMode === 'expert' ? '🔬 Expert' : '🏛️ Officer'}
-                </span>
-                <ChevronDown className="w-3 h-3 text-slate-400" />
-              </button>
-
-              {modeDropdownOpen && (
-                <div className="absolute right-0 mt-1.5 w-48 bg-white rounded-xl shadow-xl border border-slate-200 py-1.5 z-50 text-xs">
-                  <div className="px-3 py-1 text-[9px] uppercase font-bold text-slate-400 border-b border-slate-100 mb-1">
-                    Select Mode (प्रारूप)
-                  </div>
-                  <button
-                    onClick={() => setUserMode('farmer')}
-                    className={`w-full px-3 py-1.5 text-left font-semibold flex items-center justify-between hover:bg-emerald-50 ${
-                      userMode === 'farmer' ? 'text-emerald-800 bg-emerald-50/70 font-bold' : 'text-slate-700'
-                    }`}
-                  >
-                    <span>👨‍🌾 {language === 'hi' ? 'किसान मोड' : 'Farmer Mode'}</span>
-                    {userMode === 'farmer' && <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />}
-                  </button>
-                  <button
-                    onClick={() => setUserMode('expert')}
-                    className={`w-full px-3 py-1.5 text-left font-semibold flex items-center justify-between hover:bg-emerald-50 ${
-                      userMode === 'expert' ? 'text-emerald-800 bg-emerald-50/70 font-bold' : 'text-slate-700'
-                    }`}
-                  >
-                    <span>🔬 {language === 'hi' ? 'वैज्ञानिक / विशेषज्ञ' : 'Expert Agronomist'}</span>
-                    {userMode === 'expert' && <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />}
-                  </button>
-                  <button
-                    onClick={() => setUserMode('institution')}
-                    className={`w-full px-3 py-1.5 text-left font-semibold flex items-center justify-between hover:bg-emerald-50 ${
-                      userMode === 'institution' ? 'text-emerald-800 bg-emerald-50/70 font-bold' : 'text-slate-700'
-                    }`}
-                  >
-                    <span>🏛️ {language === 'hi' ? 'अधिकारी / संस्थान' : 'State Officer'}</span>
-                    {userMode === 'institution' && <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />}
-                  </button>
-                </div>
-              )}
-            </div>
 
             {/* Language Selector: English | हिंदी Toggle (Phase 1 Requirement) */}
             <div id="nav-language" className="flex items-center rounded-xl border border-slate-300 bg-slate-100 p-0.5 shadow-inner">
@@ -572,9 +428,9 @@ export function Navbar() {
             })}
 
             <div className="pt-3 px-2 py-1 text-[10px] font-bold uppercase text-slate-400">
-              {dict.nav.sections.knowledge} & {dict.nav.sections.fieldData}
+              {dict.nav.sections.platform}
             </div>
-            {allMoreLinks.map((item) => (
+            {secondaryNavLinks.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}

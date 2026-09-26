@@ -366,7 +366,7 @@ export default function RiskCenterPage() {
   return (
     <div>
       <SectionHero
-        imageSrc="/assets/risk/drought-risk.svg"
+        imageSrc="/resources/risk-center/wallpaper.png"
         theme="risk"
         label={isHi ? 'खेत स्तरीय जोखिम इंजन' : 'FARM-LEVEL RISK ENGINE'}
 

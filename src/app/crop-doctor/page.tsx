@@ -179,7 +179,7 @@ export default function CropDoctorPage() {
   return (
     <div>
       <SectionHero
-        imageSrc="/assets/crop-health/canopy-ndvi.svg"
+        imageSrc="/resources/crop-doctor/wallpaper.png"
         theme="forest"
         label={isHi ? 'AI फसल निदान प्रणाली' : 'AI CROP DIAGNOSTIC SYSTEM'}
 

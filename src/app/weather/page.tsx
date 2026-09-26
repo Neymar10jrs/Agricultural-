@@ -33,7 +33,7 @@ export default function WeatherPage() {
   return (
     <div className="space-y-0">
       <SectionHero
-        imageSrc="/assets/weather/weather-radar.svg"
+        imageSrc="/resources/weather/wallpaper.png"
         theme="weather"
         label={isHi ? 'आईएमडी कृषि-मौसम नेटवर्क' : 'IMD AGRO-METEOROLOGICAL NETWORK'}
 

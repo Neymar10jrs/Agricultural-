@@ -53,11 +53,6 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/farm-digital-twin" className="hover:text-emerald-400 transition">
-                  {dict.nav.farmTwin}
-                </Link>
-              </li>
-              <li>
                 <Link href="/risk-center" className="hover:text-emerald-400 transition">
                   {dict.nav.riskCenter}
                 </Link>

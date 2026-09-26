@@ -278,10 +278,10 @@ export function IndiaFarmDrillDown() {
 
           <div className="flex items-center gap-2 shrink-0">
             <Link
-              href="/farm-digital-twin"
+              href="/my-farm"
               className="px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-xs transition flex items-center gap-1.5 shadow-lg shadow-emerald-500/20"
             >
-              <span>{isHi ? 'डिजिटल ट्विन खोलें' : 'Open Farm Twin'}</span>
+              <span>{isHi ? 'मेरा खेत खोलें' : 'Open My Farm'}</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
@@ -573,10 +573,10 @@ export function IndiaFarmDrillDown() {
 
             <div className="flex items-center gap-2 shrink-0">
               <Link
-                href="/farm-digital-twin"
+                href="/my-farm"
                 className="px-5 py-2.5 rounded-xl bg-emerald-800 hover:bg-emerald-900 text-white font-extrabold text-xs transition flex items-center gap-1.5 shadow-md"
               >
-                <span>{isHi ? 'डिजिटल ट्विन में पूरी रिपोर्ट देखें' : 'Launch Full Farm Digital Twin'}</span>
+                <span>{isHi ? 'खेत में पूरी रिपोर्ट देखें' : 'Launch Full Farm Intelligence'}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>

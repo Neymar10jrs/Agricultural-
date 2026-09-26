@@ -21,7 +21,7 @@ interface AppContextType {
   isHighContrast: boolean;
   toggleHighContrast: () => void;
   userMode: UserMode;
-  setUserMode: (mode: UserMode) => void;
+  setUserMode?: (mode: UserMode) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -32,7 +32,8 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const [initialVoicePrompt, setInitialVoicePrompt] = useState('');
   const [farm, setFarm] = useState<DemoFarmState>(initialDemoFarm);
   const [isHighContrast, setIsHighContrast] = useState(false);
-  const [userMode, setUserModeState] = useState<UserMode>('farmer');
+  // Single Mode: Farm Mode is the only mode
+  const userMode: UserMode = 'farmer';
 
   // Load persisted preferences
   useEffect(() => {
@@ -44,10 +45,6 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       const savedContrast = localStorage.getItem('bkin_high_contrast');
       if (savedContrast === 'true') {
         setIsHighContrast(true);
-      }
-      const savedMode = localStorage.getItem('bkin_user_mode') as UserMode;
-      if (savedMode && ['farmer', 'expert', 'institution'].includes(savedMode)) {
-        setUserModeState(savedMode);
       }
     } catch {
       // Storage unavailable or disabled
@@ -61,12 +58,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     } catch {}
   };
 
-  const setUserMode = (mode: UserMode) => {
-    setUserModeState(mode);
-    try {
-      localStorage.setItem('bkin_user_mode', mode);
-    } catch {}
-  };
+  const setUserMode = () => {};
 
   const toggleHighContrast = () => {
     setIsHighContrast((prev) => {

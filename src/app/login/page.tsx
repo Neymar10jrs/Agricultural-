@@ -294,7 +294,7 @@ function LoginContent() {
   };
 
   return (
-    <div className="min-h-[85vh] bg-gradient-to-b from-emerald-950 via-slate-900 to-slate-950 py-12 px-4 sm:px-6 lg:px-8 flex flex-col justify-center">
+    <div className="min-h-[85vh] bg-transparent py-12 px-4 sm:px-6 lg:px-8 flex flex-col justify-center relative z-10">
       {/* Invisible reCAPTCHA container required by Firebase Phone Auth */}
       <div id="recaptcha-container"></div>
 
@@ -512,7 +512,7 @@ function LoginContent() {
           </div>
           <div className="bg-slate-900/40 border border-slate-800 rounded-xl p-3 flex items-center gap-2.5">
             <div className="w-2 h-2 rounded-full bg-emerald-400" />
-            <span>Multi-Farm Satellite Twin</span>
+            <span>Multi-Farm Satellite Intelligence</span>
           </div>
           <div className="bg-slate-900/40 border border-slate-800 rounded-xl p-3 flex items-center gap-2.5">
             <div className="w-2 h-2 rounded-full bg-emerald-400" />

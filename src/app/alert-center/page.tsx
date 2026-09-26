@@ -120,7 +120,7 @@ export default function AlertCenterPage() {
   return (
     <div className="space-y-0">
       <SectionHero
-        imageSrc="/assets/risk/drought-risk.svg"
+        imageSrc="/resources/alert-center/wallpaper.png"
         theme="risk"
         label={isHi ? 'बीकेआईएन प्रारंभिक चेतावनी नेटवर्क' : 'BKIN EARLY WARNING NETWORK'}
         heading={

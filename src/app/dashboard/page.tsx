@@ -25,6 +25,7 @@ import {
   PlusCircle,
   Stethoscope,
   Compass,
+  ShieldAlert,
   FileText,
   Clock,
   ExternalLink,
@@ -276,16 +277,16 @@ function DashboardContent() {
               </span>
             </Link>
 
-            {/* Action 3: Farm Digital Twin */}
+            {/* Action 3: Risk Center */}
             <Link
-              href="/farm-digital-twin"
+              href="/risk-center"
               className="bg-[rgba(10,20,15,0.20)] backdrop-blur-[6px] border border-white/10 hover:border-emerald-400/50 hover:bg-[rgba(10,20,15,0.28)] rounded-2xl p-4 flex flex-col items-center text-center gap-2 transition-all group shadow-[0_4px_16px_rgba(0,0,0,0.10)]"
             >
               <div className="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center group-hover:scale-110 transition-transform">
-                <Compass className="w-5 h-5" />
+                <ShieldAlert className="w-5 h-5" />
               </div>
               <span className="text-xs font-semibold text-slate-200">
-                {t.dashboard?.actions?.satelliteTwin || 'Farm Twin'}
+                {t.nav?.riskCenter || 'Risk Center'}
               </span>
             </Link>
 

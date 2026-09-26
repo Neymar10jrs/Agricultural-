@@ -9,6 +9,7 @@ import { MobileNav } from '@/components/layout/MobileNav';
 import { DemoModeBanner } from '@/components/layout/DemoModeBanner';
 import { OfflineIndicator } from '@/components/layout/OfflineIndicator';
 import { AskKrishiModal } from '@/components/ai/AskKrishiModal';
+import { SubpageBackground } from '@/components/layout/SubpageBackground';
 
 export const metadata: Metadata = {
   title: 'Bharat Krishi Intelligence Network (BKIN) — Digital Agriculture Platform',
@@ -61,7 +62,8 @@ export default function RootLayout({
               <DemoModeBanner />
               <OfflineIndicator />
               <Navbar />
-              <main id="main-content" tabIndex={-1} className="flex-1 pb-16 lg:pb-0 outline-none">
+              <SubpageBackground />
+              <main id="main-content" tabIndex={-1} className="flex-1 pb-16 lg:pb-0 outline-none relative z-10">
                 {children}
               </main>
               <Footer />

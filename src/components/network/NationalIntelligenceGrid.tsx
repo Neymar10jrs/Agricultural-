@@ -136,20 +136,20 @@ export function NationalIntelligenceGrid() {
     {
       id: 'farm',
       tier: 6,
-      title: isHi ? 'खेत स्तर (डिजिटल ट्विन)' : 'Farm Plot (Digital Twin)',
+      title: isHi ? 'खेत स्तर (खेत प्रबंधन)' : 'Farm Plot (My Farm)',
       name: isHi ? 'जसवंत सिंह का खेत (2.4 एकड़)' : 'Jaswant Singh Farm (2.4 Acres)',
       code: 'BKIN-PB-LDH-042',
       icon: Sprout,
       color: 'from-emerald-800 to-slate-900',
-      badge: isHi ? 'कार्रवाई योग्य डिजिटल ट्विन' : 'Actionable Digital Twin',
+      badge: isHi ? 'कार्रवाई योग्य खेत बुद्धिमत्ता' : 'Actionable Farm Intelligence',
       metrics: [
         { label: isHi ? 'एनडीवीआई औसत' : 'NDVI Average', val: '0.68 (Good)' },
         { label: isHi ? 'फसल अवस्था' : 'Crop Stage', val: 'Tillering (Day 38)' },
         { label: isHi ? 'आज की कार्रवाई' : 'Action Trigger', val: 'Delay Irrigation 24h' },
       ],
       desc: isHi
-        ? 'उपग्रह, सेंसर और मौसम डेटा से युक्त वास्तविक खेत डिजिटल ट्विन। सटीक उर्वरक व सिंचाई निर्णय।'
-        : 'Individual farm plot digital twin integrating sub-canopy NDVI anomalies, moisture sensors, and precision IPM guidance.',
+        ? 'उपग्रह, सेंसर और मौसम डेटा से युक्त वास्तविक खेत बुद्धिमत्ता। सटीक उर्वरक व सिंचाई निर्णय।'
+        : 'Individual farm plot telemetry integrating sub-canopy NDVI anomalies, moisture sensors, and precision IPM guidance.',
     },
   ];
 
@@ -280,10 +280,10 @@ export function NationalIntelligenceGrid() {
 
                 {activeTier === 5 ? (
                   <Link
-                    href="/farm-digital-twin"
+                    href="/my-farm"
                     className="px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-bold transition flex items-center gap-1.5 shadow-md shrink-0"
                   >
-                    <span>{isHi ? 'पूरा डिजिटल ट्विन खोलें' : 'Open Farm Digital Twin'}</span>
+                    <span>{isHi ? 'खेत विवरण खोलें' : 'Open My Farm'}</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
                 ) : (

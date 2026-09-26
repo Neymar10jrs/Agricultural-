@@ -38,21 +38,6 @@ export const GLOBAL_GUIDE: GuideConfig = {
       featureRoute: '/my-farm',
     },
     {
-      id: 'farm-digital-twin',
-      targetSelector: '#nav-farm-digital-twin',
-      mobileSelector: '#nav-farm-digital-twin',
-      titleEn: 'Farm Digital Twin (डिजिटल प्रतिरूप)',
-      titleHi: 'खेत डिजिटल ट्विन (Farm Digital Twin)',
-      descEn:
-        'A living 1:1 multi-spectral computational model of your field, tracking canopy moisture, tillering progression, and micro-climate stress anomalies.',
-      descHi:
-        'आपके खेत का जीवंत 1:1 मल्टी-स्पेक्ट्रल मॉडल, जो फसल की नमी, वृद्धि चरण और सूक्ष्म-जलवायु तनाव की स्वतः निगरानी करता है।',
-      kisanTipEn: 'Detects invisible moisture stress up to 72 hours before visible leaf wilting occurs.',
-      kisanTipHi: 'पत्तियों के मुरझाने से 72 घंटे पहले ही सूक्ष्म नमी की कमी का स्वतः पता लगाता है।',
-      placement: 'bottom',
-      featureRoute: '/farm-digital-twin',
-    },
-    {
       id: 'risk-center',
       targetSelector: '#nav-risk-center',
       mobileSelector: '#mobile-nav-risk-center',
@@ -112,29 +97,15 @@ export const GLOBAL_GUIDE: GuideConfig = {
       placement: 'bottom',
     },
     {
-      id: 'more-modules',
-      targetSelector: '#nav-more',
-      mobileSelector: '#nav-more',
-      titleEn: 'Deep Telemetry & Knowledge Modules (अन्य सेवाएं)',
-      titleHi: 'गहन टेलीमेट्री व ज्ञान सेवाएं (More Intelligence)',
-      descEn:
-        'Access Sentinel-2 NDVI spectral bands, soil testing cards, 7-day agro-met radar, early warning feeds, and state-level officer dashboards.',
-      descHi:
-        'सेंटिनल-2 एनडीवीआई उपग्रह बैंड, मृदा स्वास्थ्य कार्ड, मौसम रडार, पूर्व-चेतावनी फीड और राज्य स्तरीय डैशबोर्ड तक पहुंचें।',
-      kisanTipEn: 'Includes the National Agricultural Risk Observatory tracking drought and pest hotspots across India.',
-      kisanTipHi: 'भारत भर में सूखा और कीट हॉटस्पॉट ट्रैक करने वाली राष्ट्रीय कृषि जोखिम वेधशाला भी शामिल है।',
-      placement: 'bottom',
-    },
-    {
-      id: 'lang-mode',
+      id: 'bilingual-engine',
       targetSelector: '#nav-language',
       mobileSelector: '#nav-language',
-      titleEn: 'Bilingual Engine & User Persona Mode',
-      titleHi: 'द्विभाषी चयन व उपयोगकर्ता प्रारूप',
+      titleEn: 'Bilingual Engine & Accessibility',
+      titleHi: 'द्विभाषी चयन व सुलभता',
       descEn:
-        'Switch instantly between English and हिंदी with full script localization. Toggle personas between Farmer, Agronomist Expert, and State Officer.',
+        'Switch instantly between English and हिंदी with full script localization across all AI models, advisories, and satellite analyses.',
       descHi:
-        'हिंदी और अंग्रेजी के बीच तुरंत भाषा बदलें। किसान, कृषि वैज्ञानिक या राज्य अधिकारी प्रारूप में डैशबोर्ड अनुकूलित करें।',
+        'हिंदी और अंग्रेजी के बीच तुरंत भाषा बदलें। सभी मॉडल, सलाह और उपग्रह विश्लेषण आपकी चुनी हुई भाषा के अनुसार स्वतः अनुवादित होते हैं।',
       kisanTipEn: 'All AI models and satellite analyses respect your preferred language and accessibility settings.',
       kisanTipHi: 'सभी एआई मॉडल और उपग्रह विश्लेषण आपकी चुनी हुई भाषा के अनुसार स्वतः अनुवादित होते हैं।',
       placement: 'bottom',
@@ -366,82 +337,6 @@ export const PAGE_GUIDES: Record<string, GuideConfig> = {
           'विश्वविद्यालय के मानकों के सापेक्ष 7 दिन, 30 दिन और पूरे सीजन में रोग प्रकोप की संभावना का ग्राफ।',
         kisanTipEn: 'Spikes in the curve indicate upcoming temperature-humidity windows favorable to fungal spores.',
         kisanTipHi: 'ग्राफ में उछाल आगामी दिनों में फफूंद बीजाणुओं के अनुकूल तापमान-नमी की स्थिति को दर्शाता है।',
-        placement: 'top',
-      },
-    ],
-  },
-
-  '/farm-digital-twin': {
-    id: 'farm-digital-twin',
-    layer: 'page',
-    titleEn: 'Farm Digital Twin Guide',
-    titleHi: 'खेत डिजिटल ट्विन मार्गदर्शिका',
-    descriptionEn: 'Inspect the living computational twin of your field synthesized from satellite telemetry and micro-meteorology.',
-    descriptionHi: 'उपग्रह टेलीमेट्री और सूक्ष्म-मौसम विज्ञान से निर्मित अपने खेत के जीवंत डिजिटल प्रतिरूप को समझें।',
-    steps: [
-      {
-        id: 'fdt-health',
-        targetSelector: '#guide-twin-health',
-        titleEn: 'Live Digital Twin Health Index',
-        titleHi: 'सजीव डिजिटल ट्विन स्वास्थ्य सूचकांक',
-        descEn:
-          'Real-time health coefficient combining 5-day Sentinel-2 revisit scans and continuous ground meteorological observations.',
-        descHi:
-          '5-दिवसीय सेंटिनल-2 उपग्रह स्कैन और निरंतर जमीनी मौसम अवलोकनों का वास्तविक समय संयुक्त सूचकांक।',
-        kisanTipEn: 'Acts as your 24/7 digital farm sentry even when you are away from the fields.',
-        kisanTipHi: 'जब आप खेत से दूर हों तब भी यह 24 घंटे आपके खेत की डिजिटल निगरानी करता है।',
-        placement: 'bottom',
-      },
-      {
-        id: 'fdt-factors',
-        targetSelector: '#guide-twin-factors',
-        titleEn: '6-Factor Risk Breakdown Gauge',
-        titleHi: '6-कारकीय जोखिम विश्लेषण गेज',
-        descEn:
-          'Visualizes individual stress components: Weather volatility, Soil organic carbon deficits, root saturation, and vector populations.',
-        descHi:
-          'मौसम की अस्थिरता, मिट्टी में जैविक कार्बन की कमी, जड़ में नमी और कीटों की संख्या का दृश्य विश्लेषण।',
-        kisanTipEn: 'Compare factors side-by-side to prioritize whether irrigation or pest scouting is more urgent.',
-        kisanTipHi: 'तुलना करके जानें कि सिंचाई अधिक आवश्यक है या कीटों की रोकथाम।',
-        placement: 'bottom',
-      },
-      {
-        id: 'fdt-metrics',
-        targetSelector: '#guide-twin-metrics',
-        titleEn: 'Key Telemetry Grid & Sensor Provenance',
-        titleHi: 'प्रमुख टेलीमेट्री ग्रिड व सेंसर स्रोत',
-        descEn:
-          'Live readings of NDVI (0.68), Soil Moisture (32.5%), Canopy Temperature (22.4°C), and Rain Probability (78%) with exact data timestamps.',
-        descHi:
-          'एनडीवीआई (0.68), मिट्टी की नमी (32.5%), पत्तियों का तापमान (22.4°C) और वर्षा संभावना (78%) का सटीक लाइव मापन।',
-        kisanTipEn: 'Every metric shows its data source (ISRO/Copernicus/IMD/Field Probe) for total transparency.',
-        kisanTipHi: 'पूर्ण पारदर्शिता के लिए प्रत्येक माप के साथ डेटा का स्रोत (इसरो/यूरोपीय उपग्रह/मौसम विभाग) प्रदर्शित है।',
-        placement: 'top',
-      },
-      {
-        id: 'fdt-ndvi',
-        targetSelector: '#guide-twin-ndvi',
-        titleEn: 'Historical NDVI Canopy Trend Chart',
-        titleHi: 'ऐतिहासिक एनडीवीआई फसल हरियाली चार्ट',
-        descEn:
-          'Area chart comparing current parcel biomass against historical district benchmark averages over the crop lifecycle.',
-        descHi:
-          'जिले के औसत फसल विकास के मुकाबले आपके खेत की हरियाली और बायोमास की तुलना करने वाला ऐतिहासिक चार्ट।',
-        kisanTipEn: 'A sudden decline in the green curve flags early localized stress before the eye can see it.',
-        kisanTipHi: 'ग्राफ में अचानक गिरावट आने पर आंखों से दिखने से पहले ही फसल में तनाव का पता लग जाता है।',
-        placement: 'top',
-      },
-      {
-        id: 'fdt-stage',
-        targetSelector: '#guide-twin-stage',
-        titleEn: 'Phenological Growth Stage Tracker',
-        titleHi: 'फसल वृद्धि अवस्था ट्रैकर (Phenology)',
-        descEn:
-          'Tracks progress from Germination through Tillering, Jointing, Heading, Grain Filling, to Final Harvest.',
-        descHi:
-          'अंकुरण, कल्ले फूटना, गांठ बनना, बाली आना, दाना भरना और कटाई तक के सभी चरणों की वैज्ञानिक ट्रैकिंग।',
-        kisanTipEn: 'Nutrient and water requirements change dramatically at each stage milestone.',
-        kisanTipHi: 'प्रत्येक चरण पर फसल की खाद और पानी की आवश्यकताएं बदलती हैं, जिसकी पूर्व सूचना यहां मिलती है।',
         placement: 'top',
       },
     ],

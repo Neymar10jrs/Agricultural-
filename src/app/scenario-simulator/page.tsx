@@ -407,10 +407,10 @@ export default function ScenarioSimulatorPage() {
             {/* Links */}
             <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
               <Link
-                href="/farm-digital-twin"
+                href="/my-farm"
                 className="text-slate-600 hover:text-slate-900 font-semibold flex items-center gap-1"
               >
-                <span>{isHi ? 'डिजिटल ट्विन देखें' : 'View Farm Twin'}</span>
+                <span>{isHi ? 'मेरा खेत देखें' : 'View My Farm'}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
 

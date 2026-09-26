@@ -15,13 +15,10 @@ import {
   Activity,
   CheckCircle2,
   Sparkles,
-  PhoneCall,
-  MessageSquare,
   Smartphone,
   Eye,
   Radio,
   FileText,
-  Volume2,
   Share2,
 } from 'lucide-react';
 import { useApp } from '@/context/AppContext';
@@ -31,7 +28,6 @@ import { AgroScrollBackground } from '@/components/animation/AgroScrollBackgroun
 export default function HomePage() {
   const { t, dict, language, openAskKrishi } = useApp();
   const [activePipelineStep, setActivePipelineStep] = useState<number>(0);
-  const [channelPreview, setChannelPreview] = useState<'whatsapp' | 'sms' | 'ivr'>('whatsapp');
   const isHi = language === 'hi';
 
   const pipelineSteps = [
@@ -341,113 +337,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* 5. MULTI-CHANNEL ADVISORY PREVIEW (Section 32: Agriculture for Everyone) — Transparent Layer */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="py-6 space-y-8">
-            <div className="text-center max-w-2xl mx-auto space-y-2 mb-4">
-              <span className="text-xs font-bold text-emerald-400 uppercase tracking-widest px-3 py-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 inline-block">
-                Universal Access
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight agri-heading-glow">
-                Agriculture for Everyone — Every Device, Every Channel
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-200 text-shadow-agri">
-                Advisories delivered through whichever medium the farmer is most comfortable with.
-              </p>
-            </div>
 
-            {/* Channel Selector Tabs */}
-            <div className="flex justify-center gap-2 mb-6">
-              <button
-                onClick={() => setChannelPreview('whatsapp')}
-                className={`px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition ${
-                  channelPreview === 'whatsapp'
-                    ? 'bg-emerald-600 text-white shadow-lg'
-                    : 'bg-white/10 text-slate-200 hover:bg-white/20 border border-white/15'
-                }`}
-              >
-                <MessageSquare className="w-4 h-4" />
-                <span>WhatsApp Bot</span>
-              </button>
-              <button
-                onClick={() => setChannelPreview('sms')}
-                className={`px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition ${
-                  channelPreview === 'sms'
-                    ? 'bg-emerald-600 text-white shadow-lg'
-                    : 'bg-white/10 text-slate-200 hover:bg-white/20 border border-white/15'
-                }`}
-              >
-                <Smartphone className="w-4 h-4" />
-                <span>SMS Flash Alert</span>
-              </button>
-              <button
-                onClick={() => setChannelPreview('ivr')}
-                className={`px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition ${
-                  channelPreview === 'ivr'
-                    ? 'bg-emerald-600 text-white shadow-lg'
-                    : 'bg-white/10 text-slate-200 hover:bg-white/20 border border-white/15'
-                }`}
-              >
-                <PhoneCall className="w-4 h-4" />
-                <span>IVR Outbound Call</span>
-              </button>
-            </div>
-
-            {/* Mock Phone Container — 80% Transparent Surface Frame */}
-            <div className="max-w-md mx-auto bg-[rgba(10,20,15,0.25)] backdrop-blur-[6px] rounded-3xl p-5 border-2 border-white/20 shadow-2xl space-y-4">
-              <div className="flex items-center justify-between border-b border-white/10 pb-2 text-[11px] text-slate-400">
-                <span>9:41 AM • 4G VoLTE</span>
-                <span className="font-bold text-slate-200">BKIN Krishi Seva</span>
-              </div>
-
-              {channelPreview === 'whatsapp' && (
-                <div className="space-y-3 text-xs">
-                  <div className="bg-emerald-950/60 border border-emerald-500/40 p-3 rounded-2xl rounded-tl-none space-y-1.5 text-slate-100">
-                    <div className="font-bold text-emerald-300 flex items-center justify-between">
-                      <span>🌾 BKIN Krishi Salahkar (Ludhiana)</span>
-                      <span className="text-[10px] text-slate-400">Today 06:30 AM</span>
-                    </div>
-                    <p className="text-shadow-sm-agri">
-                      <strong>ਕਿਸਾਨ ਵੀਰੋ (ਸ. ਗੁਰਪ੍ਰੀਤ ਸਿੰਘ):</strong> ਅਗਲੇ 24 ਘੰਟਿਆਂ ਵਿੱਚ 12-15mm ਮੀਂਹ ਦੀ ਸੰਭਾਵਨਾ ਹੈ। ਕਣਕ ਨੂੰ ਟਿਊਬਵੈੱਲ ਦਾ ਪਾਣੀ ਲਾਉਣਾ 36 ਘੰਟਿਆਂ ਲਈ ਮੁਲਤਵੀ ਕਰੋ।
-                    </p>
-                    <p className="text-[11px] text-emerald-200/90 text-shadow-sm-agri">
-                      ਫਸਲ ਦੀ ਸਿਹਤ: 78% (ਚੰਗੀ)। ਉੱਤਰੀ ਖੇਤ ਵਿੱਚ ਨਮੀ ਦੀ ਜਾਂਚ ਕਰੋ।
-                    </p>
-                    <div className="pt-1 text-[10px] text-emerald-300 font-semibold">
-                      ਜਵਾਬ ਦਿਓ: 1 (ਹੋਰ ਜਾਣਕਾਰੀ) | 2 (ਡਾਕਟਰ ਨਾਲ ਗੱਲ ਕਰੋ)
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {channelPreview === 'sms' && (
-                <div className="space-y-3 text-xs">
-                  <div className="bg-slate-900/60 border border-white/15 p-3 rounded-2xl rounded-tl-none space-y-1 text-slate-200">
-                    <div className="font-bold text-white flex items-center justify-between">
-                      <span>VK-BKINAG</span>
-                      <span className="text-[10px] text-slate-400">SMS • SIM 1</span>
-                    </div>
-                    <p className="font-mono text-[11px] text-slate-300 text-shadow-sm-agri">
-                      [BKIN-ADVISORY] Sardar Gurpreet Singh, Rain (12mm) likely in Samrala block within 24h. Delay wheat irrigation. Sentinel-2 detected minor stress in North corner. Info: bkin.gov.in
-                    </p>
-                  </div>
-                </div>
-              )}
-
-              {channelPreview === 'ivr' && (
-                <div className="space-y-3 text-xs text-center py-4">
-                  <div className="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-300 flex items-center justify-center mx-auto animate-bounce border border-emerald-500/40">
-                    <Volume2 className="w-7 h-7" />
-                  </div>
-                  <div className="font-bold text-white text-shadow-agri">Automated Agri-Voice Call Playing...</div>
-                  <p className="text-slate-300 text-[11px] italic text-shadow-sm-agri">
-                    &ldquo;ਸਤਿ ਸ਼੍ਰੀ ਅਕਾਲ ਸ. ਗੁਰਪ੍ਰੀਤ ਸਿੰਘ ਜੀ! ਭਾਰਤ ਕ੍ਰਿਸ਼ੀ ਨੈੱਟਵਰਕ ਤੋਂ ਜ਼ਰੂਰੀ ਸੂਚਨਾ: ਕੱਲ੍ਹ ਤੱਕ ਬਾਰਿਸ਼ ਦੇ ਆਸਾਰ ਹਨ, ਇਸ ਲਈ ਕਣਕ ਦੀ ਸਿੰਚਾਈ ਰੋਕ ਲਵੋ...&rdquo;
-                  </p>
-                </div>
-              )}
-            </div>
-          </div>
-        </section>
 
         {/* 6. FINAL HOMEPAGE CTA (Section 61) — 80% Transparent Surface CTA */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
