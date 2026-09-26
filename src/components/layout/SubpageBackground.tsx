@@ -17,6 +17,18 @@ import Velaris from '@/components/ui/velaris';
  * resource exists in the resource folder.
  */
 const SECTION_WALLPAPERS: Record<string, { src: string; alt: string }> = {
+  '/my-farm': {
+    src: '/assets/agriculture/fields-pattern.svg',
+    alt: 'My Farm rural agricultural landscape background',
+  },
+  '/todays-advisory': {
+    src: '/assets/crop-health/canopy-ndvi.svg',
+    alt: 'Today Advisory crop health canopy NDVI background',
+  },
+  '/satellite-monitor': {
+    src: '/assets/satellite/satellite-telemetry.svg',
+    alt: 'Satellite Monitor telemetry and spectral analysis background',
+  },
   '/risk-center': {
     src: '/resources/risk-center/wallpaper.png',
     alt: 'Risk Intelligence Center background',

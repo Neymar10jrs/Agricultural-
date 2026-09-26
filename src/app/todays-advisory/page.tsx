@@ -42,6 +42,7 @@ export default function TodaysAdvisoryPage() {
   return (
     <div className="space-y-0">
       <SectionHero
+        imageSrc="/assets/crop-health/canopy-ndvi.svg"
         theme="forest"
         label={dict.advisories.actionCenter}
 
