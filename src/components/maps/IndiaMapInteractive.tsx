@@ -19,6 +19,7 @@ import {
 import { indianStatesData } from '@/data/states';
 import { StateNode } from '@/types';
 import { ZoomEarthSatelliteMap } from '@/components/maps/ZoomEarthSatelliteMap';
+import { IndiaRealMap } from '@/components/maps/IndiaRealMap';
 
 interface IndiaMapInteractiveProps {
   onSelectState?: (state: StateNode) => void;
@@ -112,18 +113,6 @@ function IndiaMapInteractiveContent({ onSelectState, selectedCode = 'PB' }: Indi
     if (onSelectState) {
       onSelectState(state);
     }
-  };
-
-  // State pin coordinates relative to the stylized SVG India canvas
-  const stateCoordinates: Record<string, { x: number; y: number }> = {
-    PB: { x: 30, y: 22 }, // Punjab
-    HR: { x: 34, y: 28 }, // Haryana
-    UP: { x: 50, y: 36 }, // Uttar Pradesh
-    BR: { x: 68, y: 40 }, // Bihar
-    MH: { x: 38, y: 60 }, // Maharashtra
-    KA: { x: 36, y: 76 }, // Karnataka
-    MP: { x: 44, y: 48 }, // Madhya Pradesh
-    GJ: { x: 22, y: 46 }, // Gujarat
   };
 
   return (
@@ -240,98 +229,14 @@ function IndiaMapInteractiveContent({ onSelectState, selectedCode = 'PB' }: Indi
                     }}
                   />
 
-                  {/* Stylized SVG Map of India with Mesh Connections */}
-                  <div className="relative w-full max-w-[420px] aspect-[4/5] flex items-center justify-center">
-                    <svg
-                      viewBox="0 0 100 120"
-                      className="w-full h-full drop-shadow-2xl overflow-visible"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      {/* India Boundary Outline Path (Stylized Geo Polygon) */}
-                      <path
-                        d="M32 10 L44 14 L50 20 L58 24 L68 28 L74 34 L88 32 L94 40 L84 48 L76 44 L66 48 L68 56 L62 68 L54 82 L42 108 L36 94 L30 80 L28 66 L20 54 L16 46 L24 36 L28 22 Z"
-                        fill="#064e3b"
-                        fillOpacity="0.4"
-                        stroke="#10b981"
-                        strokeWidth="1.2"
-                        strokeDasharray="2 1"
-                      />
-
-                      {/* Inter-node telemetry lines connecting to National Hub in Delhi (x:38, y:28) */}
-                      {indianStatesData.map((st) => {
-                        const coord = stateCoordinates[st.stateCode];
-                        if (!coord) return null;
-                        const isSelected = st.stateCode === activeCode;
-                        return (
-                          <line
-                            key={`line-${st.stateCode}`}
-                            x1="38"
-                            y1="28"
-                            x2={coord.x}
-                            y2={coord.y}
-                            stroke={isSelected ? '#34d399' : '#047857'}
-                            strokeWidth={isSelected ? '1.5' : '0.7'}
-                            strokeDasharray={isSelected ? 'none' : '2 2'}
-                            className={isSelected ? 'animate-pulse' : ''}
-                          />
-                        );
-                      })}
-
-                      {/* National Hub (BKIN Central Interoperability Gateway) */}
-                      <circle cx="38" cy="28" r="3.2" fill="#10b981" />
-                      <circle cx="38" cy="28" r="6" fill="#10b981" fillOpacity="0.3" className="animate-ping" />
-                      <text x="44" y="29" fill="#a7f3d0" fontSize="3.2" fontWeight="bold">
-                        BKIN Gateway
-                      </text>
-
-                      {/* State Interactive Nodes */}
-                      {indianStatesData.map((st) => {
-                        const coord = stateCoordinates[st.stateCode];
-                        if (!coord) return null;
-                        const isSelected = st.stateCode === activeCode;
-
-                        return (
-                          <g
-                            key={st.stateCode}
-                            className="cursor-pointer transition-transform hover:scale-110"
-                            onClick={() => handleStateClick(st)}
-                          >
-                            <circle
-                              cx={coord.x}
-                              cy={coord.y}
-                              r={isSelected ? '4' : '2.8'}
-                              fill={isSelected ? '#34d399' : '#059669'}
-                              stroke="#ffffff"
-                              strokeWidth="0.8"
-                            />
-                            {isSelected && (
-                              <circle
-                                cx={coord.x}
-                                cy={coord.y}
-                                r="7"
-                                fill="#34d399"
-                                fillOpacity="0.25"
-                                className="animate-ping"
-                              />
-                            )}
-                            <text
-                              x={coord.x + 3.5}
-                              y={coord.y + 1.2}
-                              fill={isSelected ? '#ffffff' : '#94a3b8'}
-                              fontSize="3"
-                              fontWeight={isSelected ? 'bold' : 'normal'}
-                            >
-                              {st.name}
-                            </text>
-                          </g>
-                        );
-                      })}
-                    </svg>
+                  {/* Real India Map (actual state/UT boundaries) with mesh connections */}
+                  <div className="relative w-full max-w-[440px] flex items-center justify-center">
+                    <IndiaRealMap activeCode={activeCode} onSelectState={handleStateClick} />
                   </div>
 
                   <div className="mt-3 text-[11px] text-slate-400 text-center flex items-center gap-2">
                     <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                    <span>Click any state node to inspect regional agro-climatic data & live models</span>
+                    <span>Click any active state to inspect regional agro-climatic data & live models</span>
                   </div>
                 </div>
 
