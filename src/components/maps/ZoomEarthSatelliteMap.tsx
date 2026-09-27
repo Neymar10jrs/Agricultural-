@@ -11,7 +11,6 @@ import {
   Wind,
   CloudRain,
   Compass,
-  Maximize2,
   ShieldAlert,
   Info,
   Sparkles,
@@ -43,8 +42,14 @@ export function ZoomEarthSatelliteMap({
   const [showWindStream, setShowWindStream] = useState<boolean>(true);
   const [isRefreshing, setIsRefreshing] = useState<boolean>(false);
 
-  // Exact target URL requested by user
+  // Exact target URL requested by user — used for the "open in new tab" launch button.
   const targetZoomEarthUrl = `https://zoom.earth/maps/satellite/#view=${currentCoords.lat},${currentCoords.lon},${zoomLevel}z`;
+
+  // Windy.com's official embeddable widget. Unlike zoom.earth (which sends
+  // X-Frame-Options: SAMEORIGIN and refuses to render in an iframe at all),
+  // Windy explicitly supports third-party embedding — this is what actually
+  // renders a live satellite/weather layer inline instead of a blocked frame.
+  const windyEmbedUrl = `https://embed.windy.com/embed2.html?lat=${currentCoords.lat}&lon=${currentCoords.lon}&detailLat=${currentCoords.lat}&detailLon=${currentCoords.lon}&width=650&height=450&zoom=${zoomLevel}&level=surface&overlay=satellite&product=ecmwf&menu=&message=true&marker=true&calendar=now&pressure=&type=map&location=coordinates&metricWind=default&metricTemp=default&radarRange=-1`;
 
   // Agricultural regional presets across India
   const presets = [
@@ -134,7 +139,7 @@ export function ZoomEarthSatelliteMap({
                   : 'text-slate-300 hover:text-white'
               }`}
             >
-              Direct Frame
+              Live Embedded Map
             </button>
           </div>
 
@@ -356,50 +361,31 @@ export function ZoomEarthSatelliteMap({
           </div>
         </div>
       ) : (
-        /* Embedded Frame Mode with Graceful Fallback Overlay */
-        <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] min-h-[440px] bg-slate-950 flex flex-col items-center justify-center overflow-hidden">
-          {/* Frame attempting direct load */}
+        /* Live Embedded Map: Windy.com's officially embeddable widget.
+           This actually renders inline (unlike zoom.earth, which blocks
+           iframing entirely via X-Frame-Options: SAMEORIGIN). */
+        <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] min-h-[440px] bg-slate-950 overflow-hidden">
           <iframe
-            src={targetZoomEarthUrl}
-            title="Zoom Earth Live Satellite Map"
-            className="w-full h-full border-0 absolute inset-0 z-10"
-            sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+            key={windyEmbedUrl}
+            src={windyEmbedUrl}
+            title="Live Satellite & Weather Map (Windy.com)"
+            className="w-full h-full border-0"
             loading="lazy"
+            allow="geolocation"
           />
 
-          {/* Informational Security Notice Card */}
-          <div className="relative z-20 max-w-lg mx-auto p-6 bg-slate-900/95 rounded-2xl border border-emerald-500/40 text-center text-white shadow-2xl backdrop-blur-md space-y-3 m-4">
-            <div className="w-12 h-12 mx-auto rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center border border-emerald-400/30">
-              <Maximize2 className="w-6 h-6" />
-            </div>
-
-            <h4 className="font-bold text-base text-white">
-              Zoom.Earth Live Satellite Stream (12.7°N, 82.8°E)
-            </h4>
-
-            <p className="text-xs text-slate-300 leading-relaxed">
-              Zoom.Earth provides real-time high-resolution satellite imagery. Because Zoom.Earth enforces browser-level <code className="px-1 py-0.5 rounded bg-black/40 text-emerald-300 font-mono">X-Frame-Options: SAMEORIGIN</code> security headers, open the live map in fullscreen for the best interactive experience.
-            </p>
-
-            <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-2.5">
-              <a
-                href={targetZoomEarthUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg transition"
-              >
-                <span>Launch Zoom.Earth Live Stream</span>
-                <ExternalLink className="w-4 h-4" />
-              </a>
-
-              <button
-                onClick={() => setActiveTab('canvas')}
-                className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-slate-200 font-semibold text-xs transition"
-              >
-                Back to Interactive Radar
-              </button>
-            </div>
-          </div>
+          {/* Small non-blocking corner badge — doesn't cover the map, just
+              offers the full zoom.earth experience for users who want it. */}
+          <a
+            href={targetZoomEarthUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute top-3 right-3 z-20 px-3 py-1.5 rounded-lg bg-slate-900/85 hover:bg-slate-900 backdrop-blur-md border border-white/15 text-white text-[11px] font-semibold flex items-center gap-1.5 shadow-lg transition"
+            title="Zoom.Earth doesn't allow embedding — open its full app in a new tab"
+          >
+            <span>Open Zoom.Earth</span>
+            <ExternalLink className="w-3 h-3" />
+          </a>
         </div>
       )}
 
