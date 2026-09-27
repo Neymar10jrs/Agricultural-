@@ -2,6 +2,7 @@
 // ⚠️ ALL DATA IS SIMULATED — clearly marked as Demo Data throughout the UI
 
 import { ImpactMetrics, ExpertReview, SystemStatus, DataQualityReport } from '@/types';
+import { indianStatesData } from '@/data/states';
 
 // ─── Demo Impact Metrics ──────────────────────────────────────────────────────
 export const demoImpactMetrics: ImpactMetrics = {
@@ -13,8 +14,8 @@ export const demoImpactMetrics: ImpactMetrics = {
   resolvedCases: 1104,
   irrigationDecisionsSupported: 2190,
   diseaseDetections: 389,
-  statesActive: 6,
-  districtsReached: 38,
+  statesActive: indianStatesData.length,
+  districtsReached: indianStatesData.length, // one pilot KVK district live per active state so far
   isDemo: true,
   demoSince: 'Pilot Program — Sept 2026',
 };

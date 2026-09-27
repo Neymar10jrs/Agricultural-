@@ -54,7 +54,7 @@ export function NationalIntelligenceGrid() {
       badge: isHi ? 'अखिल भारतीय प्रोटोकॉल' : 'Pan-India Protocol',
       metrics: [
         { label: isHi ? 'निगरानी रकबा' : 'Monitored Acreage', val: '14.8M Ha' },
-        { label: isHi ? 'सक्रिय राज्य' : 'Active States', val: '6 Connected' },
+        { label: isHi ? 'सक्रिय राज्य' : 'Active States', val: `${indianStatesData.length} Connected` },
         { label: isHi ? 'दैनिक उपग्रह पास' : 'Daily Passes', val: 'Sentinel-2 / 10m' },
       ],
       desc: isHi
@@ -71,7 +71,7 @@ export function NationalIntelligenceGrid() {
       color: 'from-slate-800 to-emerald-950',
       badge: isHi ? 'स्वायत्त राज्य रजिस्ट्री' : 'Sovereign State Registry',
       metrics: [
-        { label: isHi ? 'जिले' : 'Districts Covered', val: '23 Districts' },
+        { label: isHi ? 'जिले' : 'Districts Covered', val: `${selectedState.districtsCount} Districts` },
         { label: isHi ? 'संबद्ध किसान' : 'Connected Farmers', val: selectedState.connectedFarmersCount.toLocaleString() },
         { label: isHi ? 'उपग्रह कवरेज' : 'Satellite Coverage', val: `${selectedState.satelliteCoveragePercent}%` },
       ],
@@ -186,13 +186,15 @@ export function NationalIntelligenceGrid() {
               <span className="text-[10px] text-emerald-400 font-bold uppercase block">
                 {isHi ? 'संबद्ध राज्य' : 'Federated States'}
               </span>
-              <span className="text-xl font-black text-white">6 Active</span>
+              <span className="text-xl font-black text-white">{indianStatesData.length} Active</span>
             </div>
             <div className="p-3 rounded-2xl bg-white/5 border border-white/10 text-center">
               <span className="text-[10px] text-teal-400 font-bold uppercase block">
                 {isHi ? 'निगरानी जिले' : 'Districts Grid'}
               </span>
-              <span className="text-xl font-black text-white">184</span>
+              <span className="text-xl font-black text-white">
+                {indianStatesData.reduce((sum, s) => sum + s.districtsCount, 0)}
+              </span>
             </div>
             <div className="p-3 rounded-2xl bg-white/5 border border-white/10 text-center col-span-2 sm:col-span-1">
               <span className="text-[10px] text-amber-400 font-bold uppercase block">
@@ -428,7 +430,7 @@ export function NationalIntelligenceGrid() {
             </p>
           </div>
           <span className="text-[10px] bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full font-bold border border-slate-200">
-            6 Active State Nodes
+            {indianStatesData.length} Active State Nodes
           </span>
         </div>
 

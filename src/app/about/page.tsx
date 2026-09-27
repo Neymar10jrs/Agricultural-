@@ -17,6 +17,7 @@ import {
 
 import { SectionHero } from '@/components/ui/SectionHero';
 import { useApp } from '@/context/AppContext';
+import { indianStatesData } from '@/data/states';
 
 export default function AboutPage() {
   const { language } = useApp();
@@ -41,7 +42,7 @@ export default function AboutPage() {
         }
         stats={[
           { value: '140M+', label: isHi ? 'किसान परिवार' : 'Farm Households' },
-          { value: '28', label: isHi ? 'राज्य नोड' : 'State Nodes' },
+          { value: String(indianStatesData.length), label: isHi ? 'राज्य नोड' : 'State Nodes' },
           { value: 'Open', label: isHi ? 'API मानक' : 'API Standard' },
           { value: '2024', label: isHi ? 'स्थापित' : 'Founded' },
         ]}

@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Sprout, ShieldCheck, Radio } from 'lucide-react';
 import { useApp } from '@/context/AppContext';
+import { indianStatesData } from '@/data/states';
 
 export function Footer() {
   const { language, dict } = useApp();
@@ -169,7 +170,7 @@ export function Footer() {
           <div className="flex items-center gap-4">
             <span className="inline-flex items-center gap-1 text-[11px] text-slate-400">
               <Radio className="w-3 h-3 text-emerald-400 animate-pulse" />
-              {language === 'hi' ? 'फेडरेटेड नोड्स: 6 सक्रिय राज्य' : 'Federated Nodes: 6 Active States'}
+              {language === 'hi' ? `फेडरेटेड नोड्स: ${indianStatesData.length} सक्रिय राज्य` : `Federated Nodes: ${indianStatesData.length} Active States`}
             </span>
             <Link href="/privacy-trust" className="hover:text-slate-300">
               {dict.nav.privacyTrust}

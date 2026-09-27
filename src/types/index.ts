@@ -292,6 +292,7 @@ export interface StateNode {
   soilTypes: string[];
   activeAdvisoriesCount: number;
   connectedFarmersCount: number;
+  districtsCount: number;
   nodesStatus: 'Active' | 'Synchronizing' | 'Standby';
   satelliteCoveragePercent: number;
   activeDiseaseRisks: string[];

@@ -181,7 +181,7 @@ export function FederatedStateNodeInspector() {
             <span className="font-semibold text-slate-300">
               {isHi ? 'राज्य नोड चुनें (Acceptance Test):' : 'Select State Node to Inspect (Acceptance Test):'}
             </span>
-            <span className="text-[10px] text-slate-400">6 Connected State Secretariats</span>
+            <span className="text-[10px] text-slate-400">{indianStatesData.length} Connected State Secretariats</span>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">

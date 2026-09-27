@@ -5,6 +5,7 @@ import { NationalIntelligenceGrid } from '@/components/network/NationalIntellige
 import { IndiaFarmDrillDown } from '@/components/network/IndiaFarmDrillDown';
 import { useApp } from '@/context/AppContext';
 import { SectionHero } from '@/components/ui/SectionHero';
+import { indianStatesData } from '@/data/states';
 
 export default function IndiaNetworkPage() {
   const { dict, language } = useApp();
@@ -31,7 +32,7 @@ export default function IndiaNetworkPage() {
         }
         showDemoBadge={true}
         stats={[
-          { value: '28', label: isHi ? 'राज्य नोड' : 'State Nodes' },
+          { value: String(indianStatesData.length), label: isHi ? 'राज्य नोड' : 'State Nodes' },
           { value: '142M', label: isHi ? 'खेत रिकॉर्ड' : 'Farm Records' },
           { value: 'v2.4', label: isHi ? 'प्रोटोकॉल' : 'Protocol' },
         ]}
