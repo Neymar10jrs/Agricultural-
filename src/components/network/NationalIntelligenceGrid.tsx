@@ -83,15 +83,15 @@ export function NationalIntelligenceGrid() {
       id: 'district',
       tier: 3,
       title: isHi ? 'जिला स्तर' : 'District Tier',
-      name: isHi ? 'लुधियाना जिला केवीके हब' : 'Ludhiana District KVK Hub',
-      code: 'BKIN-DIS-LDH',
+      name: isHi ? `${selectedState.drillDown.district.hindiName} केवीके हब` : `${selectedState.drillDown.district.name} KVK Hub`,
+      code: selectedState.drillDown.district.code,
       icon: Server,
       color: 'from-blue-900 to-slate-900',
       badge: isHi ? 'कृषि विज्ञान केंद्र' : 'KVK Agronomy Unit',
       metrics: [
-        { label: isHi ? 'तहसील/ब्लॉक' : 'Blocks', val: '14 Blocks' },
-        { label: isHi ? 'मौसम स्टेशन' : 'Agro-Met Stations', val: '8 Active' },
-        { label: isHi ? 'रोग चेतावनी' : 'Active Alerts', val: '1 Yellow Rust Warning' },
+        { label: isHi ? 'तहसील/ब्लॉक' : 'Blocks', val: `${selectedState.drillDown.district.blocksCount} Blocks` },
+        { label: isHi ? 'मौसम स्टेशन' : 'Agro-Met Stations', val: `${selectedState.drillDown.district.agroMetStationsCount} Active` },
+        { label: isHi ? 'रोग चेतावनी' : 'Active Alerts', val: selectedState.drillDown.district.activeAlert },
       ],
       desc: isHi
         ? 'जिला कृषि विज्ञान केंद्र (KVK) और जिला कृषि मौसम इकाई (DAMU) द्वारा दैनिक स्थानीय फसल परामर्श जारी करना।'
@@ -101,15 +101,15 @@ export function NationalIntelligenceGrid() {
       id: 'block',
       tier: 4,
       title: isHi ? 'ब्लॉक / तहसील' : 'Block Tier',
-      name: isHi ? 'समराला ब्लॉक कृषि मंडल' : 'Samrala Block Agriculture Circle',
-      code: 'BKIN-BLK-SMR',
+      name: isHi ? selectedState.drillDown.block.hindiName : selectedState.drillDown.block.name,
+      code: selectedState.drillDown.block.code,
       icon: Layers,
       color: 'from-teal-900 to-slate-900',
       badge: isHi ? 'नहरी व भूजल क्लस्टर' : 'Canal & Water Cluster',
       metrics: [
-        { label: isHi ? 'शामिल गांव' : 'Villages', val: '64 Villages' },
-        { label: isHi ? 'सिंचाई नेटवर्क' : 'Canal Network', val: 'Sirhind Branch' },
-        { label: isHi ? 'मृदा स्वास्थ्य' : 'Soil Testing Labs', val: '2 Mini Labs' },
+        { label: isHi ? 'शामिल गांव' : 'Villages', val: `${selectedState.drillDown.block.villagesCount} Villages` },
+        { label: isHi ? 'सिंचाई नेटवर्क' : 'Water Source', val: selectedState.drillDown.block.waterSource },
+        { label: isHi ? 'मृदा स्वास्थ्य' : 'Soil Testing Labs', val: `${selectedState.drillDown.block.soilLabsCount} Mini Labs` },
       ],
       desc: isHi
         ? 'नहरी जल वितरण और ब्लॉक स्तरीय कीटनाशक स्काउटिंग नेटवर्क का वास्तविक समय टेलीमेट्री समन्वय।'
@@ -119,15 +119,15 @@ export function NationalIntelligenceGrid() {
       id: 'village',
       tier: 5,
       title: isHi ? 'ग्राम पंचायत' : 'Village Tier',
-      name: isHi ? 'रोहणो कलां ग्राम क्लस्टर' : 'Rohno Kalan Village Cluster',
-      code: 'BKIN-VIL-RNK',
+      name: isHi ? selectedState.drillDown.village.hindiName : selectedState.drillDown.village.name,
+      code: selectedState.drillDown.village.code,
       icon: Home,
       color: 'from-amber-900 to-slate-900',
       badge: isHi ? 'किसान मित्र समूह' : 'Farmer WhatsApp Circle',
       metrics: [
-        { label: isHi ? 'खेत जोतें' : 'Farm Holdings', val: '284 Plots' },
-        { label: isHi ? 'प्रमुख फसल' : 'Primary Crop', val: 'Wheat HD-2967' },
-        { label: isHi ? 'सामुदायिक ट्यूबवेल' : 'Tubewell Points', val: '42 Active' },
+        { label: isHi ? 'खेत जोतें' : 'Farm Holdings', val: `${selectedState.drillDown.village.farmHoldingsCount} Plots` },
+        { label: isHi ? 'प्रमुख फसल' : 'Primary Crop', val: selectedState.drillDown.village.primaryCrop },
+        { label: isHi ? 'सामुदायिक ट्यूबवेल' : 'Tubewell Points', val: `${selectedState.drillDown.village.tubewellPointsCount} Active` },
       ],
       desc: isHi
         ? 'ग्राम पंचायत स्तर पर सामुदायिक मौसम चेतावनी और साझा कृषि यंत्र (CHC) का उपयोग।'
@@ -137,15 +137,17 @@ export function NationalIntelligenceGrid() {
       id: 'farm',
       tier: 6,
       title: isHi ? 'खेत स्तर (खेत प्रबंधन)' : 'Farm Plot (My Farm)',
-      name: isHi ? 'जसवंत सिंह का खेत (2.4 एकड़)' : 'Jaswant Singh Farm (2.4 Acres)',
-      code: 'BKIN-PB-LDH-042',
+      name: isHi
+        ? `${selectedState.drillDown.farm.ownerNameHindi} (${selectedState.drillDown.farm.areaAcres} एकड़)`
+        : `${selectedState.drillDown.farm.ownerName} (${selectedState.drillDown.farm.areaAcres} Acres)`,
+      code: selectedState.drillDown.farm.code,
       icon: Sprout,
       color: 'from-emerald-800 to-slate-900',
       badge: isHi ? 'कार्रवाई योग्य खेत बुद्धिमत्ता' : 'Actionable Farm Intelligence',
       metrics: [
-        { label: isHi ? 'एनडीवीआई औसत' : 'NDVI Average', val: '0.68 (Good)' },
-        { label: isHi ? 'फसल अवस्था' : 'Crop Stage', val: 'Tillering (Day 38)' },
-        { label: isHi ? 'आज की कार्रवाई' : 'Action Trigger', val: 'Delay Irrigation 24h' },
+        { label: isHi ? 'एनडीवीआई औसत' : 'NDVI Average', val: `${selectedState.drillDown.farm.ndviAverage.toFixed(2)} (${selectedState.drillDown.farm.ndviStatus})` },
+        { label: isHi ? 'फसल अवस्था' : 'Crop Stage', val: `${selectedState.drillDown.farm.cropStage} (Day ${selectedState.drillDown.farm.daysAfterSowing})` },
+        { label: isHi ? 'आज की कार्रवाई' : 'Action Trigger', val: selectedState.drillDown.farm.actionTrigger },
       ],
       desc: isHi
         ? 'उपग्रह, सेंसर और मौसम डेटा से युक्त वास्तविक खेत बुद्धिमत्ता। सटीक उर्वरक व सिंचाई निर्णय।'

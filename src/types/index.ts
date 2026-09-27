@@ -241,6 +241,47 @@ export interface RegenerativePractice {
 
 // ─── Geography / States ──────────────────────────────────────────────────────
 
+// Per-state drill-down chain (District → Block → Village → Farm) used by the
+// National Intelligence Grid hierarchy stepper, so selecting a different state
+// on the map updates every tier, not just the state-level card.
+export interface StateDrillDown {
+  district: {
+    name: string;
+    hindiName: string;
+    code: string;
+    blocksCount: number;
+    agroMetStationsCount: number;
+    activeAlert: string;
+  };
+  block: {
+    name: string;
+    hindiName: string;
+    code: string;
+    villagesCount: number;
+    waterSource: string;
+    soilLabsCount: number;
+  };
+  village: {
+    name: string;
+    hindiName: string;
+    code: string;
+    farmHoldingsCount: number;
+    primaryCrop: string;
+    tubewellPointsCount: number;
+  };
+  farm: {
+    ownerName: string;
+    ownerNameHindi: string;
+    code: string;
+    areaAcres: number;
+    ndviAverage: number;
+    ndviStatus: string;
+    cropStage: string;
+    daysAfterSowing: number;
+    actionTrigger: string;
+  };
+}
+
 export interface StateNode {
   stateCode: string;
   name: string;
@@ -260,6 +301,7 @@ export interface StateNode {
     soilRegistry: boolean;
     pestSurveillance: boolean;
   };
+  drillDown: StateDrillDown;
 }
 
 // ─── Farm State ──────────────────────────────────────────────────────────────
