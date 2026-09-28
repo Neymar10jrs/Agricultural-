@@ -593,7 +593,7 @@ export default function MyFarmPage() {
         <div id="guide-myfarm-satellite" className="space-y-3">
           <div className="flex items-center justify-between">
             <h3 className="font-bold text-base text-white">
-              Satellite Multi-Spectral Field Observer
+              Simulated Satellite Field Observer (Demo Data)
             </h3>
             <Link
               href="/satellite-monitor"

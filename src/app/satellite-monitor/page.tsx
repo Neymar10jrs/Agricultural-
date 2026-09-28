@@ -35,7 +35,7 @@ export default function SatelliteMonitorPage() {
         <div id="guide-satellite-canvas" className="space-y-3 pt-6 border-t border-slate-200">
           <div>
             <h3 className="text-base sm:text-lg font-bold text-slate-900">
-              {isHi ? 'खेत पार्सल बहु-स्पेक्ट्रल कैनवास' : 'High-Resolution Farm Parcel Multi-Spectral Canvas'}
+              {isHi ? 'सिम्युलेटेड खेत पार्सल उपग्रह कैनवास (डेमो डेटा)' : 'Simulated Farm Parcel Satellite Canvas (Demo Data)'}
             </h3>
             <p className="text-xs text-slate-500">
               {isHi ? 'खेत स्तर पर पार्सल सीमाएं और एनडीवीआई दृश्य' : 'Field-level parcel boundaries with true-color and false-color NIR overlays'}

@@ -103,17 +103,19 @@ export function ZoomEarthSatelliteMap({
           <div className="flex flex-wrap items-center gap-2">
             <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-bold uppercase tracking-wider border border-emerald-400/30 flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
-              Live Zoom.Earth Satellite Feed
+              {activeTab === 'embed' ? 'Live Windy Satellite Layer' : 'Illustrative Preview (Simulated)'}
             </span>
             <span className="text-xs text-slate-300 font-mono">
               Focal Point: {currentCoords.lat.toFixed(1)}°N, {currentCoords.lon.toFixed(1)}°E • Zoom {zoomLevel}z
             </span>
           </div>
           <h3 className="font-bold text-base text-white mt-1 flex items-center gap-2">
-            <span>Live Real-Time Satellite & Agro-Meteorological Map</span>
+            <span>{activeTab === 'embed' ? 'Live Satellite & Weather Map' : 'Regional Satellite Preview (Illustrative)'}</span>
           </h3>
           <p className="text-xs text-slate-300">
-            Real-time multi-sensor geostationary cloud imagery (INSAT-3DR, Meteosat-9, Himawari-9 & Sentinel-2).
+            {activeTab === 'embed'
+              ? 'Live satellite and weather layers provided by Windy.com.'
+              : 'Decorative preview only. Switch to Live Embedded Map for real satellite data.'}
           </p>
         </div>
 
@@ -129,7 +131,7 @@ export function ZoomEarthSatelliteMap({
                   : 'text-slate-300 hover:text-white'
               }`}
             >
-              Interactive Radar
+              Illustrative Preview
             </button>
             <button
               onClick={() => setActiveTab('embed')}

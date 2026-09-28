@@ -196,7 +196,7 @@ export function SatelliteFieldMap() {
                   </span>
                 </div>
                 <h3 className="font-bold text-base text-slate-900 mt-1">
-                  Interactive Satellite Multi-Spectral Field Viewer
+                  Simulated Satellite Field Viewer (Demo Data)
                 </h3>
               </div>
 
