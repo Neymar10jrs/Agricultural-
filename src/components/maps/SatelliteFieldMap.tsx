@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Layers,
@@ -15,6 +15,7 @@ import {
   ShieldAlert,
   Play,
   Pause,
+  X,
 } from 'lucide-react';
 import { demoSatelliteObservation } from '@/data/demoFarm';
 import { ZoomEarthSatelliteMap } from '@/components/maps/ZoomEarthSatelliteMap';
@@ -22,12 +23,17 @@ import { ZoomEarthSatelliteMap } from '@/components/maps/ZoomEarthSatelliteMap';
 type LayerKey = 'true_color' | 'ndvi' | 'ndwi' | 'crop_health' | 'moisture';
 type ViewMode = 'field_indices' | 'zoom_earth';
 
+const MIN_ZOOM = 1;
+const MAX_ZOOM = 2.5;
+const ZOOM_STEP = 0.25;
+
 export function SatelliteFieldMap() {
   const [viewMode, setViewMode] = useState<ViewMode>('field_indices');
   const [activeLayer, setActiveLayer] = useState<LayerKey>('ndvi');
   const [timelineIndex, setTimelineIndex] = useState<number>(6); // latest day
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
-  const [showAnomalyDetail, setShowAnomalyDetail] = useState<boolean>(true);
+  const [showAnomalyDetail, setShowAnomalyDetail] = useState<boolean>(false);
+  const [zoomLevel, setZoomLevel] = useState<number>(1);
 
   const timelineDates = [
     { label: 'Day 10', date: 'Nov 22', ndvi: 0.24, desc: 'Early Germination' },
@@ -40,6 +46,25 @@ export function SatelliteFieldMap() {
   ];
 
   const currentTimeline = timelineDates[timelineIndex];
+
+  // Autoplay: advance through the historical timeline while isPlaying is true.
+  // Stops automatically at the latest day rather than looping, so it reads as
+  // "replay the growth history" rather than an endless loop.
+  useEffect(() => {
+    if (!isPlaying) return;
+    if (timelineIndex >= timelineDates.length - 1) {
+      setIsPlaying(false);
+      return;
+    }
+    const timer = setTimeout(() => {
+      setTimelineIndex((i) => Math.min(i + 1, timelineDates.length - 1));
+    }, 1100);
+    return () => clearTimeout(timer);
+  }, [isPlaying, timelineIndex, timelineDates.length]);
+
+  const handleZoomIn = () => setZoomLevel((z) => Math.min(MAX_ZOOM, Math.round((z + ZOOM_STEP) * 100) / 100));
+  const handleZoomOut = () => setZoomLevel((z) => Math.max(MIN_ZOOM, Math.round((z - ZOOM_STEP) * 100) / 100));
+  const handleCenterField = () => setZoomLevel(1);
 
   const layersInfo = {
     true_color: {
@@ -211,7 +236,10 @@ export function SatelliteFieldMap() {
               />
 
               {/* Simulated Farm Boundary Polygon */}
-              <div className="relative z-10 w-[78%] h-[75%] border-2 border-emerald-400 bg-emerald-950/40 rounded-3xl shadow-2xl backdrop-blur-[1px] p-4 flex flex-col justify-between overflow-hidden">
+              <div
+                className="relative z-10 w-[78%] h-[75%] border-2 border-emerald-400 bg-emerald-950/40 rounded-3xl shadow-2xl backdrop-blur-[1px] p-4 flex flex-col justify-between overflow-hidden transition-transform duration-300 ease-out"
+                style={{ transform: `scale(${zoomLevel})` }}
+              >
                 {/* Boundary coordinate pins */}
                 <div className="flex justify-between items-start text-[10px] text-emerald-300/80 font-mono">
                   <span>30.9012° N, 75.8572° E</span>
@@ -234,6 +262,9 @@ export function SatelliteFieldMap() {
                 {/* North-Eastern Anomaly Stress Zone Highlight */}
                 <div
                   onClick={() => setShowAnomalyDetail(true)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === 'Enter' && setShowAnomalyDetail(true)}
                   className="absolute top-3 right-3 w-32 h-24 border-2 border-dashed border-amber-400 bg-amber-500/30 rounded-2xl flex flex-col items-center justify-center text-center p-2 cursor-pointer hover:bg-amber-500/50 transition-colors animate-pulse"
                 >
                   <AlertTriangle className="w-4 h-4 text-amber-300 mb-0.5" />
@@ -249,16 +280,85 @@ export function SatelliteFieldMap() {
 
               {/* Map On-Screen Controls */}
               <div className="absolute top-4 left-4 z-20 flex flex-col gap-1.5">
-                <button className="w-8 h-8 rounded-lg bg-black/60 text-white flex items-center justify-center border border-white/20 hover:bg-black/80 transition" aria-label="Zoom in">
+                <button
+                  onClick={handleZoomIn}
+                  disabled={zoomLevel >= MAX_ZOOM}
+                  className="w-8 h-8 rounded-lg bg-black/60 text-white flex items-center justify-center border border-white/20 hover:bg-black/80 transition disabled:opacity-40 disabled:cursor-not-allowed"
+                  aria-label="Zoom in"
+                >
                   <ZoomIn className="w-4 h-4" />
                 </button>
-                <button className="w-8 h-8 rounded-lg bg-black/60 text-white flex items-center justify-center border border-white/20 hover:bg-black/80 transition" aria-label="Zoom out">
+                <button
+                  onClick={handleZoomOut}
+                  disabled={zoomLevel <= MIN_ZOOM}
+                  className="w-8 h-8 rounded-lg bg-black/60 text-white flex items-center justify-center border border-white/20 hover:bg-black/80 transition disabled:opacity-40 disabled:cursor-not-allowed"
+                  aria-label="Zoom out"
+                >
                   <ZoomOut className="w-4 h-4" />
                 </button>
-                <button className="w-8 h-8 rounded-lg bg-black/60 text-white flex items-center justify-center border border-white/20 hover:bg-black/80 transition" aria-label="Center field">
+                <button
+                  onClick={handleCenterField}
+                  className="w-8 h-8 rounded-lg bg-black/60 text-white flex items-center justify-center border border-white/20 hover:bg-black/80 transition"
+                  aria-label="Center field"
+                >
                   <Crosshair className="w-4 h-4" />
                 </button>
+                <div className="w-8 text-center text-[9px] font-bold text-white/70 bg-black/50 rounded px-1 py-0.5">
+                  {zoomLevel.toFixed(2)}x
+                </div>
               </div>
+
+              {/* Anomaly Detail Panel (opens when the Stress Zone badge is clicked) */}
+              <AnimatePresence>
+                {showAnomalyDetail && demoSatelliteObservation.anomalies[0] && (
+                  <motion.div
+                    key="anomaly-detail"
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 12 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute bottom-20 left-4 right-4 sm:left-auto sm:right-4 sm:w-80 z-30 rounded-2xl bg-slate-950/95 border border-amber-400/60 shadow-2xl backdrop-blur-md p-4 text-white space-y-2"
+                    role="dialog"
+                    aria-label="Stress zone details"
+                  >
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="flex items-center gap-2">
+                        <AlertTriangle className="w-4 h-4 text-amber-300 shrink-0" />
+                        <div>
+                          <div className="text-xs font-bold text-amber-200 uppercase tracking-wide">
+                            {demoSatelliteObservation.anomalies[0].zoneName}
+                          </div>
+                          <div className="text-[10px] text-slate-400 capitalize">
+                            Severity: {demoSatelliteObservation.anomalies[0].severity}
+                          </div>
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => setShowAnomalyDetail(false)}
+                        className="w-6 h-6 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center shrink-0 transition"
+                        aria-label="Close stress zone details"
+                      >
+                        <X className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+
+                    <div className="text-[11px] leading-relaxed space-y-1.5">
+                      <p>
+                        <span className="font-semibold text-emerald-300">Detected: </span>
+                        {demoSatelliteObservation.anomalies[0].detectedIssue}
+                      </p>
+                      <p>
+                        <span className="font-semibold text-emerald-300">Probable cause: </span>
+                        {demoSatelliteObservation.anomalies[0].probableReason}
+                      </p>
+                      <p>
+                        <span className="font-semibold text-emerald-300">Recommended: </span>
+                        {demoSatelliteObservation.anomalies[0].recommendedAction}
+                      </p>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
               {/* Legend Scale Ribbon */}
               <div className="absolute bottom-4 left-4 right-4 z-20 bg-black/75 backdrop-blur-md px-4 py-2.5 rounded-xl border border-white/15 text-white flex flex-col sm:flex-row items-center justify-between gap-2 text-xs">
@@ -278,6 +378,18 @@ export function SatelliteFieldMap() {
                 <div className="flex items-center gap-2">
                   <Calendar className="w-4 h-4 text-emerald-600" />
                   <span className="font-bold text-slate-800">Historical Crop Progression (Past 38 Days)</span>
+                  <button
+                    onClick={() => {
+                      if (!isPlaying && timelineIndex >= timelineDates.length - 1) {
+                        setTimelineIndex(0);
+                      }
+                      setIsPlaying((p) => !p);
+                    }}
+                    className="ml-1 w-6 h-6 rounded-full bg-emerald-700 text-white flex items-center justify-center hover:bg-emerald-800 transition"
+                    aria-label={isPlaying ? 'Pause timeline playback' : 'Play timeline playback'}
+                  >
+                    {isPlaying ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3 ml-0.5" />}
+                  </button>
                 </div>
                 <span className="text-slate-500 font-medium">
                   Timeline Step: <strong className="text-emerald-700">{currentTimeline.label}</strong> ({currentTimeline.date})
